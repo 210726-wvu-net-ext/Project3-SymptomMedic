@@ -11,10 +11,10 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '*.sln'
+  solution: './SymptoMedic.WebApi/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  symptDirectory: '.'
+  symptDirectory: './SymptoMedic.WebApi'
 
 stages:
 - stage: Build
