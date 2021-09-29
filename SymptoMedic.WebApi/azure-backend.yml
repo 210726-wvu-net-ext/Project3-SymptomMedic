@@ -1,0 +1,68 @@
+trigger:
+- main
+- Develop
+
+pr:
+  branches:
+    include:
+    - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  symptDirectory: '.'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: NuGetToolInstaller@1
+
+    - task: NuGetCommand@2
+      inputs:
+        restoreSolution: '$(solution)'
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SymptoMedic_Sonarcloud'
+        organization: '210726-wvu-net-ext'
+        scannerMode: 'MSBuild'
+        projectKey: 'SymptoMedic-Backend'
+        projectName: 'SymptoMedic-Backend'
+        extraProperties: |
+          sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml
+
+    - task: VSBuild@1
+      inputs:
+        solution: '$(solution)'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+
+    - script: dotnet test
+        --configuration Release
+        --collect:"XPlat Code Coverage"
+        --results-directory $(Agent.TempDirectory)
+        --
+        DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      displayName: dotnet test
+      workingDirectory: $(symptDirectory)
+
+    - task: SonarCloudAnalyze@1
+      displayName: 'Run SonarCloud analysis'
+
+    - task: SonarCloudPublish@1
+      displayName: 'Publish results on build summary'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
