@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -16,7 +15,6 @@ import { ClientProfileComponent } from './client-profile/client-profile.componen
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
 import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
-import { AddInsuranceComponent } from './add-insurance/add-insurance.component';
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { UpdateDoctorInformationComponent } from './update-doctor-information/update-doctor-information.component';
 
@@ -34,7 +32,6 @@ import { UpdateDoctorInformationComponent } from './update-doctor-information/up
     DoctorProfileComponent,
     SymptomSearchComponent,
     BookAppointmentComponent,
-    AddInsuranceComponent,
     UpdateClientInformationComponent,
     UpdateDoctorInformationComponent
   ],
@@ -46,7 +43,7 @@ import { UpdateDoctorInformationComponent } from './update-doctor-information/up
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' }
     ])
-    
+
   ],
 
 
