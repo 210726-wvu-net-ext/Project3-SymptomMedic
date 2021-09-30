@@ -77,24 +77,22 @@ namespace SymptoMedic.DataAccess.Entities
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.Appointments)
                     .HasForeignKey(d => d.ClientId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Appointme__clien__7755B73D");
+                    .HasConstraintName("FK__Appointme__clien__0B5CAFEA");
 
                 entity.HasOne(d => d.Doctor)
                     .WithMany(p => p.Appointments)
                     .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Appointme__docto__7849DB76");
+                    .HasConstraintName("FK__Appointme__docto__0C50D423");
             });
 
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.ToTable("Client");
 
-                entity.HasIndex(e => e.ContactMobile, "UQ__Client__144D470F774BE2BB")
+                entity.HasIndex(e => e.ContactMobile, "UQ__Client__144D470F2ECC4456")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__Client__AB6E6164E148E66C")
+                entity.HasIndex(e => e.Email, "UQ__Client__AB6E6164A908A195")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -169,17 +167,17 @@ namespace SymptoMedic.DataAccess.Entities
                     .WithMany(p => p.Clients)
                     .HasForeignKey(d => d.InsuranceId)
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Client__insuranc__70A8B9AE");
+                    .HasConstraintName("FK__Client__insuranc__04AFB25B");
             });
 
             modelBuilder.Entity<Doctor>(entity =>
             {
                 entity.ToTable("Doctor");
 
-                entity.HasIndex(e => e.License, "UQ__Doctor__A4E54DE416DD2C9D")
+                entity.HasIndex(e => e.License, "UQ__Doctor__A4E54DE4CFA8F299")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Email, "UQ__Doctor__AB6E6164F00F65E6")
+                entity.HasIndex(e => e.Email, "UQ__Doctor__AB6E6164FEAB3BE4")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -282,8 +280,7 @@ namespace SymptoMedic.DataAccess.Entities
                 entity.HasOne(d => d.Doctor)
                     .WithMany(p => p.DoctorSymptoms)
                     .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Doctor_sy__docto__7B264821");
+                    .HasConstraintName("FK__Doctor_sy__docto__0F2D40CE");
             });
 
             modelBuilder.Entity<Insurance>(entity =>
@@ -324,8 +321,7 @@ namespace SymptoMedic.DataAccess.Entities
                 entity.HasOne(d => d.Doctor)
                     .WithMany(p => p.Schedules)
                     .HasForeignKey(d => d.DoctorId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Schedule__doctor__7E02B4CC");
+                    .HasConstraintName("FK__Schedule__doctor__1209AD79");
             });
 
             OnModelCreatingPartial(modelBuilder);

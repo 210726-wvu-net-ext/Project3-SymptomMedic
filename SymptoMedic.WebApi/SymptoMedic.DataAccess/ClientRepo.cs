@@ -35,8 +35,7 @@ namespace SymptoMedic.DataAccess
                 clients.Country,
                 clients.Zipcode,
                 clients.Birthdate,
-                clients.Email,
-                clients.InsuranceId
+                clients.Email
              )
         ).ToList());
 
@@ -63,7 +62,6 @@ namespace SymptoMedic.DataAccess
                 Country = client.Country,
                 Zipcode = client.Zipcode,
                 Birthdate = client.Birthdate,
-                InsuranceId = client.InsuranceId,
             };
             await _context.Clients.AddAsync(newEntity);
             await _context.SaveChangesAsync();
@@ -86,7 +84,6 @@ namespace SymptoMedic.DataAccess
                 foundClient.State = client.State;
                 foundClient.Country = client.Country;
                 foundClient.Zipcode = client.Zipcode;
-                foundClient.InsuranceId = client.InsuranceId;
 
                 _context.Clients.Update(foundClient);
                 await _context.SaveChangesAsync();
@@ -98,14 +95,14 @@ namespace SymptoMedic.DataAccess
             return new Domain.Client();
         }
         // Delete A Client
-        Task<bool> DeleteClientById(int id)
+        public async Task<bool> DeleteClientById(int id)
         {
-
+            return await Task.FromResult(true);
         }
         // Login As Client
-        public async Task<Domain.Client> ClientLoginAsync(Client user)
+        public async Task<Domain.Client> ClientLoginAsync(Domain.Client user)
         {
-
+            return new Domain.Client();
         }
         // Get Client By ID
         public async Task<Domain.Client> GetClientById(int id)
@@ -113,14 +110,11 @@ namespace SymptoMedic.DataAccess
             var returnedClients = await _context.Clients
                    .Include(i => i.Insurance)
                    .Include(a => a.Appointments)
-                   .ThenInclude(d => d.Doctor)
                    .Select(c => new Domain.Client
                    {
                        Id = c.Id,
                        FirstName = c.FirstName,
                        LastName = c.LastName,
-                       Email = c.Email,
-                       Password = c.Password,
                        Gender = c.Gender,
                        ContactMobile = c.ContactMobile,
                        Address = c.Address,
@@ -129,9 +123,10 @@ namespace SymptoMedic.DataAccess
                        Country = c.Country,
                        Zipcode = c.Zipcode,
                        Birthdate = c.Birthdate,
-                       InsuranceId = c.InsuranceId,
-                       Insurance = c.Insurance.Select(i => new Domain.Insurance(i.Id, c.UserId, c.User.Username, c.PostId, c.Created, c.CommentBody)).ToList(),
-                       Appointments = c.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList(),
+                       Email = c.Email,
+                       InsuranceName = c.Insurance.ProviderName,
+                       InsuranceId = c.Insurance.ProviderId,
+                       Appointments = c.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList()
                    }
                 ).ToListAsync();
             Domain.Client singleClient = returnedClients.FirstOrDefault(a => a.Id == id);
@@ -141,7 +136,7 @@ namespace SymptoMedic.DataAccess
             return singleClient;
         }
 
-        bool UniqueEmail(string email)
+        public bool UniqueEmail(string email)
         {
             if (_context.Clients.Any(client => client.Email == email))
             {

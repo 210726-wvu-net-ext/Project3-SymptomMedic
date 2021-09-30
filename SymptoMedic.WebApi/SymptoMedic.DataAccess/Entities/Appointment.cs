@@ -9,8 +9,8 @@ namespace SymptoMedic.DataAccess.Entities
     {
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }
-        public int? ClientId { get; set; }
-        public int? DoctorId { get; set; }
+        public int ClientId { get; set; }
+        public int DoctorId { get; set; }
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
         public string ClientContact { get; set; }
