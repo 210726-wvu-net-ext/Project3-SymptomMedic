@@ -14,7 +14,7 @@ namespace SymptoMedic.DataAccess.Entities
 
         public int Id { get; set; }
         public string ProviderName { get; set; }
-        public int ProviderId { get; set; }
+        public string ProviderId { get; set; }
 
         public virtual ICollection<Client> Clients { get; set; }
     }

@@ -16,7 +16,7 @@ namespace SymptoMedic.DataAccess.Entities
         public string ClientContact { get; set; }
         public string PatientSymptoms { get; set; }
         public DateTime StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public virtual Client Client { get; set; }
         public virtual Doctor Doctor { get; set; }
