@@ -17,6 +17,11 @@ namespace SymptoMedic.Domain
             this.ClientId = clientid;
             this.DoctorId = doctorid;
             this.ClientFirstName = clientfirstname;
+            this.ClientLastName = clientlastname;
+            this.ClientContact = clientcontact;
+            this.PatientSymptoms = patientsymptom;
+            this.StartTime = starttime;
+            this.EndTime = endtime;
         }
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }
