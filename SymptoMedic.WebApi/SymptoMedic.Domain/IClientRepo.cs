@@ -13,6 +13,7 @@ namespace SymptoMedic.Domain
         Task<Client> UpdateClient(int id, Client client);
         Task<bool> DeleteClientById(int id);
         Task<Client> ClientLoginAsync(Client user);
+        Task<Client> GetClientById(int id);
         bool UniqueEmail(string email);
     }
 }

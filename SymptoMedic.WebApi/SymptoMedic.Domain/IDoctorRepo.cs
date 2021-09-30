@@ -16,6 +16,7 @@ namespace SymptoMedic.Domain
         Task<Doctor> SearchDoctorByName(string firstname, string password);
         Task<Doctor> SearchDoctorBySymptom(string symptom);
         Task<Doctor> SearchDoctorByCity(string firstname, string password);
+        //Task<List<Doctor>> GetSymptoms();
         bool UniqueEmail(string email);
     }
 }
