@@ -8,6 +8,13 @@ namespace SymptoMedic.Domain
 {
     public class Insurance
     {
+        public Insurance() { }
+        public Insurance(int id, string providername, int providerid)
+        {
+            this.Id = id;
+            this.ProviderName = providername;
+            this.ProviderId = providerid;
+        }
         public int Id { get; set; }
         public string ProviderName { get; set; }
         public int ProviderId { get; set; }

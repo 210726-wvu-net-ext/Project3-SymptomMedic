@@ -8,6 +8,16 @@ namespace SymptoMedic.Domain
 {
     public class Appointment
     {
+        public Appointment() { }
+
+        public Appointment(int id, DateTime datecreated, int? clientid, int? doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime) 
+        {
+            this.Id = id;
+            this.DateCreated = datecreated;
+            this.ClientId = clientid;
+            this.DoctorId = doctorid;
+            this.ClientFirstName = clientfirstname;
+        }
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }
         public int? ClientId { get; set; }
