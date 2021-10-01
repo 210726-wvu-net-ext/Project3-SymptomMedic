@@ -107,13 +107,13 @@ namespace SymptoMedic.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Client>> Put()
+        public async Task<ActionResult<Insurance>> Put()
         {
             return Ok();
         }
 
         [HttpPost]
-        public async Task<ActionResult<Client>> Post()
+        public async Task<ActionResult<Insurance>> Post()
         {
             return Ok();
         }
