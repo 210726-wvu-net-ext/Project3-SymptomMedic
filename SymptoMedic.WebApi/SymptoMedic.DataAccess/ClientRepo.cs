@@ -16,6 +16,7 @@ namespace SymptoMedic.DataAccess
         {
             _context = context;
         }
+
         // Get Clients
         public Task<List<Domain.Client>> GetClients()
         {
@@ -40,6 +41,7 @@ namespace SymptoMedic.DataAccess
         ).ToList());
 
         }
+
         //Add A Client
         public async Task<Domain.Client> AddAClient(Domain.Client client)
         {
@@ -68,6 +70,7 @@ namespace SymptoMedic.DataAccess
             client.Id = newEntity.Id;
             return client;
         }
+
         // Update A Client
         public async Task<Domain.Client> UpdateClient(int id, Domain.Client client)
         {
@@ -94,16 +97,35 @@ namespace SymptoMedic.DataAccess
 
             return new Domain.Client();
         }
+
         // Delete A Client
         public async Task<bool> DeleteClientById(int id)
         {
-            return await Task.FromResult(true);
+            Entities.Client clientToDelete = await _context.Clients
+                .FirstOrDefaultAsync(client => client.Id == id);
+            if (clientToDelete != null)
+            {
+                _context.Clients.Remove(clientToDelete);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
+
         // Login As Client
-        public async Task<Domain.Client> ClientLoginAsync(Domain.Client user)
+        public async Task<Domain.Client> ClientLoginAsync(Domain.Client client)
         {
-            return new Domain.Client();
+            Entities.Client foundClient = await _context.Clients.FirstOrDefaultAsync(c => c.Email == client.Email && c.Password == client.Password);
+
+            if (foundClient != null)
+            {
+                Domain.Client loginClient = await GetClientById(foundClient.Id);
+                return loginClient;
+            }
+            return null;
         }
+
         // Get Client By ID
         public async Task<Domain.Client> GetClientById(int id)
         {
@@ -136,6 +158,7 @@ namespace SymptoMedic.DataAccess
             return singleClient;
         }
 
+        //Check If Email is Unique
         public bool UniqueEmail(string email)
         {
             if (_context.Clients.Any(client => client.Email == email))
@@ -143,6 +166,58 @@ namespace SymptoMedic.DataAccess
                 return true;
             }
             return false;
+        }
+
+        // Add Insurance
+        public async Task<Domain.Insurance> AddInsurance(Domain.Insurance insurance)
+        {
+            var newEntity = new Entities.Insurance
+            {
+                Id = insurance.Id,
+                ProviderName = insurance.ProviderName,
+                ProviderId = insurance.ProviderId
+            };
+            await _context.Insurances.AddAsync(newEntity);
+            await _context.SaveChangesAsync();
+            insurance.Id = newEntity.Id;
+            return insurance;
+        }
+
+        //Update Insurance
+        public async Task<Domain.Insurance> UpdateInsurance(int id, Domain.Insurance insurance)
+        {
+            Entities.Insurance foundInsurance = await _context.Insurances.FindAsync(id);
+            if (foundInsurance != null)
+            {
+                foundInsurance.Id = id;
+                foundInsurance.ProviderName = insurance.ProviderName;
+                foundInsurance.ProviderId = insurance.ProviderId;
+
+                _context.Insurances.Update(foundInsurance);
+                await _context.SaveChangesAsync();
+
+                var updatedInsurance = await GetInsuranceById(id);
+                return updatedInsurance;
+            }
+
+            return new Domain.Insurance();
+        }
+        public async Task<Domain.Insurance> GetInsuranceById(int id)
+        {
+            var returnedInsurance = await _context.Insurances
+                   .Include(c => c.Clients)
+                   .Select(i => new Domain.Insurance
+                   {
+                       Id = i.Id,
+                       ProviderName = i.ProviderName,
+                       ProviderId = i.ProviderId
+        }
+                ).ToListAsync();
+            Domain.Insurance singleInsurance = returnedInsurance.FirstOrDefault(a => a.Id == id);
+
+
+
+            return singleInsurance;
         }
     }
 }

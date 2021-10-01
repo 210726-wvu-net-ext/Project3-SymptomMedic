@@ -11,18 +11,24 @@ namespace SymptoMedic.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApptController : ControllerBase
+    public class DoctorController : ControllerBase
     {
-        private readonly ILogger<ApptController> _logger;
-        private readonly IClientRepo _crepo;
+        private readonly ILogger<DoctorController> _logger;
         private readonly IDoctorRepo _drepo;
-        public ApptController(ILogger<ApptController> logger, IClientRepo crepo, IDoctorRepo drepo)
+        public DoctorController(ILogger<DoctorController> logger, IDoctorRepo drepo)
         {
             _logger = logger;
-            _crepo = crepo;
             _drepo = drepo;
         }
+        // GET: api/<DoctorsController>
+        [HttpGet]
+        public IActionResult GetDoctors()
+        {
+            var doctors = _drepo.GetDoctors();
+            return Ok(doctors);
+        }
 
+        // GET: api/<BaseController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
