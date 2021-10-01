@@ -167,5 +167,19 @@ namespace SymptoMedic.DataAccess
             }
             return false;
         }
+
+        public async Task<Domain.Insurance> AddInsurance(Domain.Insurance insurance)
+        {
+            var newEntity = new Entities.Insurance
+            {
+                Id = insurance.Id,
+                ProviderName = insurance.ProviderName,
+                ProviderId = insurance.ProviderId
+            };
+            await _context.Insurances.AddAsync(newEntity);
+            await _context.SaveChangesAsync();
+            insurance.Id = newEntity.Id;
+            return insurance;
+        }
     }
 }

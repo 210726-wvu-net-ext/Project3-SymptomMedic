@@ -15,5 +15,6 @@ namespace SymptoMedic.Domain
         Task<Client> ClientLoginAsync(Client user);
         Task<Client> GetClientById(int id);
         bool UniqueEmail(string email);
+        Task<Insurance> AddInsurance(Insurance newInsurance);
     }
 }
