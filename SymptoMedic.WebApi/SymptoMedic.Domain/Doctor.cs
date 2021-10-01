@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SymptoMedic.Domain
 {
     public class Doctor
     {
         public Doctor(){}
-        public Doctor(int id, string firstname, string lastname, string license, string practicename, string email, string phonenumber,string doctorspecialty, string practiceadress, string practicecity, string practicestate, int? practicezipcode, string certifications, string education, string gender)
+        public Doctor(int id, string firstname, string lastname, string license, string practicename, string email, string phonenumber,string doctorspecialty, string practiceadress, string practicecity, string practicestate, int? practicezipcode, string certifications, string education, string gender, List<Appointment> appointments, List<DoctorSymptom> symptoms)
         {
             this.Id = id;
             this.FirstName = firstname;
@@ -22,6 +23,8 @@ namespace SymptoMedic.Domain
             this.Certifications = certifications;
             this.Education = education;
             this.Gender = gender;
+            this.Appointments = appointments;
+            DoctorSymptoms = symptoms;
         }
 
         public int Id { get; set; }
@@ -41,8 +44,8 @@ namespace SymptoMedic.Domain
         public string Education { get; set; }
         public string Gender { get; set; }
 
-        //public virtual ICollection<Appointment> Appointments { get; set; }
-        //public virtual ICollection<DoctorSymptom> DoctorSymptoms { get; set; }
-        //public virtual ICollection<Schedule> Schedules { get; set; }
+        public virtual List<Appointment> Appointments { get; set; }
+        public virtual List<DoctorSymptom> DoctorSymptoms { get; set; }
+        public virtual List<Schedule> Schedules { get; set; }
     }
 }

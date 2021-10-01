@@ -9,14 +9,16 @@ namespace SymptoMedic.Domain
     public interface IDoctorRepo
     {
         Task<List<Doctor>> GetDoctors();
-        /*Task<Doctor> AddADoctor(Doctor doctor);
+
+        Task<Doctor> GetDoctorById(int id);
+        Task<Doctor> AddADoctor(Doctor doctor);
         Task<Doctor> UpdateDoctor(int id, Doctor doctor);
         Task<bool> DeleteDoctorById(int id);
-        Task<Doctor> DoctorLoginAsync(Client user);
-        Task<Doctor> SearchDoctorByName(string firstname, string password);
+        Task<Doctor> DoctorLoginAsync(Doctor doctor);
+        Task<Doctor> SearchDoctorByName(string firstName);
         Task<Doctor> SearchDoctorBySymptom(string symptom);
-        Task<Doctor> SearchDoctorByCity(string firstname, string password);
+        Task<Doctor> SearchDoctorByCity(string city);
         //Task<List<Doctor>> GetSymptoms();
-        bool UniqueEmail(string email);*/
+        bool UniqueEmail(string email);
     }
 }

@@ -10,6 +10,19 @@ namespace SymptoMedic.Domain
     {
         public Appointment() { }
 
+        public Appointment(int id, DateTime dateCreated, int clientId, string clientFirstName, string clientLastName, string clientContact, string patientSymptoms, DateTime startTime, DateTime endTime)
+        {
+            Id = id;
+            DateCreated = dateCreated;
+            ClientId = clientId;
+            ClientFirstName = clientFirstName;
+            ClientLastName = clientLastName;
+            ClientContact = clientContact;
+            PatientSymptoms = patientSymptoms;
+            StartTime = startTime;
+            EndTime = endTime;
+        }
+
         public Appointment(int id, DateTime datecreated, int? clientid, int? doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime) 
         {
             this.Id = id;
