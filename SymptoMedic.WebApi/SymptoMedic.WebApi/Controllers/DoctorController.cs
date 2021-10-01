@@ -20,5 +20,12 @@ namespace SymptoMedic.WebApi.Controllers
             _logger = logger;
             _drepo = drepo;
         }
+        // GET: api/<DoctorsController>
+        [HttpGet]
+        public IActionResult GetDoctors()
+        {
+            var doctors = _drepo.GetDoctors();
+            return Ok(doctors);
+        }
     }
 }
