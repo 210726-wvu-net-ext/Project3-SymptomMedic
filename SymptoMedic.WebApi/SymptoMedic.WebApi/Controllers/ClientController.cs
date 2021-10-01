@@ -71,5 +71,39 @@ namespace SymptoMedic.WebApi.Controllers
             }
 
         }
+
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Client>> Put(int id, [FromBody] UpdatedClient client)
+        {
+            try
+            {
+                Client newUpdateClient = new()
+                {
+                    Id = id,
+                    FirstName = client.FirstName,
+                    LastName = client.LastName,
+                    Email = client.Email,
+                    ContactMobile = client.ContactMobile,
+                    //AboutMe = user.AboutMe
+                };
+                Client updateClient = await _crepo.UpdateClient(id, newUpdateClient);
+                return Ok(updateClient);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        // DELETE api/<UserController>/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            bool result = await _crepo.DeleteClientById(id);
+            if (result == false)
+                return NotFound();
+            return Ok();
+        }
     }
 }
