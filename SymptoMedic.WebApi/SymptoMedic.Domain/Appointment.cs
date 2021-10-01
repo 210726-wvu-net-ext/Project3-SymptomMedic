@@ -32,7 +32,7 @@ namespace SymptoMedic.Domain
         public string ClientContact { get; set; }
         public string PatientSymptoms { get; set; }
         public DateTime StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public Client Client { get; set; }
         public Doctor Doctor { get; set; }

@@ -20,8 +20,9 @@ namespace SymptoMedic.DataAccess.Entities
         public string ContactMobile { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string Country { get; set; }
-        public int? Zipcode { get; set; }
+        public int Zipcode { get; set; }
         public DateTime Birthdate { get; set; }
         public string Email { get; set; }
         public int? InsuranceId { get; set; }

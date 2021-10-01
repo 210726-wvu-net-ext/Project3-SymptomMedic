@@ -9,7 +9,7 @@ namespace SymptoMedic.DataAccess.Entities
     {
         public int Id { get; set; }
         public string Symptom { get; set; }
-        public int? DoctorId { get; set; }
+        public int DoctorId { get; set; }
 
         public virtual Doctor Doctor { get; set; }
     }

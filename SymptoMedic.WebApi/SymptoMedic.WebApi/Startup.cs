@@ -7,10 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SymptoMedic.Domain;
+using SymptoMedic.DataAccess;
+using SymptoMedic.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SymptoMedic.WebApi
 {
@@ -27,10 +31,29 @@ namespace SymptoMedic.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            //REPOS GO HERE
+            services.AddScoped<IDoctorRepo, DoctorRepo>();
+            services.AddScoped<IClientRepo, ClientRepo>();
+
+            services.AddDbContext<symptomedicContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("symptomedic"));
+                options.LogTo(Console.WriteLine);
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SymptoMedic.WebApi", Version = "v1" });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowNgServe", policy =>
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
         }
 

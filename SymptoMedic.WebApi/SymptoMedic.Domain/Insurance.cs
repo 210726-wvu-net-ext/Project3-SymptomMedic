@@ -9,7 +9,7 @@ namespace SymptoMedic.Domain
     public class Insurance
     {
         public Insurance() { }
-        public Insurance(int id, string providername, int providerid)
+        public Insurance(int id, string providername, string providerid)
         {
             this.Id = id;
             this.ProviderName = providername;
@@ -17,7 +17,7 @@ namespace SymptoMedic.Domain
         }
         public int Id { get; set; }
         public string ProviderName { get; set; }
-        public int ProviderId { get; set; }
+        public string ProviderId { get; set; }
 
         public List<Client> Clients { get; set; }
     }
