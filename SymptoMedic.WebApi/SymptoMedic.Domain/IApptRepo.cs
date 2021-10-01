@@ -9,5 +9,6 @@ namespace SymptoMedic.Domain
     public interface IApptRepo
     {
         Task<List<Appointment>> GetAppointments();
+        Task<Appointment> GetAppointmentById(int id);
     }
 }

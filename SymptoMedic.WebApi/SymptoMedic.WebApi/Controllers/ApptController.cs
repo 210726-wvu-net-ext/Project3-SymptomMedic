@@ -26,7 +26,7 @@ namespace SymptoMedic.WebApi.Controllers
         }
         // GET: api/appointments
         /// <summary>
-        /// Get's all clients
+        /// Get's all appointments
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -36,11 +36,17 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok(appointments);
         }
 
-        // GET api/<BaseController>/5
+        // GET api/appointment/5
+        /// <summary>
+        /// GET one appointemnt by clients appointment ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Appointment>> Get(int id)
         {
-            return "value";
+            var appointment = await _arepo.GetAppointmentById(id);
+            return Ok(appointment);
         }
 
         // POST api/<BaseController>

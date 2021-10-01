@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SymptoMedic.Domain
 {
@@ -41,8 +42,8 @@ namespace SymptoMedic.Domain
         public string Education { get; set; }
         public string Gender { get; set; }
 
-        //public virtual ICollection<Appointment> Appointments { get; set; }
-        //public virtual ICollection<DoctorSymptom> DoctorSymptoms { get; set; }
-        //public virtual ICollection<Schedule> Schedules { get; set; }
+        public List<Appointment> Appointments { get; set; }
+        public List<DoctorSymptom> DoctorSymptoms { get; set; }
+        public List<Schedule> Schedules { get; set; }
     }
 }
