@@ -133,7 +133,21 @@ namespace SymptoMedic.WebApi.Controllers
         [HttpPut]
         public async Task<ActionResult<Insurance>> Put(int id, [FromBody] Insurance insurance)
         {
-            return Ok();
+            try
+            {
+                Insurance newUpdateInsurance = new()
+                {
+                    Id = insurance.Id,
+                    ProviderName = insurance.ProviderName,
+                    ProviderId = insurance.ProviderId
+                };
+                Insurance updateInsurance = await _crepo.UpdateInsurance(id, newUpdateInsurance);
+                return Ok(updateInsurance);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         [HttpPost]

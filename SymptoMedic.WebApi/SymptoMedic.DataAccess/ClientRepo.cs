@@ -168,6 +168,7 @@ namespace SymptoMedic.DataAccess
             return false;
         }
 
+        // Add Insurance
         public async Task<Domain.Insurance> AddInsurance(Domain.Insurance insurance)
         {
             var newEntity = new Entities.Insurance
@@ -180,6 +181,43 @@ namespace SymptoMedic.DataAccess
             await _context.SaveChangesAsync();
             insurance.Id = newEntity.Id;
             return insurance;
+        }
+
+        //Update Insurance
+        public async Task<Domain.Insurance> UpdateInsurance(int id, Domain.Insurance insurance)
+        {
+            Entities.Insurance foundInsurance = await _context.Insurances.FindAsync(id);
+            if (foundInsurance != null)
+            {
+                foundInsurance.Id = id;
+                foundInsurance.ProviderName = insurance.ProviderName;
+                foundInsurance.ProviderId = insurance.ProviderId;
+
+                _context.Insurances.Update(foundInsurance);
+                await _context.SaveChangesAsync();
+
+                var updatedInsurance = await GetInsuranceById(id);
+                return updatedInsurance;
+            }
+
+            return new Domain.Insurance();
+        }
+        public async Task<Domain.Insurance> GetInsuranceById(int id)
+        {
+            var returnedInsurance = await _context.Insurances
+                   .Include(c => c.Clients)
+                   .Select(i => new Domain.Insurance
+                   {
+                       Id = i.Id,
+                       ProviderName = i.ProviderName,
+                       ProviderId = i.ProviderId
+        }
+                ).ToListAsync();
+            Domain.Insurance singleInsurance = returnedInsurance.FirstOrDefault(a => a.Id == id);
+
+
+
+            return singleInsurance;
         }
     }
 }
