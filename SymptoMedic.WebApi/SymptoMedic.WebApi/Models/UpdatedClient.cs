@@ -18,5 +18,6 @@ namespace SymptoMedic.WebApi.Models
         public string Email { get; set; }
 
         public string ContactMobile { get; set; }
+        public string InsuranceName { get; set; }
     }
 }

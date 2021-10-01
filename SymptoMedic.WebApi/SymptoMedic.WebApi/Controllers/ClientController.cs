@@ -22,7 +22,7 @@ namespace SymptoMedic.WebApi.Controllers
             _crepo = crepo;
         }
 
-        // GET: api/<StmptomController>
+        // GET: api/<ClientController>
         [HttpGet]
         public IActionResult GetClients()
         {
@@ -30,7 +30,7 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok(clients);
         }
 
-        // GET api/<UserController>/5
+        // GET api/<ClientController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> Get(int id)
         {
@@ -38,7 +38,7 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok(client);
         }
 
-        // POST api/<UserController>
+        // POST api/<ClientController>
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CreatedClient client)
         {
@@ -72,7 +72,7 @@ namespace SymptoMedic.WebApi.Controllers
 
         }
 
-        // PUT api/<UserController>/5
+        // PUT api/<ClientController>/5
         [HttpPut("{id}")]
         public async Task<ActionResult<Client>> Put(int id, [FromBody] UpdatedClient client)
         {
@@ -85,7 +85,7 @@ namespace SymptoMedic.WebApi.Controllers
                     LastName = client.LastName,
                     Email = client.Email,
                     ContactMobile = client.ContactMobile,
-                    //AboutMe = user.AboutMe
+                    InsuranceName = client.InsuranceName
                 };
                 Client updateClient = await _crepo.UpdateClient(id, newUpdateClient);
                 return Ok(updateClient);
@@ -96,13 +96,25 @@ namespace SymptoMedic.WebApi.Controllers
             }
         }
 
-        // DELETE api/<UserController>/5
+        // DELETE api/<ClientController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             bool result = await _crepo.DeleteClientById(id);
             if (result == false)
                 return NotFound();
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Client>> Put()
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Client>> Post()
+        {
             return Ok();
         }
     }
