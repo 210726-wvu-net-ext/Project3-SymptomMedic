@@ -9,6 +9,13 @@ namespace SymptoMedic.Domain
     public class DoctorSymptom
     {
         public DoctorSymptom() { }
+
+        public DoctorSymptom(int id, string symptom)
+        {
+            Id = id;
+            Symptom = symptom;
+        }
+
         public DoctorSymptom(int id, string symptom, int? doctorid)
         {
             this.Id = id;
