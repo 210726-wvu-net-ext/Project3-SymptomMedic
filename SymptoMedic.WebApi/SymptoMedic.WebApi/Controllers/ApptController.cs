@@ -16,17 +16,24 @@ namespace SymptoMedic.WebApi.Controllers
         private readonly ILogger<ApptController> _logger;
         private readonly IClientRepo _crepo;
         private readonly IDoctorRepo _drepo;
-        public ApptController(ILogger<ApptController> logger, IClientRepo crepo, IDoctorRepo drepo)
+        private readonly IApptRepo _arepo;
+        public ApptController(ILogger<ApptController> logger, IClientRepo crepo, IDoctorRepo drepo, IApptRepo arepo)
         {
             _logger = logger;
             _crepo = crepo;
             _drepo = drepo;
+            _arepo = arepo;
         }
-
+        // GET: api/appointments
+        /// <summary>
+        /// Get's all clients
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var appointments = _arepo.GetAppointments();
+            return Ok(appointments);
         }
 
         // GET api/<BaseController>/5

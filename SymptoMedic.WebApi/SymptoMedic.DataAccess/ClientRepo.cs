@@ -38,7 +38,8 @@ namespace SymptoMedic.DataAccess
                 clients.Birthdate,
                 clients.Email
              )
-        ).ToList());
+        
+            ).ToList());
 
         }
 
