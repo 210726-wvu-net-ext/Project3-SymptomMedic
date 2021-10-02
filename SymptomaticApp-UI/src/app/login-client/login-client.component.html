@@ -10,3 +10,25 @@
     <button [disabled]="!loginForm.form.valid" id="loginButton" class="btn btn-dark" (click)="login(username.value, password.value)">Login</button>
   </form>
 </div> -->
+
+<div class="container">
+  <div class="row">
+    <div>
+      <h3>
+        Client Login
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+    </div>
+  </div>
+</div>

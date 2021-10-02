@@ -11,5 +11,7 @@ export class LoginDoctorComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  login(logincredential: string, password: string) {
 
+  }
 }
