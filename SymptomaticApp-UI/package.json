@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@auth0/auth0-spa-js": "^1.18.0",
     "bootstrap": "^5.1.1",
     "npm": "^7.24.1",
     "rxjs": "~6.6.0",

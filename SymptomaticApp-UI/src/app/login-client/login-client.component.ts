@@ -12,4 +12,8 @@ export class LoginClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login(username: string, password: string) {//todo check if these are valid inputs
+
+  }
+
 }

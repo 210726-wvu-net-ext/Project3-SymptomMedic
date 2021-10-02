@@ -1,8 +1,6 @@
 <body>
-
   <app-nav-bar></app-nav-bar>
   <button (click)="auth.login()" *ngIf="!auth.loggedIn">AuthLogin</button>
   <button (click)="auth.logout()" *ngIf="auth.loggedIn">AuthLogOut</button>
   <router-outlet></router-outlet>
-
 </body>

@@ -10,5 +10,5 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'FourPatientApp-UI';
   constructor(public auth: AuthService, private http: HttpClient) { }
-
+  
 }

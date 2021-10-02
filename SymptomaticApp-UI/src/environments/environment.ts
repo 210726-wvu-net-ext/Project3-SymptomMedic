@@ -6,6 +6,9 @@ export const environment = {
   production: false
 };
 
+export const authDomain = 'LhGqAr3DtrpgsUr9KtW53YcUFS4VLeYH';
+export const authClientId = 'dev-8lq-w1e6.us.auth0.com';
+export const baseUrl = `https://localhost:44365/api/`;
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
