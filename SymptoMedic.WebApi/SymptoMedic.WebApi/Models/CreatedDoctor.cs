@@ -40,6 +40,8 @@ namespace SymptoMedic.WebApi.Models
 
         public int practice_zipcode { get; set; }
 
+        public string certifications { get; set; }
+
         public string education { get; set; }
 
         public string gender { get; set; }

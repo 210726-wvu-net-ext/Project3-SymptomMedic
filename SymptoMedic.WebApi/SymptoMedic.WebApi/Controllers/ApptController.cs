@@ -16,24 +16,45 @@ namespace SymptoMedic.WebApi.Controllers
         private readonly ILogger<ApptController> _logger;
         private readonly IClientRepo _crepo;
         private readonly IDoctorRepo _drepo;
-        public ApptController(ILogger<ApptController> logger, IClientRepo crepo, IDoctorRepo drepo)
+        private readonly IApptRepo _arepo;
+        public ApptController(ILogger<ApptController> logger, IClientRepo crepo, IDoctorRepo drepo, IApptRepo arepo)
         {
             _logger = logger;
             _crepo = crepo;
             _drepo = drepo;
+            _arepo = arepo;
         }
-
+        // GET: api/appointments
+        /// <summary>
+        /// Get's all appointments
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<Appointment>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var appointments = await _arepo.GetAppointments();
+
+            if (appointments == null)
+            {
+                return NotFound();
+            } else
+            {
+                return Ok(appointments);
+            }
+            
         }
 
-        // GET api/<BaseController>/5
+        // GET api/appointment/5
+        /// <summary>
+        /// GET one appointemnt by clients appointment ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Appointment>> Get(int id)
         {
-            return "value";
+            var appointment = await _arepo.GetAppointmentById(id);
+            return Ok(appointment);
         }
 
         // POST api/<BaseController>
