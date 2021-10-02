@@ -18,6 +18,11 @@ import { BookAppointmentComponent } from './book-appointment/book-appointment.co
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { UpdateDoctorInformationComponent } from './update-doctor-information/update-doctor-information.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DoctorAccountComponent } from './doctor-account/doctor-account.component';
+import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
+import { RegisterClientComponent } from './register-client/register-client.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { AppRoutingModule } from './app-routing.module';
     SymptomSearchComponent,
     BookAppointmentComponent,
     UpdateClientInformationComponent,
-    UpdateDoctorInformationComponent
+    UpdateDoctorInformationComponent,
+    DoctorAccountComponent,
+    RegisterDoctorComponent,
+    RegisterClientComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

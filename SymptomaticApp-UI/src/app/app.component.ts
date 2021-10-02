@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FourPatientApp-UI';
+  title = 'SymptoMedic';
   constructor(public auth: AuthService, private http: HttpClient) { }
-  
+
 }
