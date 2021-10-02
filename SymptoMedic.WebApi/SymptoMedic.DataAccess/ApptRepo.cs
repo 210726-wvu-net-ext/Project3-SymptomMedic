@@ -16,23 +16,25 @@ namespace SymptoMedic.DataAccess
         {
             _context = context;
         }
-        public Task<List<Domain.Appointment>> GetAppointments()
+        public async Task<List<Domain.Appointment>> GetAppointments()
         {
-            return Task.FromResult(_context.Appointments.Select(
-            appointments => new Domain.Appointment
+            var appts = await _context.Appointments.Select(
+            a => new Domain.Appointment
             (
-                appointments.Id,
-                appointments.DateCreated,
-                appointments.ClientId,
-                appointments.DoctorId,
-                appointments.ClientFirstName, 
-                appointments.ClientLastName, 
-                appointments.ClientContact,
-                appointments.PatientSymptoms, 
-                appointments.StartTime, 
-                appointments.EndTime
+                a.Id,
+                a.DateCreated,
+                a.ClientId,
+                a.DoctorId,
+                a.ClientFirstName, 
+                a.ClientLastName, 
+                a.ClientContact,
+                a.PatientSymptoms, 
+                a.StartTime, 
+                a.EndTime
              )
-            ).ToList());
+            ).ToListAsync();
+
+            return appts;
         }
         public async Task<Domain.Appointment> GetAppointmentById(int id)
         {
@@ -51,8 +53,6 @@ namespace SymptoMedic.DataAccess
                        PatientSymptoms = a.PatientSymptoms,
                        StartTime = a.StartTime,
                        EndTime = a.EndTime,
-                       Client = a.Client.Select(c => new Domain.Client(c.id, c.firstName, c.lastName, c.password, c.gender, c.contactMobile, c.address, c.city, c.state, c.country, c.zipcode,c.birthdate,c.email)),
-                       Doctor = a.Doctor.Select(d => new Domain.Doctor()),
                    }
                 ).ToListAsync();
             Domain.Appointment singleAppointment = returnedAppointments.FirstOrDefault(a => a.Id == id);

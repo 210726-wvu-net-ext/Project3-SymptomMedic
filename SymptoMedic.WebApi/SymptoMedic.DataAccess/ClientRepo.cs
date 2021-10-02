@@ -18,10 +18,10 @@ namespace SymptoMedic.DataAccess
         }
 
         // Get Clients
-        public Task<List<Domain.Client>> GetClients()
+        public async Task<List<Domain.Client>> GetClients()
         {
 
-            return Task.FromResult(_context.Clients.Select(
+            var clients = await _context.Clients.Select(
             clients => new Domain.Client
             (
                 clients.Id,
@@ -39,8 +39,9 @@ namespace SymptoMedic.DataAccess
                 clients.Email
              )
         
-            ).ToList());
+            ).ToListAsync();
 
+            return clients;
         }
 
         //Add A Client

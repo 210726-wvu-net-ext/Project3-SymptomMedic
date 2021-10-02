@@ -19,7 +19,6 @@ namespace SymptoMedic.DataAccess
 
         public async Task<List<Domain.Doctor>> GetDoctors()
         {
-
             var allDocs = await _context.Doctors
                 .Include(a => a.Appointments)
                 //.Include(s => s.Schedules)
@@ -42,9 +41,8 @@ namespace SymptoMedic.DataAccess
                     Certifications = d.Certifications,
                     Education = d.Education,
                     Gender = d.Gender,
-                    Appointments = d.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList(),
+                    Appointments = d.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList(),
                     DoctorSymptoms = d.DoctorSymptoms.Select(b => new Domain.DoctorSymptom(b.Id, b.Symptom)).ToList(),
-
                 }).ToListAsync();
 
             return allDocs;
@@ -89,7 +87,7 @@ namespace SymptoMedic.DataAccess
                     Certifications = d.Certifications,
                     Education = d.Education,
                     Gender = d.Gender,
-                    Appointments = d.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList(),
+                    Appointments = d.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList(),
                     DoctorSymptoms = d.DoctorSymptoms.Select(b => new Domain.DoctorSymptom(b.Id, b.Symptom)).ToList(),
 
                 }).ToListAsync();
