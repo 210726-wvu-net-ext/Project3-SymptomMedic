@@ -18,23 +18,32 @@ namespace SymptoMedic.DataAccess
         }
         public async Task<List<Domain.Appointment>> GetAppointments()
         {
-            var appts = await _context.Appointments.Select(
+            try
+            {
+                var appts = await _context.Appointments.Select(
             a => new Domain.Appointment
             (
                 a.Id,
                 a.DateCreated,
                 a.ClientId,
                 a.DoctorId,
-                a.ClientFirstName, 
-                a.ClientLastName, 
+                a.ClientFirstName,
+                a.ClientLastName,
                 a.ClientContact,
-                a.PatientSymptoms, 
-                a.StartTime, 
+                a.PatientSymptoms,
+                a.StartTime,
                 a.EndTime
              )
             ).ToListAsync();
 
-            return appts;
+                return appts;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            
         }
         public async Task<Domain.Appointment> GetAppointmentById(int id)
         {

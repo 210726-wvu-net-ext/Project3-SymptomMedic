@@ -130,8 +130,8 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Insurance>> Put(int id, [FromBody] Insurance insurance)
+        [HttpPut("{userId}/insurance")]
+        public async Task<ActionResult<Insurance>> Put(int userId, [FromBody] Insurance insurance)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace SymptoMedic.WebApi.Controllers
                     ProviderName = insurance.ProviderName,
                     ProviderId = insurance.ProviderId
                 };
-                Insurance updateInsurance = await _crepo.UpdateInsurance(id, newUpdateInsurance);
+                Insurance updateInsurance = await _crepo.UpdateInsurance(userId, newUpdateInsurance);
                 return Ok(updateInsurance);
             }
             catch (Exception e)
@@ -150,8 +150,8 @@ namespace SymptoMedic.WebApi.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Insurance>> Post(Insurance insurance)
+        [HttpPost("{userId}/insurance/{insuranceId}")]
+        public async Task<ActionResult<Insurance>> Post(int userId, int insuranceId, Insurance insurance)
         {
             try
             {

@@ -30,10 +30,18 @@ namespace SymptoMedic.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<Appointment>> Get()
         {
-            var appointments = _arepo.GetAppointments();
-            return Ok(appointments);
+            var appointments = await _arepo.GetAppointments();
+
+            if (appointments == null)
+            {
+                return NotFound();
+            } else
+            {
+                return Ok(appointments);
+            }
+            
         }
 
         // GET api/appointment/5
