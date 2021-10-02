@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SymptoMedic.Domain;
+using SymptoMedic.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace SymptoMedic.WebApi.Controllers
             _drepo = drepo;
             _arepo = arepo;
         }
+
         // GET: api/appointments
         /// <summary>
         /// Get's all appointments
@@ -57,10 +59,41 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok(appointment);
         }
 
-        // POST api/<BaseController>
+        // POST api/Appointment
+        /// <summary>
+        /// Create an Appointment
+        /// </summary>
+        /// <param name="appointment"></param>
+        /// <returns></returns>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] CreatedAppointment appointment)
         {
+
+            try
+            {
+                var newAppointment = new Appointment
+                {
+                    Id = appointment.Id,
+                    DateCreated = appointment.DateCreated,
+                    ClientId = appointment.ClientId,
+                    DoctorId = appointment.DoctorId,
+                    ClientFirstName = appointment.ClientFirstName,
+                    ClientLastName = appointment.ClientLastName,
+                    ClientContact = appointment.ClientContact,
+                    PatientSymptoms = appointment.PatientSymptoms,
+                    StartTime = appointment.StartTime,
+                    EndTime = appointment.EndTime,
+
+                };
+                var returnedAppointment = await _arepo.MakeAppointmentRequest(newAppointment);
+                return Ok(returnedAppointment);
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical("Failed to make an appointment", e.Message);
+                return BadRequest(e.Message);
+            }
+
         }
 
         // PUT api/<BaseController>/5
