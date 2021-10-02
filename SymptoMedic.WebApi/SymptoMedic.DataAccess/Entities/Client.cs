@@ -30,9 +30,5 @@ namespace SymptoMedic.DataAccess.Entities
         public virtual Insurance Insurance { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
 
-        internal Domain.Client Select(Func<object, Domain.Client> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
