@@ -51,7 +51,8 @@ namespace SymptoMedic.WebApi.Controllers
             };
             if (await _crepo.ClientLoginAsync(loggingInUser) is Client foundClient)
             {
-                return Ok(foundClient);
+                //return Ok(foundClient);
+                return Ok(new { Client = foundClient, message = "You have logged in!", success = true });
             }
             return Unauthorized(new { message = "Your credentials were incorrect! Please try again or Sign up.", success = false });
         }
@@ -67,7 +68,7 @@ namespace SymptoMedic.WebApi.Controllers
             };
             if (await _drepo.DoctorLoginAsync(loggingInUser) is Doctor foundDoctor)
             {
-                return Ok(foundDoctor);
+                return Ok(new { Client = foundDoctor, message = "You have logged in!", success = true });
             }
             return Unauthorized(new { message = "Your credentials were incorrect! Please try again or Sign up.", success = false });
         }
