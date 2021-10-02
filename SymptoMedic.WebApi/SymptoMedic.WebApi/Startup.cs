@@ -67,9 +67,9 @@ namespace SymptoMedic.WebApi
                 c.AddSecurityDefinition("Bearer", securitySchema);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-          {
-              { securitySchema, new[] { "Bearer" } }
-          });
+                {
+                    { securitySchema, new[] { "Bearer" } }
+                });
             });
 
             services.AddCors(options =>
