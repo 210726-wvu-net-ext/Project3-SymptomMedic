@@ -35,6 +35,7 @@ namespace SymptoMedic.WebApi
             //REPOS GO HERE
             services.AddScoped<IDoctorRepo, DoctorRepo>();
             services.AddScoped<IClientRepo, ClientRepo>();
+            services.AddScoped<IApptRepo, ApptRepo>();
 
             services.AddDbContext<symptomedicContext>(options =>
             {

@@ -22,15 +22,24 @@ namespace SymptoMedic.WebApi.Controllers
             _crepo = crepo;
         }
 
-        // GET: api/<ClientController>
+        // GET: api/clients
+        /// <summary>
+        /// Get's all clients
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetClients()
+        public IActionResult Get()
         {
             var clients = _crepo.GetClients();
             return Ok(clients);
         }
 
-        // GET api/<ClientController>/5
+        // GET api/post/5
+        /// <summary>
+        /// GET one clients by client ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> Get(int id)
         {
@@ -38,9 +47,14 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok(client);
         }
 
-        // POST api/<ClientController>
+        // POST api/client
+        /// <summary>
+        /// Create a Client
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreatedClient client)
+        public async Task<ActionResult> Post([FromBody] CreatedClient client)
         {
 
             try
@@ -72,7 +86,13 @@ namespace SymptoMedic.WebApi.Controllers
 
         }
 
-        // PUT api/<ClientController>/5
+        // PUT api/client/5
+        /// <summary>
+        /// Update Client
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="client"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<ActionResult<Client>> Put(int id, [FromBody] UpdatedClient client)
         {
@@ -96,7 +116,11 @@ namespace SymptoMedic.WebApi.Controllers
             }
         }
 
-        // DELETE api/<ClientController>/5
+        /// <summary>
+        /// Delete Comment 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
@@ -106,16 +130,45 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Client>> Put()
+        [HttpPut("{userId}/insurance")]
+        public async Task<ActionResult<Insurance>> Put(int userId, [FromBody] Insurance insurance)
         {
-            return Ok();
+            try
+            {
+                Insurance newUpdateInsurance = new()
+                {
+                    Id = insurance.Id,
+                    ProviderName = insurance.ProviderName,
+                    ProviderId = insurance.ProviderId
+                };
+                Insurance updateInsurance = await _crepo.UpdateInsurance(userId, newUpdateInsurance);
+                return Ok(updateInsurance);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Client>> Post()
+        [HttpPost("{userId}/insurance/{insuranceId}")]
+        public async Task<ActionResult<Insurance>> Post(int userId, int insuranceId, Insurance insurance)
         {
-            return Ok();
+            try
+            {
+                var newInsurance = new Insurance
+                {
+                    Id = insurance.Id,
+                    ProviderName = insurance.ProviderName,
+                    ProviderId = insurance.ProviderId
+                };
+                var returnedInsurance = await _crepo.AddInsurance(newInsurance);
+                return Ok(returnedInsurance);
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical("Failed to add your Insurance", e.Message);
+                return BadRequest(e.Message);
+            }
         }
     }
 }

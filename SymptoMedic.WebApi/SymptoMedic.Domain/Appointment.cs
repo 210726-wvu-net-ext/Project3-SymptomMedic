@@ -10,7 +10,36 @@ namespace SymptoMedic.Domain
     {
         public Appointment() { }
 
-        public Appointment(int id, DateTime datecreated, int? clientid, int? doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime) 
+        public Appointment(int id, DateTime dateCreated, int clientId, int doctorId, string clientFirstName, string clientLastName, string clientContact, string patientSymptoms, DateTime startTime, DateTime endTime)
+        {
+            Id = id;
+            DateCreated = dateCreated;
+            ClientId = clientId;
+            DoctorId = doctorId;
+            ClientFirstName = clientFirstName;
+            ClientLastName = clientLastName;
+            ClientContact = clientContact;
+            PatientSymptoms = patientSymptoms;
+            StartTime = startTime;
+            EndTime = endTime;
+        }
+
+        public Appointment(int id, DateTime dateCreated, int clientId, string clientFirstName, string clientLastName, string clientContact, string patientSymptoms, DateTime startTime, DateTime endTime, Client client, Doctor doctor)
+        {
+            Id = id;
+            DateCreated = dateCreated;
+            ClientId = clientId;
+            ClientFirstName = clientFirstName;
+            ClientLastName = clientLastName;
+            ClientContact = clientContact;
+            PatientSymptoms = patientSymptoms;
+            StartTime = startTime;
+            EndTime = endTime;
+            Client = client;
+            Doctor = doctor;
+        }
+
+        public Appointment(int id, DateTime datecreated, int? clientid, int? doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime, Client client, Doctor doctor) 
         {
             this.Id = id;
             this.DateCreated = datecreated;
@@ -22,6 +51,8 @@ namespace SymptoMedic.Domain
             this.PatientSymptoms = patientsymptom;
             this.StartTime = starttime;
             this.EndTime = endtime;
+            Client = client;
+            Doctor = doctor;
         }
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }

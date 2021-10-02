@@ -18,10 +18,10 @@ namespace SymptoMedic.DataAccess
         }
 
         // Get Clients
-        public Task<List<Domain.Client>> GetClients()
+        public async Task<List<Domain.Client>> GetClients()
         {
 
-            return Task.FromResult(_context.Clients.Select(
+            var clients = await _context.Clients.Select(
             clients => new Domain.Client
             (
                 clients.Id,
@@ -38,8 +38,10 @@ namespace SymptoMedic.DataAccess
                 clients.Birthdate,
                 clients.Email
              )
-        ).ToList());
+        
+            ).ToListAsync();
 
+            return clients;
         }
 
         //Add A Client
@@ -166,6 +168,58 @@ namespace SymptoMedic.DataAccess
                 return true;
             }
             return false;
+        }
+
+        // Add Insurance
+        public async Task<Domain.Insurance> AddInsurance(Domain.Insurance insurance)
+        {
+            var newEntity = new Entities.Insurance
+            {
+                Id = insurance.Id,
+                ProviderName = insurance.ProviderName,
+                ProviderId = insurance.ProviderId
+            };
+            await _context.Insurances.AddAsync(newEntity);
+            await _context.SaveChangesAsync();
+            insurance.Id = newEntity.Id;
+            return insurance;
+        }
+
+        //Update Insurance
+        public async Task<Domain.Insurance> UpdateInsurance(int id, Domain.Insurance insurance)
+        {
+            Entities.Insurance foundInsurance = await _context.Insurances.FindAsync(id);
+            if (foundInsurance != null)
+            {
+                foundInsurance.Id = id;
+                foundInsurance.ProviderName = insurance.ProviderName;
+                foundInsurance.ProviderId = insurance.ProviderId;
+
+                _context.Insurances.Update(foundInsurance);
+                await _context.SaveChangesAsync();
+
+                var updatedInsurance = await GetInsuranceById(id);
+                return updatedInsurance;
+            }
+
+            return new Domain.Insurance();
+        }
+        public async Task<Domain.Insurance> GetInsuranceById(int id)
+        {
+            var returnedInsurance = await _context.Insurances
+                   .Include(c => c.Clients)
+                   .Select(i => new Domain.Insurance
+                   {
+                       Id = i.Id,
+                       ProviderName = i.ProviderName,
+                       ProviderId = i.ProviderId
+        }
+                ).ToListAsync();
+            Domain.Insurance singleInsurance = returnedInsurance.FirstOrDefault(a => a.Id == id);
+
+
+
+            return singleInsurance;
         }
     }
 }
