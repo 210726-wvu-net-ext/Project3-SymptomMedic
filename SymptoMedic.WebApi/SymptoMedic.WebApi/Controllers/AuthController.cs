@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SymptoMedic.Domain;
+using SymptoMedic.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SymptoMedic.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -36,23 +37,52 @@ namespace SymptoMedic.WebApi.Controllers
             return "value";
         }
 
+
+
         // POST api/<BaseController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost, Route("login/[action]")]
+        public async Task<ActionResult> LoginClient([FromBody] Login user)
         {
+            if (user == null) return BadRequest("Invalid client request");
+            var loggingInUser = new Client
+            {
+                Email = user.email,
+                Password = user.password
+            };
+            if (await _crepo.ClientLoginAsync(loggingInUser) is Client foundClient)
+            {
+                return Ok(foundClient);
+            }
+            return Unauthorized(new { message = "Your credentials were incorrect! Please try again or Sign up.", success = false });
         }
 
-        // PUT api/<BaseController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost, Route("login/[action]")]
+        public async Task<ActionResult> LoginDoctor([FromBody] Login user)
         {
+            if (user == null) return BadRequest("Invalid client request");
+            var loggingInUser = new Doctor
+            {
+                Email = user.email,
+                Password = user.password
+            };
+            if (await _drepo.DoctorLoginAsync(loggingInUser) is Doctor foundDoctor)
+            {
+                return Ok(foundDoctor);
+            }
+            return Unauthorized(new { message = "Your credentials were incorrect! Please try again or Sign up.", success = false });
         }
 
-        // DELETE api/<BaseController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        /* // PUT api/<BaseController>/5
+         [HttpPut("{id}")]
+         public void Put(int id, [FromBody] string value)
+         {
+         }
+
+         // DELETE api/<BaseController>/5
+         [HttpDelete("{id}")]
+         public void Delete(int id)
+         {
+         }*/
     }
 
 }

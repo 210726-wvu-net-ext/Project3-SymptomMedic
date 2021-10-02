@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SymptoMedic.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/dashboard")]
     [ApiController]
     public class DashboardController : ControllerBase
     {

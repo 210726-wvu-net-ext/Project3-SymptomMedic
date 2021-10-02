@@ -56,12 +56,6 @@ namespace SymptoMedic.DataAccess
         {
             throw new NotImplementedException();
         }
-
-        public Task<Domain.Doctor> DoctorLoginAsync(Domain.Doctor doctor)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Domain.Doctor> GetDoctorById(int id)
         {
             var returnedDoctor = await _context.Doctors
@@ -121,6 +115,18 @@ namespace SymptoMedic.DataAccess
         public Task<Domain.Doctor> UpdateDoctor(int id, Domain.Doctor doctor)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Domain.Doctor> DoctorLoginAsync(Domain.Doctor user)
+        {
+            Entities.Doctor foundUser = await _context.Doctors.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+
+            if (foundUser != null)
+            {
+                Domain.Doctor loginUser = await GetDoctorById(foundUser.Id);
+                return loginUser;
+            }
+            return null;
         }
     }
 }

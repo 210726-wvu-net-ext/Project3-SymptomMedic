@@ -38,7 +38,7 @@ namespace SymptoMedic.DataAccess
                 clients.Birthdate,
                 clients.Email
              )
-        
+
             ).ToListAsync();
 
             return clients;
@@ -213,7 +213,7 @@ namespace SymptoMedic.DataAccess
                        Id = i.Id,
                        ProviderName = i.ProviderName,
                        ProviderId = i.ProviderId
-        }
+                   }
                 ).ToListAsync();
             Domain.Insurance singleInsurance = returnedInsurance.FirstOrDefault(a => a.Id == id);
 
