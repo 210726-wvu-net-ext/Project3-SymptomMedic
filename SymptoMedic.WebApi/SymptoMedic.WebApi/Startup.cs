@@ -101,6 +101,14 @@ namespace SymptoMedic.WebApi
             {
                 options.AddPolicy("read:weather", policy => policy.Requirements.Add(new HasScopeRequirement("read:weather", $"https://{Configuration["Auth0:Domain"]}/")));
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowNgServe", policy =>
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
 
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
@@ -125,6 +133,7 @@ namespace SymptoMedic.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("AllowNgServe");
 
             app.UseAuthentication();
 

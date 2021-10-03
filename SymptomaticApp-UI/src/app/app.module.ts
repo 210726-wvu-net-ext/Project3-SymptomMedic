@@ -23,6 +23,8 @@ import { RegisterDoctorComponent } from './register-doctor/register-doctor.compo
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,10 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule.forRoot({
+      ...env.auth,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
