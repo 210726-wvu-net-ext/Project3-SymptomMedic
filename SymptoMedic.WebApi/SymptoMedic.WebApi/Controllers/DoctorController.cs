@@ -124,13 +124,21 @@ namespace SymptoMedic.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            bool result = await _drepo.DeleteDoctorById(id);
-            if (result == false)
-                return NotFound();
-            return Ok();
+            try
+            {
+                bool result = await _drepo.DeleteDoctorById(id);
+                if (result == false)
+                    return NotFound();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                //ModelState.AddModelError("Username", e.Message);
+                //ModelState.AddModelError("Email", e.Message);
+                _logger.LogCritical($"Failed to delete doctor with ID: {id}", e.Message);
+                return BadRequest(e.Message);
+            }
         }
-
-
     }
 
       
