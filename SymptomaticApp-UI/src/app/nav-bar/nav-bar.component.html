@@ -24,6 +24,9 @@
         <li><a class="nav-link" routerLink="/register">Register</a></li>
         <li><a class="nav-link" routerLink="/profile/1">Profile</a></li>
         <li><a class="nav-link" routerLink="/account/2">Account</a></li>
+        <li *ngIf="authService.loggedIn()">
+          <a (click)="logout()" >Log Out</a>
+        </li>
 
         <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

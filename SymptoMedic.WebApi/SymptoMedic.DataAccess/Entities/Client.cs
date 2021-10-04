@@ -16,6 +16,7 @@ namespace SymptoMedic.DataAccess.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public string Gender { get; set; }
         public string ContactMobile { get; set; }
         public string Address { get; set; }
@@ -29,10 +30,5 @@ namespace SymptoMedic.DataAccess.Entities
 
         public virtual Insurance Insurance { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
-
-        internal Domain.Client Select(Func<object, Domain.Client> p)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
