@@ -65,6 +65,7 @@ namespace SymptoMedic.WebApi.Controllers
                     PracticeName = doctor.practice_name,
                     Email = doctor.email,
                     Password = doctor.password,
+                    Role = "doctor",
                     PhoneNumber = doctor.phone_number,
                     DoctorSpeciality = doctor.doctor_speciality,
                     PracticeAddress = doctor.practice_address,
