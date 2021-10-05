@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { environment as env } from 'src/environments/environment';
 import { JwtModule } from "@auth0/angular-jwt";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 
 export function tokenGetter() {
@@ -51,7 +52,8 @@ export function tokenGetter() {
     RegisterDoctorComponent,
     RegisterClientComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

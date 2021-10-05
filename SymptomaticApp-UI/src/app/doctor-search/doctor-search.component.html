@@ -1,1 +1,9 @@
-<p>doctor-search works!</p>
+<mat-card class="container">
+    <h1>Search</h1>
+    <input class="form-control form-control-lg" type="search" [(ngModel)] = searchInput placeholder="Search doctors..">
+    <mat-list>
+      <mat-list-item *ngFor="let doctor of doctors | Filter: searchInput">
+        <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
+      </mat-list-item>
+    </mat-list>
+</mat-card>
