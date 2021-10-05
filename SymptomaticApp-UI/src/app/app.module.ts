@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DoctorCardComponent } from './doctor-card/doctor-card.component';
 import { DoctorSearchComponent } from './doctor-search/doctor-search.component';
@@ -23,6 +22,14 @@ import { RegisterDoctorComponent } from './register-doctor/register-doctor.compo
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { environment as env } from 'src/environments/environment';
+import { JwtModule } from "@auth0/angular-jwt";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -48,8 +55,17 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44365",],
+        disallowedRoutes:[]
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

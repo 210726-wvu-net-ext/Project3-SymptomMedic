@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SymptoMedic.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/appt")]
     [ApiController]
     public class ApptController : ControllerBase
     {

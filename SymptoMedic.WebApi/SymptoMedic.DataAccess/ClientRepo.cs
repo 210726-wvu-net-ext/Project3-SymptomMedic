@@ -21,25 +21,29 @@ namespace SymptoMedic.DataAccess
         public async Task<List<Domain.Client>> GetClients()
         {
 
-            var clients = await _context.Clients.Select(
-            clients => new Domain.Client
-            (
-                clients.Id,
-                clients.FirstName,
-                clients.LastName,
-                clients.Password,
-                clients.Gender,
-                clients.ContactMobile,
-                clients.Address,
-                clients.City,
-                clients.State,
-                clients.Country,
-                clients.Zipcode,
-                clients.Birthdate,
-                clients.Email
-             )
-
-            ).ToListAsync();
+            var clients = await _context.Clients
+                   .Include(i => i.Insurance)
+                   .Include(a => a.Appointments)
+                   .Select(c => new Domain.Client
+                   {
+                       Id = c.Id,
+                       FirstName = c.FirstName,
+                       LastName = c.LastName,
+                       Role = c.Role,
+                       Gender = c.Gender,
+                       ContactMobile = c.ContactMobile,
+                       Address = c.Address,
+                       City = c.City,
+                       State = c.State,
+                       Country = c.Country,
+                       Zipcode = c.Zipcode,
+                       Birthdate = c.Birthdate,
+                       Email = c.Email,
+                       InsuranceName = c.Insurance.ProviderName,
+                       InsuranceId = c.Insurance.ProviderId,
+                       Appointments = c.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList()
+                   }
+                ).ToListAsync();
 
             return clients;
         }
@@ -58,6 +62,7 @@ namespace SymptoMedic.DataAccess
                 LastName = client.LastName,
                 Email = client.Email,
                 Password = client.Password,
+                Role = client.Role,
                 Gender = client.Gender,
                 ContactMobile = client.ContactMobile,
                 Address = client.Address,
@@ -139,6 +144,7 @@ namespace SymptoMedic.DataAccess
                        Id = c.Id,
                        FirstName = c.FirstName,
                        LastName = c.LastName,
+                       Role = c.Role,
                        Gender = c.Gender,
                        ContactMobile = c.ContactMobile,
                        Address = c.Address,

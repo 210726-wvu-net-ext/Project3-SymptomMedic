@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace SymptoMedic.WebApi
 {
@@ -82,34 +83,45 @@ namespace SymptoMedic.WebApi
             });
 
 
-            string domain = $"https://{Configuration["Auth0:Domain"]}/";
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.Authority = domain;
-                options.Audience = Configuration["Auth0:Audience"];
-                options.TokenValidationParameters = new TokenValidationParameters
+            services.AddAuthentication(
+                opt =>
                 {
-                    NameClaimType = ClaimTypes.NameIdentifier
-                };
-            });
+                    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
 
-            services.AddAuthorization(options =>
+                        ValidateIssuer = true, // the is the server that createdd
+                        ValidateAudience = true, // the receiver is a valid recipient
+                        ValidateLifetime = true, // the token hasn't expired
+                        ValidateIssuerSigningKey = true, // the signing key is valid and trusted by the server
+
+                        ValidIssuer = "https://localhost:44391",
+                        ValidAudience = "https://localhost:4200",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretSupersupes#345"))
+                    };
+                });
+
+            services.AddCors(options =>
             {
-                options.AddPolicy("read:weather", policy => policy.Requirements.Add(new HasScopeRequirement("read:weather", $"https://{Configuration["Auth0:Domain"]}/")));
+                options.AddPolicy("AllowNgServe", policy =>
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
 
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
             ///this could cause a deployment error like P2
-            services.AddControllers()
+            /*services.AddControllers()
                  .AddNewtonsoftJson(options =>
                  {
                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                 });
+                 });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -125,6 +137,7 @@ namespace SymptoMedic.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("AllowNgServe");
 
             app.UseAuthentication();
 

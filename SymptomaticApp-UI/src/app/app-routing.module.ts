@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptorService } from './interceptor.service';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { HomeComponent } from './home/home.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
@@ -31,12 +30,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }
-  ]
+  providers: []
 })
 export class AppRoutingModule { }

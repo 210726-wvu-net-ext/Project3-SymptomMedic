@@ -1,21 +1,25 @@
-// import { Post } from "./post";
-// import { Comment } from "./comment";
-// import { IFriend } from "./friend";
+import { Appointment } from "./appointments";
+import { Symptom } from "./symptom";
 
-export interface Doctor {
-    id: number,
-    firstName: string,
-    lastName: string,
-    email: string,
-    username: string,
-    password: string,
-    aboutMe: string,
-    state: string,
-    country: string,
-    role: string,
-    phoneNumber: string,
-    doB: Date,
-    comments: Comment[],
-    posts: Post[],
-    friends: IFriend[]
+export interface Doctor
+{
+  id: number,
+  firstName: string,
+  lastName: string,
+  license: string,
+  practiceName: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
+  doctorSpecialty: string,
+  practiceAddress: string,
+  practiceCity: string,
+  practiceState: string,
+  practiceZipcode: number,
+  certifications: string,
+  education: string,
+  gender: string,
+  appointments: Appointment[],
+  doctorSymptoms: Symptom[]
+
 }

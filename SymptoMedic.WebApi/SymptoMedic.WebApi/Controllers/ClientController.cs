@@ -28,9 +28,9 @@ namespace SymptoMedic.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<Doctor>> Get()
         {
-            var clients = _crepo.GetClients();
+            var clients = await _crepo.GetClients();
             return Ok(clients);
         }
 
