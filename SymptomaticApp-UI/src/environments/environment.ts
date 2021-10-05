@@ -5,15 +5,8 @@
 
 export const environment = {
   production: false,
-  auth: {
-    domain: "dev-1x7bapue.us.auth0.com",
-    clientId: "TrIo1jLaKGmjAydNYkz1I2ZnTGQSZ1FH",
-    redirectUri: window.location.origin,
-  },
 };
 
-export const authDomain = 'dev-8lq-w1e6.us.auth0.com';
-export const authClientId = 'LhGqAr3DtrpgsUr9KtW53YcUFS4VLeYH';
 export const baseUrl = `https://localhost:44391/api/`;
 /*
  * For easier debugging in development mode, you can import the following file

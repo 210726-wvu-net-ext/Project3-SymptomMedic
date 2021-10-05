@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
+import { AuthGuard } from './gaurds/auth-guard.service';
 
 
 const routes: Routes = [
@@ -25,7 +26,6 @@ const routes: Routes = [
   { path: 'register/client', component: RegisterClientComponent},
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'doctor/:id', component: DoctorProfileComponent}
 ];
 
 @NgModule({
