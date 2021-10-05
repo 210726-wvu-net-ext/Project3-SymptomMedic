@@ -1,1 +1,21 @@
-<p>doctor-profile works!</p>
+<div *ngIf="doctor">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <app-doctor-card [doctor]="doctor" class="col"></app-doctor-card>
+        </div>
+        <br>
+
+        <div>
+          <h3>Symptoms They Treat:</h3>
+          <!-- <app-symptoms></app-symptoms> -->
+        </div><br>
+        <div class="row"></div>
+      </div>
+      <div class="col-md-8">
+        <div>Appoints? Calendar?</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'register/client', component: RegisterClientComponent},
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'doctor/:id', component: DoctorProfileComponent}
 ];
 
 @NgModule({

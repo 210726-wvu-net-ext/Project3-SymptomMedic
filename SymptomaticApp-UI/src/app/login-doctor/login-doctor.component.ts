@@ -47,6 +47,4 @@ export class LoginDoctorComponent implements OnInit {
       alert("Please enter in your information!");
     }
   }
-
-
 }

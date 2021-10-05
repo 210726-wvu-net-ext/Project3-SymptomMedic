@@ -21,5 +21,4 @@ export interface Doctor
   gender: string,
   appointments: Appointment[],
   doctorSymptoms: Symptom[]
-
 }

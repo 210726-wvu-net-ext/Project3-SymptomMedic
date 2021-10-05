@@ -65,6 +65,7 @@ namespace SymptoMedic.WebApi.Controllers
                     LastName = client.LastName,
                     Email = client.Email,
                     Password = client.Password,
+                    Role = "client",
                     Gender = client.Gender,
                     ContactMobile = client.ContactMobile,
                     Address = client.Address,
