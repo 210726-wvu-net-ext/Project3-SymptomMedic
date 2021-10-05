@@ -6,7 +6,7 @@ import { DoctorSearchComponent } from '../doctor-search/doctor-search.component'
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, searchInput: string): unknown {
+  transform(value: any, searchInput: string){
     if (value.length === 0)
     {
       return value;
