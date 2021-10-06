@@ -16,12 +16,21 @@ export class AppointmentService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  private appointmentUrl = `${baseUrl}appointment`;
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
-
+  /** POST: add a new Appointment to the server */
   addAppointment(appointment: Appointment): Observable<Appointment> {
-    return this.http.post<>
+    return this.http.post<Appointment>(this.appointmentUrl, appointment, this.httpOptions).pipe(
+      catchError(this.handleError1));
+  }
+
+
+  handleError1(error: HttpErrorResponse) {
+
+    return throwError(error.error);
   }
 }
