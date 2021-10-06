@@ -90,27 +90,24 @@ namespace SymptoMedic.WebApi.Controllers
 
         // PUT api/<BaseController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] CreatedDoctor doctor)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdatedDoctor doctor)
         {
             try
             {
                 var updatedDoctor = new Doctor
                 {
+                    Id = id,
                     FirstName = doctor.firstName,
                     LastName = doctor.lastName,
                     License = doctor.license,
                     PracticeName = doctor.practiceName,
                     Email = doctor.email,
-                    Password = doctor.password,
                     PhoneNumber = doctor.phoneNumber,
-                    DoctorSpeciality = doctor.doctorSpecialty,
                     PracticeAddress = doctor.practiceAddress,
                     PracticeCity = doctor.practiceCity,
                     PracticeState = doctor.practiceState,
                     PracticeZipcode = doctor.practiceZipcode,
                     Certifications = doctor.certifications,
-                    Education = doctor.education,
-                    Gender = doctor.gender
                 };
                 Doctor returnedDoctor = await _drepo.UpdateDoctor(id, updatedDoctor);
                 return Ok(returnedDoctor);
