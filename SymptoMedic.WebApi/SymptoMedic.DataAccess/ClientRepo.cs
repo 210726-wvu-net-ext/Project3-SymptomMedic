@@ -81,6 +81,7 @@ namespace SymptoMedic.DataAccess
         // Update A Client
         public async Task<Domain.Client> UpdateClient(int id, Domain.Client client)
         {
+
             Entities.Client foundClient = await _context.Clients.FindAsync(id);
             if (foundClient != null)
             {

@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { PatientService } from '../patient.service';
+import { Client } from '../interfaces/client';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-client-profile',
@@ -7,9 +13,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input() client?: Client;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private patientService: PatientService,
+    private router: Router,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.getClient();
   }
+
+
+  getClient(): void {
+
+    const id = this.authService.currentUser.id;
+    this.patientService.getClient(id)
+      .subscribe(
+        client => {
+          this.client = client;
+          console.log(client);
+        },
+      );
+  }
+
+
 
 }

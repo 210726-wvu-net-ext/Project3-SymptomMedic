@@ -27,6 +27,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter-pipe/filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditClientDetailsComponent } from './edit-client-details/edit-client-details.component';
 
 
 export function tokenGetter() {
@@ -54,7 +55,8 @@ export function tokenGetter() {
     RegisterClientComponent,
     LoginComponent,
     RegisterComponent,
-    FilterPipe
+    FilterPipe,
+    EditClientDetailsComponent
   ],
   imports: [
     BrowserModule,

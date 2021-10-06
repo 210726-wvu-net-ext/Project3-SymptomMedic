@@ -58,7 +58,7 @@ export class PatientService {
     const url = `${this.clientUrl}/${id}`;
     return this.http.put<Client>(url, client, this.httpOptions).pipe(
       //tap(_ => this.log(`updated Client id=${Client.id}`)),
-      catchError(this.handleError<any>('updateDoctor'))
+      catchError(this.handleError1)
     );
   }
 
