@@ -13,7 +13,7 @@ import { LoginClientComponent } from './login-client/login-client.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
+import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { UpdateDoctorInformationComponent } from './update-doctor-information/update-doctor-information.component';
 import { AppRoutingModule } from './app-routing.module';
