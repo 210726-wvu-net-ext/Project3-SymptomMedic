@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { Insurance } from '../interfaces/insurance';
 
 @Component({
   selector: 'app-client-profile',
@@ -14,6 +15,7 @@ import { first } from 'rxjs/operators';
 export class ClientProfileComponent implements OnInit {
 
   @Input() client?: Client;
+  @Input() insurance?: Insurance[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +40,16 @@ export class ClientProfileComponent implements OnInit {
           console.log(client);
         },
       );
+  }
+
+  getInsurances(): void {
+      this.patientService.getInsurances()
+      .subscribe(
+        insurance =>
+        {
+          this.insurance = insurance;
+        }
+      )
   }
 
 

@@ -15,7 +15,8 @@ export interface Client
   zipcode: number,
   birthdate: Date,
   email: string,
-  insuranceName: string,
-  insuranceId: string,
+  insuranceId: number,
+  providerName: string,
+  providerId: string,
   appointments: Appointment[]
 }

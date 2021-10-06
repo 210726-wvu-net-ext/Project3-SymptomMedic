@@ -26,5 +26,7 @@ namespace SymptoMedic.WebApi.Models
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         public string email { get; set; }
+        
+        public int insuranceId { get; set; }
     }
 }

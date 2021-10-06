@@ -102,6 +102,18 @@
             <label class="form-label" for="country">Country</label>
           </div>
         </div>
+
+        <div class="row mb-3">
+          <div class="form-outline form-white">
+            <select type="text" formControlName="insuranceId" [ngClass]="{ 'is-invalid': submitted && f.insuranceId.errors }"
+              class="form-control form-control-lg" value="United States">
+              <option disabled>Please choose insurance</option>
+              <option *ngFor="let insurance of insurances" value="{{insurance.id}}">{{insurance.providerName}}</option>
+            </select>
+            <label class="form-label" for="country">Insurance</label>
+          </div>
+        </div>
+
         <div class="row mb-3">
           <button type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Update Profile</button>
         </div>

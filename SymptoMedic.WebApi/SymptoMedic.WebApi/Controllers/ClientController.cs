@@ -111,6 +111,7 @@ namespace SymptoMedic.WebApi.Controllers
                     State = client.state,
                     Country = client.country,
                     Zipcode = client.zipcode,
+                    InsuranceId = client.insuranceId
                 };
                 Client updateClient = await _crepo.UpdateClient(id, newUpdateClient);
                 return Ok(updateClient);

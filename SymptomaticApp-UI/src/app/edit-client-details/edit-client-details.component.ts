@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { Insurance } from '../interfaces/insurance';
 
 @Component({
   selector: 'app-edit-client-details',
@@ -14,6 +15,7 @@ import { first } from 'rxjs/operators';
 export class EditClientDetailsComponent implements OnInit {
 
   @Input() client?: Client;
+  @Input() insurances?: Insurance[];
 
   errorMsg: string | undefined;
   form: FormGroup = new FormGroup({
@@ -30,6 +32,7 @@ export class EditClientDetailsComponent implements OnInit {
     zipcode: new FormControl(''),
     birthdate: new FormControl(''),
     email: new FormControl(''),
+    insuranceId: new FormControl(''),
   });
 
   loading = false;
@@ -44,6 +47,7 @@ export class EditClientDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getInsurances();
     this.form = this.formBuilder.group({
       firstName: [this.client?.firstName, Validators.required],
       lastName: [this.client?.lastName, Validators.required],
@@ -54,6 +58,7 @@ export class EditClientDetailsComponent implements OnInit {
       country: ['United States', Validators.required],
       zipcode: [this.client?.zipcode, Validators.required],
       email: [this.client?.email, [Validators.required, Validators.email]],
+      insuranceId: [this.client?.insuranceId, [Validators.required]],
     });
   }
 
@@ -82,4 +87,14 @@ export class EditClientDetailsComponent implements OnInit {
       )
   }
 
+  getInsurances(): void {
+    this.patientService.getInsurances()
+    .subscribe(
+      insurances =>
+      {
+        console.log(insurances);
+        this.insurances = insurances;
+      }
+    )
+}
 }
