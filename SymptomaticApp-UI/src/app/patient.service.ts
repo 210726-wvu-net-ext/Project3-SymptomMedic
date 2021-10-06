@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { baseUrl } from 'src/environments/environment';
 import { Client } from './interfaces/client';
+import { Insurance } from './interfaces/insurance';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class PatientService {
       ));
   }
 
+  getInsurances(): Observable<Insurance[]>
+  {
+    const url = `${baseUrl}insurance`;
+    return this.http.get<Insurance[]>(url)
+      .pipe(
+        //tap(_ => this.log('fetched users')),
+        catchError(this.handleError<Insurance[]>('getInsurance', [])
+      ));
+  }
+
   getClient(id: number): Observable<Client>
   {
     const url = `${this.clientUrl}/${id}`;
@@ -38,7 +49,6 @@ export class PatientService {
               //tap(_ => this.log(`fetched Client id=${id}`)),
               catchError(this.handleError<Client>(`getClient id={id}`))
             );
-
   }
 
   /** POST: add a new Client to the server */
@@ -58,7 +68,7 @@ export class PatientService {
     const url = `${this.clientUrl}/${id}`;
     return this.http.put<Client>(url, client, this.httpOptions).pipe(
       //tap(_ => this.log(`updated Client id=${Client.id}`)),
-      catchError(this.handleError<any>('updateDoctor'))
+      catchError(this.handleError1)
     );
   }
 

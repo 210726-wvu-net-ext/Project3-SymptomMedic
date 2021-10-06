@@ -18,11 +18,11 @@ export class NavBarComponent implements OnInit {
     alert("You have logged out. Come back soon!");
   }
 
-  // isAdmin(): boolean {
-  //   return this.authService.currentUser.role == "Doctor" ? true : false;
-  // }
-  // isUser(): boolean {
-  //   return this.authService.currentUser.role == "Client" ? true : false;
-  // }
+  isDoctor(): boolean {
+    return this.authService.currentUser.role == "doctor" ? true : false;
+  }
+  isClient(): boolean {
+    return this.authService.currentUser.role == "client" ? true : false;
+  }
 
 }

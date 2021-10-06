@@ -17,21 +17,17 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li><a class="nav-link" routerLink="/login">Login</a></li>
-        <li><a class="nav-link" routerLink="/register">Register</a></li>
-        <li><a class="nav-link" routerLink="/profile/1">Profile</a></li>
-        <li><a class="nav-link" routerLink="/account/2">Account</a></li>
-        <li><a class="nav-link" routerLink="/book-appointment">Book an Appointment</a></li>
+        <li><a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
+        <li><a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/register">Register</a></li>
+        <li><a class="nav-link" *ngIf="authService.loggedIn() && isClient()" routerLink="/profile/{{authService.currentUser.id}}">Profile</a></li>
+        <li><a class="nav-link" *ngIf="authService.loggedIn() && isDoctor()" routerLink="/account/{{authService.currentUser.id}}">Account</a></li>
         <li *ngIf="authService.loggedIn()">
-          <a (click)="logout()">Log Out</a>
+          <a (click)="logout()" >Log Out</a>
         </li>
 
         <!-- <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li> -->
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Search by...

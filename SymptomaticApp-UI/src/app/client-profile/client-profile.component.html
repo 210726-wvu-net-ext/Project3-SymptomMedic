@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col">
       <h2>
@@ -17,4 +17,41 @@
 
   </div>
 
+</div> -->
+<br>
+<div class="container" *ngIf="client">
+  <div class="main-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="mt-3">
+                <h4>{{client.firstName}} {{client.lastName}}</h4>
+                <p class="text-secondary mb-1">{{client.address}}</p>
+                <p class="text-secondary mb-1">{{client.city}}, {{client.state}}</p>
+                <p class="text-secondary mb-1">{{client.contactMobile}}</p>
+              </div>
+            </div>
+            <hr class="my-4">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <app-edit-client-details [client]="client"></app-edit-client-details>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="d-flex align-items-center mb-3">Appointments</h5>
+                <p>Insert Appts here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { baseUrl } from 'src/environments/environment';
 import { Doctor } from './interfaces/doctor';
+import { Insurance } from './interfaces/insurance';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,16 @@ export class DoctorService {
       .pipe(
         //tap(_ => this.log('fetched doctors')),
         catchError(this.handleError<Doctor[]>('getDoctor', [])
+      ));
+  }
+
+  getInsurances(): Observable<Insurance[]>
+  {
+    const url = `${baseUrl}insurance`;
+    return this.http.get<Insurance[]>(url)
+      .pipe(
+        //tap(_ => this.log('fetched users')),
+        catchError(this.handleError<Insurance[]>('getInsurance', [])
       ));
   }
 

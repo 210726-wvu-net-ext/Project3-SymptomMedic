@@ -18,9 +18,9 @@ import { BookAppointmentComponent } from './book-appointments/book-appointments.
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: HomeComponent },
-  { path: 'doctor/:id', component: DoctorProfileComponent }, // client views doc profile
-  { path: 'profile/:id', component: ClientProfileComponent }, // patient sees their profile
-  { path: 'account/:id', component: DoctorAccountComponent }, // see their account
+  { path: 'doctor/:id', component: DoctorProfileComponent,  canActivate: [AuthGuard]}, // client views doc profile
+  { path: 'profile/:id', component: ClientProfileComponent,  canActivate: [AuthGuard] }, // patient sees their profile
+  { path: 'account/:id', component: DoctorAccountComponent,  canActivate: [AuthGuard]}, // see their account
   { path: 'login/client', component: LoginClientComponent},
   { path: 'login/doctor', component: LoginDoctorComponent},
   { path: 'login', component: LoginComponent},

@@ -74,7 +74,7 @@ export class RegisterClientComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            this.router.navigate(['../login'], {relativeTo: this.route});
+            this.router.navigate(['/login'], {relativeTo: this.route});
             alert("Register successfully!");
           },
           error => {

@@ -61,19 +61,19 @@ namespace SymptoMedic.WebApi.Controllers
             {
                 var newClient = new Client
                 {
-                    FirstName = client.FirstName,
-                    LastName = client.LastName,
-                    Email = client.Email,
-                    Password = client.Password,
+                    FirstName = client.firstName,
+                    LastName = client.lastName,
+                    Email = client.email,
+                    Password = client.password,
                     Role = "client",
-                    Gender = client.Gender,
-                    ContactMobile = client.ContactMobile,
-                    Address = client.Address,
-                    City = client.City,
-                    State = client.State,
-                    Country = client.Country,
-                    Zipcode = client.Zipcode,
-                    Birthdate = client.Birthdate
+                    Gender = client.gender,
+                    ContactMobile = client.contactMobile,
+                    Address = client.address,
+                    City = client.city,
+                    State = client.state,
+                    Country = client.country,
+                    Zipcode = client.zipcode,
+                    Birthdate = client.birthdate
 
                 };
                 var returnedClient = await _crepo.AddAClient(newClient);
@@ -102,11 +102,16 @@ namespace SymptoMedic.WebApi.Controllers
                 Client newUpdateClient = new()
                 {
                     Id = id,
-                    FirstName = client.FirstName,
-                    LastName = client.LastName,
-                    Email = client.Email,
-                    ContactMobile = client.ContactMobile,
-                    InsuranceName = client.InsuranceName
+                    FirstName = client.firstName,
+                    LastName = client.lastName,
+                    Email = client.email,
+                    ContactMobile = client.contactMobile,
+                    Address = client.address,
+                    City = client.city,
+                    State = client.state,
+                    Country = client.country,
+                    Zipcode = client.zipcode,
+                    InsuranceId = client.insuranceId
                 };
                 Client updateClient = await _crepo.UpdateClient(id, newUpdateClient);
                 return Ok(updateClient);
