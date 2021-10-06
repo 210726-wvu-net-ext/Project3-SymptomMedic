@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DoctorService } from '../doctor.service';
+import { Appointment } from '../interfaces/appointments';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { AuthService } from '../auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AppointmentService } from '../appointment.service';
 
 @Component({
   selector: 'app-book-appointments',
@@ -12,42 +13,50 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BookAppointmentComponent implements OnInit {
 
-  formGroup = new FormGroup({
-    FirstName: new FormControl('', [Validators.required]),
-    LastName: new FormControl('', [Validators.required]),
-    phonenum: new FormControl('', [Validators.required, Validators.length])
-    email: new FormControl('', [Validators.required, Validators.email]),
+  errorMsg: string | undefined;
+  form: FormGroup = new FormGroup({
     
   });
-  invalidLogin = new Boolean;
 
-  constructor(private authService: AuthService,
-    private fb: FormBuilder,
-    private router: Router,
-    private location: Location,
-    private route: ActivatedRoute,) { }
+  loading = false;
+  submitted = false;
 
-  returnUrl: any;
-  ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private appointmentService: AppointmentService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      
+    });
   }
 
-  submittion() {
-    if (this.formGroup.valid) {
-      const appointmentObserver = {
-        next: (x: any) => {
-          alert('Welcome back ' + x.email);
-          this.router.navigateByUrl(this.returnUrl);
-        },
-        error: (err: any) => {
-          console.log(err);
-          alert('Unable to Login. Please check your credentials.');
-        },
-      };
-      this.authService.loginDoctor(this.formGroup.value)
-        .subscribe(appointmentObserver)
-    } else {
-      alert("Please enter in your information!");
+  get f() { return this.form.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+    //stop here if form is invalid
+    if (this.form.invalid) {
+      return;
     }
+
+    this.loading = true;
+    //this.id = this.route.snapshot.params['id'];
+    this..addDoctor(this.form.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['../login'], { relativeTo: this.route });
+          alert("Register successfully!");
+        },
+        error => {
+          this.loading = false;
+          alert(error);
+        }
+      )
   }
+
 }
