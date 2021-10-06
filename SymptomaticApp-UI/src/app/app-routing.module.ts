@@ -14,7 +14,6 @@ import { RegisterDoctorComponent } from './register-doctor/register-doctor.compo
 import { AuthGuard } from './gaurds/auth-guard.service';
 import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: HomeComponent },
