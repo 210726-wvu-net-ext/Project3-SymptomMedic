@@ -15,7 +15,17 @@ export class BookAppointmentComponent implements OnInit {
 
   errorMsg: string | undefined;
   form: FormGroup = new FormGroup({
-    
+    dateCreated: new FormControl(''),
+    clientId: new FormControl(''),
+    doctorId: new FormControl(''),
+    clientFirstName: new FormControl(''),
+    clientLastName: new FormControl(''),
+    clientContact: new FormControl(''),
+    patientSymptoms: new FormControl(''),
+    startTime: new FormControl(''),
+    endTime: new FormControl(''),
+    client: new FormControl(''),
+    doctor: new FormControl(''),
   });
 
   loading = false;
@@ -30,7 +40,17 @@ export class BookAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      
+      dateCreated: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
+      clientId: ['', Validators.required],
+      doctorId: ['', Validators.required],
+      clientFirstName: ['', Validators.required],
+      clientLastName: ['', Validators.required],
+      clientContact: ['', Validators.required],
+      patientSymptoms: ['', Validators.required],
+      startTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
+      endTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
+      client: ['', Validators.required],
+      doctor: ['', Validators.required],
     });
   }
 
@@ -45,12 +65,12 @@ export class BookAppointmentComponent implements OnInit {
 
     this.loading = true;
     //this.id = this.route.snapshot.params['id'];
-    this..addDoctor(this.form.value)
+    this.appointmentService.addAppointment(this.form.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['../login'], { relativeTo: this.route });
-          alert("Register successfully!");
+          this.router.navigate(['../appointment'], { relativeTo: this.route });
+          alert("Booked successfully!");
         },
         error => {
           this.loading = false;
