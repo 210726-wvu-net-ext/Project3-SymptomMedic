@@ -89,12 +89,11 @@ export class EditClientDetailsComponent implements OnInit {
 
   getInsurances(): void {
     this.patientService.getInsurances()
-    .subscribe(
-      insurances =>
-      {
-        console.log(insurances);
-        this.insurances = insurances;
-      }
-    )
-}
+      .subscribe(
+        insurances => {
+          console.log(insurances);
+          this.insurances = insurances;
+        }
+      )
+  }
 }
