@@ -13,7 +13,6 @@ import { LoginClientComponent } from './login-client/login-client.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { UpdateDoctorInformationComponent } from './update-doctor-information/update-doctor-information.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +26,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter-pipe/filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
 
 
 export function tokenGetter() {
@@ -46,7 +46,6 @@ export function tokenGetter() {
     ClientProfileComponent,
     DoctorProfileComponent,
     SymptomSearchComponent,
-    BookAppointmentComponent,
     UpdateClientInformationComponent,
     UpdateDoctorInformationComponent,
     DoctorAccountComponent,
@@ -54,7 +53,8 @@ export function tokenGetter() {
     RegisterClientComponent,
     LoginComponent,
     RegisterComponent,
-    FilterPipe
+    FilterPipe,
+    BookAppointmentComponent
   ],
   imports: [
     BrowserModule,
