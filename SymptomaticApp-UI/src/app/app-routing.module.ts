@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'register/client', component: RegisterClientComponent},
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'book-appointment', component: BookAppointmentComponent },
+  { path: 'appointment', component: BookAppointmentComponent },
 ];
 
 @NgModule({
