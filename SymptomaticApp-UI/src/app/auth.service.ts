@@ -46,7 +46,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   setAppointment(data: any): Observable<Appointment> {
-    return this.http.post(`${baseUrl}auth/Appointment`, data)
+    return this.http.post(`${baseUrl}auth/appointment`, data)
       .pipe(
         map((response: any) => {
           const decodeToken = this.helper.decodeToken(response.token);
