@@ -4,7 +4,7 @@
       <div class="col-12">
         <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Appointment form</h3>
       </div>
-      <form action="">
+      <form [formGroup]="formGroup" (ngSubmit)="submittion()">
         <div class="row g-3">
           <div class="col-md-6">
             <input type="text" class="form-control" placeholder="First Name">
