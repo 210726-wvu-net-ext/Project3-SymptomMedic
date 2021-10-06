@@ -26,10 +26,11 @@ export class DoctorAccountComponent implements OnInit {
 
   getDoctor(): void {
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.authService.currentUser.id;
     this.doctorService.getDoctor(id)
       .subscribe(
         doctor => {
+          console.log(doctor);
         this.doctor = doctor;
         }
       );

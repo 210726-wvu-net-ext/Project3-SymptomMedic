@@ -173,16 +173,12 @@ namespace SymptoMedic.DataAccess
                     foundDoctor.License = doctor.License;
                     foundDoctor.PracticeName = doctor.PracticeName;
                     foundDoctor.Email = doctor.Email;
-                    foundDoctor.Password = doctor.Password;
                     foundDoctor.PhoneNumber = doctor.PhoneNumber;
-                    foundDoctor.DoctorSpeciality = doctor.DoctorSpeciality;
                     foundDoctor.PracticeAddress = doctor.PracticeAddress;
                     foundDoctor.PracticeCity = doctor.PracticeCity;
                     foundDoctor.PracticeState = doctor.PracticeState;
                     foundDoctor.PracticeZipcode = doctor.PracticeZipcode;
                     foundDoctor.Certifications = doctor.Certifications;
-                    foundDoctor.Education = doctor.Education;
-                    foundDoctor.Gender = doctor.Gender;
 
                     _context.Doctors.Update(foundDoctor);
                     await _context.SaveChangesAsync();

@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './filter-pipe/filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditClientDetailsComponent } from './edit-client-details/edit-client-details.component';
+import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
 
 
 export function tokenGetter() {
@@ -56,7 +57,8 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     FilterPipe,
-    EditClientDetailsComponent
+    EditClientDetailsComponent,
+    EditDoctorDetailsComponent
   ],
   imports: [
     BrowserModule,
