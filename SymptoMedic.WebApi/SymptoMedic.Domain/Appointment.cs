@@ -39,7 +39,7 @@ namespace SymptoMedic.Domain
             Doctor = doctor;
         }
 
-        public Appointment(int id, DateTime datecreated, int? clientid, int? doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime, Client client, Doctor doctor) 
+        public Appointment(int id, DateTime datecreated, int clientid, int doctorid, string clientfirstname, string clientlastname, string clientcontact, string patientsymptom, DateTime starttime, DateTime endtime, Client client, Doctor doctor) 
         {
             this.Id = id;
             this.DateCreated = datecreated;
@@ -56,8 +56,8 @@ namespace SymptoMedic.Domain
         }
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }
-        public int? ClientId { get; set; }
-        public int? DoctorId { get; set; }
+        public int ClientId { get; set; }
+        public int DoctorId { get; set; }
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
         public string ClientContact { get; set; }

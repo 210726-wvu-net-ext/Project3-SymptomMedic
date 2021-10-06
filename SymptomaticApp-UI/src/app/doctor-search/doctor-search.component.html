@@ -1,1 +1,7 @@
-<p>doctor-search works!</p>
+<h1>Search</h1>
+<input class="form-control form-control-lg" type="search" [(ngModel)] = searchInput placeholder="Search for a doctor..">
+<ul>
+    <li *ngFor="let doctor of doctors | filter: searchInput">
+        <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
+    </li>
+</ul>

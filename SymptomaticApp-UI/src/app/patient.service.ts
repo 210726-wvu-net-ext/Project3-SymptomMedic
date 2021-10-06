@@ -21,7 +21,7 @@ export class PatientService {
     private router: Router
   ) { }
 
-  getDoctors(): Observable<Client[]>
+  getClients(): Observable<Client[]>
   {
     return this.http.get<Client[]>(this.clientUrl)
       .pipe(
@@ -30,7 +30,7 @@ export class PatientService {
       ));
   }
 
-  getDoctor(id: number): Observable<Client>
+  getClient(id: number): Observable<Client>
   {
     const url = `${this.clientUrl}/${id}`;
     return this.http.get<Client>(url)
@@ -42,7 +42,7 @@ export class PatientService {
   }
 
   /** POST: add a new Client to the server */
-  addDoctor(client: Client): Observable<Client>{
+  addClient(client: Client): Observable<Client>{
     return this.http.post<Client>(this.clientUrl, client, this.httpOptions).pipe(
       //tap((newClient: Client) => this.log(`added Client w/ id=${newClient.id}`)),
       catchError(this.handleError1));
@@ -54,7 +54,7 @@ export class PatientService {
   }
 
   /** PUT: update the Client on the server */
-  updateDoctor(id: number, client: Client): Observable<any> {
+  updateClient(id: number, client: Client): Observable<any> {
     const url = `${this.clientUrl}/${id}`;
     return this.http.put<Client>(url, client, this.httpOptions).pipe(
       //tap(_ => this.log(`updated Client id=${Client.id}`)),
