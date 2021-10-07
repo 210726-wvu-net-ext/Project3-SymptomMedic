@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DoctorService } from '../doctor.service';
 import { Appointment } from '../interfaces/appointments';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AppointmentService } from '../appointment.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-book-appointments',
@@ -35,7 +35,8 @@ export class BookAppointmentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private appointmentService: AppointmentService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -47,14 +48,21 @@ export class BookAppointmentComponent implements OnInit {
       clientLastName: ['', Validators.required],
       clientContact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       patientSymptoms: ['', Validators.required],
-      startTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
-      endTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
       client: ['', Validators.required],
       doctor: ['', Validators.required],
     });
   }
 
   get f() { return this.form.controls; }
+
+  isDoctor(): boolean {
+    return this.authService.currentUser.role == "doctor" ? true : false;
+  }
+  isClient(): boolean {
+    return this.authService.currentUser.role == "client" ? true : false;
+  }
 
   onSubmit() {
     this.submitted = true;
