@@ -9,72 +9,77 @@
           <div class="col-md-6">
             <input type="text" formControlName="clientFirstName" class="form-control form-control-lg"
                    [ngClass]="{ 'is-invalid': submitted && f.clientFirstName.errors }" />
-            <label class="form-label" for='clientFirstName'>First name</label>
+            <label class="form-label" for='clientFirstName'>First Name</label>
             <div *ngIf="submitted && f.clientFirstName.errors" class="invalid-feedback">
-              <div *ngIf="f.clientFirstName.errors.required">First Name is required</div>
+              <div *ngIf="f.clientFirstName.errors.required">First Name is Required</div>
             </div>
           </div>
           <div class="col-md-6">
             <input type="text" formControlName="clientLastName" class="form-control form-control-lg"
                    [ngClass]="{ 'is-invalid': submitted && f.clientLastName.errors }" />
-            <label class="form-label" for='clientLastName'>Last name</label>
+            <label class="form-label" for='clientLastName'>Last Name</label>
             <div *ngIf="submitted && f.clientLastName.errors" class="invalid-feedback">
-              <div *ngIf="f.clientLastName.errors.required">Last Name is required</div>
+              <div *ngIf="f.clientLastName.errors.required">Last Name is Required</div>
             </div>
           </div>
           <div class="col-md-6">
             <input type="tel" formControlName="clientContact" class="form-control form-control-lg"
                    [ngClass]="{ 'is-invalid': submitted && f.clientContact.errors }" />
-            <label class="form-label" for='clientContact'>Last name</label>
-            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-              <div *ngIf="f.clientContact.errors.required">Phone number is required</div>
-              <div *ngIf="f.clientContact.errors.minLength">Please enter a valid Phone Number</div>
-              <div *ngIf="f.clientContact.errors.maxLength">Please enter a valid Phone Number</div>
+            <label class="form-label" for='clientContact'>Phone Number</label>
+            <div *ngIf="submitted && f.clientContact.errors" class="invalid-feedback">
+              <div *ngIf="f.clientContact.errors.required">Phone number is Required</div>
+              <div *ngIf="f.clientContact.errors.pattern">Please enter a valid Phone Number</div>
             </div>
           </div>
           <div class="col-md-6">
-
+            <input type="date" formControlName="dateCreated" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.dateCreated.errors }" />
+            <label class="form-label" for='dateCreated'>Today's Date</label>
+            <div *ngIf="submitted && f.dateCreated.errors" class="invalid-feedback">
+              <div *ngIf="f.dateCreated.errors.required">Current Date is Required</div>
+            </div>
           </div>
           <div class="col-md-6">
-            <input type="date" class="form-control" placeholder="Enter Date">
+            <input type="time" formControlName="startTime" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }" />
+            <label class="form-label" for='startTime'>Start Time of Appointment</label>
+            <div *ngIf="submitted && f.startTime.errors" class="invalid-feedback">
+              <div *ngIf="f.startTime.errors.required">Start Time is Required</div>
+            </div>
           </div>
           <div class="col-md-6">
-            <input type="time" class="form-control" placeholder="Enter Email">
-          </div>
-          <div class="col-md-6">
-            <input type="time" class="form-control" placeholder="Enter Email">
+            <input type="time" formControlName="endTime" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.endTime.errors }" />
+            <label class="form-label" for='endTime'>End Time of Appointment</label>
+            <div *ngIf="submitted && f.endTime.errors" class="invalid-feedback">
+              <div *ngIf="f.endTime.errors.required">End Time is Required</div>
+            </div>
           </div>
           <div class="col-12">
-            <select class="form-select">
+            <select class="form-select" formControlName="patientSymptoms" multiple>
               <option selected>Purpose Of Appointment</option>
-              <option value="1">Dry Mouth</option>
-              <option value="2">Tremor</option>
-              <option value="3">Cough</option>
-              <option value="4">Dizziness/Vertigo</option>
-              <option value="5">Anxiety</option>
-              <option value="6">Muscle Cramps</option>
-              <option value="7">Chest Pain</option>
-              <option value="8">Rash</option>
-              <option value="9">Arrhythmia</option>
+              <option value="Dry Mouth">Dry Mouth</option>
+              <option value="Tremor">Tremor</option>
+              <option value="Cough">Cough</option>
+              <option value="Dizziness/Vertigo">Dizziness/Vertigo</option>
+              <option value="Anxiety">Anxiety</option>
+              <option value="Muscle Cramps">Muscle Cramps</option>
+              <option value="Chest Pain">Chest Pain</option>
+              <option value="Rash">Rash</option>
+              <option value="Arrhythmia">Arrhythmia</option>
             </select>
+            <label class="form-label" for='patientSymptoms'>Select Symptoms</label>
           </div>
           <div class="col-12">
             <textarea class="form-control" placeholder="Message"></textarea>
           </div>
           <div class="col-12 mt-5">
             <button type="submit" class="btn btn-primary float-end">Book Appointment</button>
-            <button type="button" class="btn btn-outline-secondary float-end me-2">Cancel</button>
+            <button type="button" routerLink="/" class="btn btn-outline-secondary float-end me-2">Cancel</button>
           </div>
         </div>
 </form>
     </div>
   </div>
 </div>
-<div class="form-outline">
-  <input type="text" formControlName="firstName" class="form-control form-control-lg"
-         [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-  <label class="form-label" for='firstName'>First name</label>
-  <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-    <div *ngIf="f.firstName.errors.required">First Name is required</div>
-  </div>
-</div>
+
