@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'register/client', component: RegisterClientComponent},
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'appointment', component: BookAppointmentComponent },
+  { path: 'appointment/:id', component: BookAppointmentComponent, canActivate: [AuthGuard] }, //client makes an appointment
 ];
 
 @NgModule({
