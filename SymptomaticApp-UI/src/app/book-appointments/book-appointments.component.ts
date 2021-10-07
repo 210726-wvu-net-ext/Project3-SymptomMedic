@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./book-appointments.component.css']
 })
 export class BookAppointmentComponent implements OnInit {
-
+  mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   errorMsg: string | undefined;
   form: FormGroup = new FormGroup({
     dateCreated: new FormControl(''),
@@ -41,12 +41,12 @@ export class BookAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      dateCreated: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
+      dateCreated: ['', [Validators.required]],
       clientId: ['', Validators.required],
       doctorId: ['', Validators.required],
       clientFirstName: ['', Validators.required],
       clientLastName: ['', Validators.required],
-      clientContact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      clientContact: ['', [Validators.required, Validators.pattern(this.mobnumPattern)]],
       patientSymptoms: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required],
@@ -65,6 +65,9 @@ export class BookAppointmentComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('here');
+    console.log(this.form.invalid);
+    console.log(this.form);
     this.submitted = true;
     //stop here if form is invalid
     if (this.form.invalid) {
@@ -77,7 +80,7 @@ export class BookAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['../appointment'], { relativeTo: this.route });
+          this.router.navigate(['../login'], { relativeTo: this.route });
           alert("Booked successfully!");
         },
         error => {
