@@ -45,7 +45,7 @@ export class BookAppointmentComponent implements OnInit {
       doctorId: ['', Validators.required],
       clientFirstName: ['', Validators.required],
       clientLastName: ['', Validators.required],
-      clientContact: ['', Validators.required],
+      clientContact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       patientSymptoms: ['', Validators.required],
       startTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
       endTime: ['', [Validators.required, Validators.pattern('YYY-MM-DD HH:MM:SS.MSMSMS')]],
