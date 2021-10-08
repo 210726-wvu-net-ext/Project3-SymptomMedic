@@ -42,6 +42,12 @@ stages:
     - script: npx ng build
       displayName: ng build
       workingDirectory: $(appDir)
+    
+    - task: PublishBuildArtifacts@1
+      inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
 
     - script: npx ng test --browsers ChromeHeadless --watch false --code-coverage || true
       displayName: ng test
@@ -67,11 +73,7 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'drop'
-            publishLocation: 'Container'
+
     
 - stage: Deploy
   jobs:
