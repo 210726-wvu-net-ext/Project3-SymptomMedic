@@ -63,6 +63,7 @@ export class BookAppointmentComponent implements OnInit {
   isClient(): boolean {
     return this.authService.currentUser.role == "client" ? true : false;
   }
+  
 
   onSubmit() {
     console.log('here');

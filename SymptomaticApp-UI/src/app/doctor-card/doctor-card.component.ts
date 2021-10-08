@@ -14,6 +14,13 @@ export class DoctorCardComponent implements OnInit {
 
   @Input() doctor?: Doctor;
 
+  isDoctor(): boolean {
+    return this.authService.currentUser.role == "doctor" ? true : false;
+  }
+  isClient(): boolean {
+    return this.authService.currentUser.role == "client" ? true : false;
+  }
+
   constructor(private docService: DoctorService, private authService: AuthService) { }
 
   ngOnInit(): void {
