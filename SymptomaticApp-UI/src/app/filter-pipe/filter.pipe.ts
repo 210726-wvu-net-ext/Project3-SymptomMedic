@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
     const doctors = [];
     for(const doctor of value)
     {
-      if(doctor['firstName'] === searchInput || (doctor['firstName'] === searchInput && doctor['lastName'] === searchInput))
+      if(doctor['firstName'] === searchInput || doctor['lastName'] === searchInput || doctor['firstName'] + ' ' + doctor['lastName'] === searchInput)
       {
         doctors.push(doctor);
       }
