@@ -73,8 +73,6 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
-
-    
 - stage: Deploy
   jobs:
   - job: Deploy
