@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { DoctorService } from '../doctor.service';
-import { Doctor } from '../interfaces/doctor';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { DoctorService } from '../doctor.service';
+import { Doctor } from '../interfaces/doctor';
 
 @Component({
-  selector: 'app-doctor-card',
-  templateUrl: './doctor-card.component.html',
-  styleUrls: ['./doctor-card.component.css']
+  selector: 'app-app-symptoms',
+  templateUrl: './app-symptoms.component.html',
+  styleUrls: ['./app-symptoms.component.css']
 })
-export class DoctorCardComponent implements OnInit {
+export class AppSymptomsComponent implements OnInit {
+
 
   @Input() doctor?: Doctor;
 
@@ -40,5 +40,4 @@ export class DoctorCardComponent implements OnInit {
         },
       );
   }
-
 }

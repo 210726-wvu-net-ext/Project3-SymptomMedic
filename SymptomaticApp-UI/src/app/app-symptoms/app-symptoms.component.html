@@ -1,0 +1,7 @@
+<table class="table table-striped">
+  <ng-container *ngIf="{{doctor?.doctorSymptoms}}.length">
+    <tr *ngFor="let {{Symptom}} of {{doctor?.doctorSymptoms}}; let i = index">
+      <td>Symptom</td>
+    </tr>
+  </ng-container>
+</table>
