@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymptoMedic.WebApi", "SymptoMedic.WebApi\SymptoMedic.WebApi.csproj", "{91A100B7-F3CD-4F38-979C-384AE246F806}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymptoMedic.WebApi", "SymptoMedic.WebApi\SymptoMedic.WebApi.csproj", "{91A100B7-F3CD-4F38-979C-384AE246F806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymptoMedic.DataAccess", "SymptoMedic.DataAccess\SymptoMedic.DataAccess.csproj", "{4A0F3C53-187D-45CD-B9FA-3A138D917C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymptoMedic.DataAccess", "SymptoMedic.DataAccess\SymptoMedic.DataAccess.csproj", "{4A0F3C53-187D-45CD-B9FA-3A138D917C8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymptoMedic.Domain", "SymptoMedic.Domain\SymptoMedic.Domain.csproj", "{56085A74-915A-4CF3-8A5A-CAD1CF9585A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymptoMedic.Domain", "SymptoMedic.Domain\SymptoMedic.Domain.csproj", "{56085A74-915A-4CF3-8A5A-CAD1CF9585A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{09D7B24A-A0A4-4C63-A5F5-9180FC5B3D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{09D7B24A-A0A4-4C63-A5F5-9180FC5B3D6C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F9E15229-B314-43C3-9425-E18E9ACDA911}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{09D7B24A-A0A4-4C63-A5F5-9180FC5B3D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D7B24A-A0A4-4C63-A5F5-9180FC5B3D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D7B24A-A0A4-4C63-A5F5-9180FC5B3D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E15229-B314-43C3-9425-E18E9ACDA911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E15229-B314-43C3-9425-E18E9ACDA911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E15229-B314-43C3-9425-E18E9ACDA911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E15229-B314-43C3-9425-E18E9ACDA911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
