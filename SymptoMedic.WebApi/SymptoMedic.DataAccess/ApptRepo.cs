@@ -42,8 +42,7 @@ namespace SymptoMedic.DataAccess
             {
                 Console.WriteLine(e);
                 return null;
-            }
-            
+            }            
         }
         public async Task<Domain.Appointment> GetAppointmentById(int id)
         {
@@ -66,9 +65,27 @@ namespace SymptoMedic.DataAccess
                 ).ToListAsync();
             Domain.Appointment singleAppointment = returnedAppointments.FirstOrDefault(a => a.Id == id);
 
-
-
             return singleAppointment;
+        }
+        public async Task<Domain.Appointment> MakeAppointmentRequest(Domain.Appointment appointment)
+        {
+            var newEntity = new Entities.Appointment
+            {
+                Id = appointment.Id,
+                DateCreated = appointment.DateCreated,
+                ClientId = appointment.ClientId,
+                DoctorId = appointment.DoctorId,
+                ClientFirstName = appointment.ClientFirstName,
+                ClientLastName = appointment.ClientLastName,
+                ClientContact = appointment.ClientContact,
+                PatientSymptoms = appointment.PatientSymptoms,
+                StartTime = appointment.StartTime,
+                EndTime = appointment.EndTime,
+            };
+            await _context.Appointments.AddAsync(newEntity);
+            await _context.SaveChangesAsync();
+            appointment.Id = newEntity.Id;
+            return appointment;
         }
     }
 }

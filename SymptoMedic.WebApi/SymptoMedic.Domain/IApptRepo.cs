@@ -10,5 +10,6 @@ namespace SymptoMedic.Domain
     {
         Task<List<Appointment>> GetAppointments();
         Task<Appointment> GetAppointmentById(int id);
+        Task<Appointment> MakeAppointmentRequest(Appointment appointment);
     }
 }

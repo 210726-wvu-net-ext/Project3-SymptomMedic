@@ -10,12 +10,13 @@ namespace SymptoMedic.Domain
     {
         public Client() { }
 
-        public Client(int id, string firstName, string lastName, string password, string gender, string contactMobile, string address, string city, string state, string country, int zipcode, DateTime birthdate, string email)
+        public Client(int id, string firstName, string lastName, string password, string role, string gender, string contactMobile, string address, string city, string state, string country, int zipcode, DateTime birthdate, string email)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Password = password;
+            Role = role;
             Gender = gender;
             ContactMobile = contactMobile;
             Address = address;
@@ -27,11 +28,12 @@ namespace SymptoMedic.Domain
             Email = email;
         }
 
-        public Client(int id, string firstname, string lastname, string gender, string contactmobile, string adress, string city, string state, string country, int zipcode, DateTime birthdate, string email, string insuranceName, string insuranceId, List<Appointment> appoitnments)
+        public Client(int id, string firstname, string lastname, string role, string gender, string contactmobile, string adress, string city, string state, string country, int zipcode, DateTime birthdate, string email, int insuranceId, string insuranceName, string providerId, List<Appointment> appoitnments)
         {
             this.Id = id;
             this.FirstName = firstname;
             this.LastName = lastname;
+            this.Role = role;
             this.Gender = gender;
             this.ContactMobile = contactmobile;
             this.Address = adress;
@@ -41,14 +43,16 @@ namespace SymptoMedic.Domain
             this.Zipcode = zipcode;
             this.Birthdate = birthdate;
             this.Email = email;
-            this.InsuranceName = insuranceName;
             this.InsuranceId = insuranceId;
+            this.ProviderName = insuranceName;
+            this.ProviderId = providerId;
             this.Appointments = appoitnments;
         }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public string Gender { get; set; }
         public string ContactMobile { get; set; }
         public string Address { get; set; }
@@ -58,9 +62,11 @@ namespace SymptoMedic.Domain
         public int Zipcode { get; set; }
         public DateTime Birthdate { get; set; }
         public string Email { get; set; }
-        public string InsuranceName { get; set; }
 
-        public string InsuranceId { get; set; }
+        public int? InsuranceId { get; set; }
+        public string ProviderName { get; set; }
+
+        public string ProviderId { get; set; }
         public List<Appointment> Appointments { get; set; }
     }
 }

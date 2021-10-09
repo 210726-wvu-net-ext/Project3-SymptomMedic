@@ -21,25 +21,30 @@ namespace SymptoMedic.DataAccess
         public async Task<List<Domain.Client>> GetClients()
         {
 
-            var clients = await _context.Clients.Select(
-            clients => new Domain.Client
-            (
-                clients.Id,
-                clients.FirstName,
-                clients.LastName,
-                clients.Password,
-                clients.Gender,
-                clients.ContactMobile,
-                clients.Address,
-                clients.City,
-                clients.State,
-                clients.Country,
-                clients.Zipcode,
-                clients.Birthdate,
-                clients.Email
-             )
-        
-            ).ToListAsync();
+            var clients = await _context.Clients
+                   .Include(i => i.Insurance)
+                   .Include(a => a.Appointments)
+                   .Select(c => new Domain.Client
+                   {
+                       Id = c.Id,
+                       FirstName = c.FirstName,
+                       LastName = c.LastName,
+                       Role = c.Role,
+                       Gender = c.Gender,
+                       ContactMobile = c.ContactMobile,
+                       Address = c.Address,
+                       City = c.City,
+                       State = c.State,
+                       Country = c.Country,
+                       Zipcode = c.Zipcode,
+                       Birthdate = c.Birthdate,
+                       Email = c.Email,
+                       InsuranceId = c.Insurance.Id,
+                       ProviderName = c.Insurance.ProviderName,
+                       ProviderId = c.Insurance.ProviderId,
+                       Appointments = c.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList()
+                   }
+                ).ToListAsync();
 
             return clients;
         }
@@ -58,6 +63,7 @@ namespace SymptoMedic.DataAccess
                 LastName = client.LastName,
                 Email = client.Email,
                 Password = client.Password,
+                Role = client.Role,
                 Gender = client.Gender,
                 ContactMobile = client.ContactMobile,
                 Address = client.Address,
@@ -76,6 +82,7 @@ namespace SymptoMedic.DataAccess
         // Update A Client
         public async Task<Domain.Client> UpdateClient(int id, Domain.Client client)
         {
+
             Entities.Client foundClient = await _context.Clients.FindAsync(id);
             if (foundClient != null)
             {
@@ -83,6 +90,7 @@ namespace SymptoMedic.DataAccess
                 foundClient.FirstName = client.FirstName;
                 foundClient.LastName = client.LastName;
                 foundClient.Email = client.Email;
+                foundClient.InsuranceId = client.InsuranceId;
                 foundClient.ContactMobile = client.ContactMobile;
                 foundClient.Address = client.Address;
                 foundClient.City = client.City;
@@ -139,6 +147,7 @@ namespace SymptoMedic.DataAccess
                        Id = c.Id,
                        FirstName = c.FirstName,
                        LastName = c.LastName,
+                       Role = c.Role,
                        Gender = c.Gender,
                        ContactMobile = c.ContactMobile,
                        Address = c.Address,
@@ -148,15 +157,13 @@ namespace SymptoMedic.DataAccess
                        Zipcode = c.Zipcode,
                        Birthdate = c.Birthdate,
                        Email = c.Email,
-                       InsuranceName = c.Insurance.ProviderName,
-                       InsuranceId = c.Insurance.ProviderId,
+                       InsuranceId = c.Insurance.Id,
+                       ProviderName = c.Insurance.ProviderName,
+                       ProviderId = c.Insurance.ProviderId,
                        Appointments = c.Appointments.Select(a => new Domain.Appointment(a.Id, a.DateCreated, a.ClientId, a.DoctorId, a.ClientFirstName, a.ClientLastName, a.ClientContact, a.PatientSymptoms, a.StartTime, a.EndTime)).ToList()
                    }
                 ).ToListAsync();
             Domain.Client singleClient = returnedClients.FirstOrDefault(a => a.Id == id);
-
-
-
             return singleClient;
         }
 
@@ -213,13 +220,26 @@ namespace SymptoMedic.DataAccess
                        Id = i.Id,
                        ProviderName = i.ProviderName,
                        ProviderId = i.ProviderId
-        }
+                   }
                 ).ToListAsync();
             Domain.Insurance singleInsurance = returnedInsurance.FirstOrDefault(a => a.Id == id);
 
 
 
             return singleInsurance;
+        }
+
+        public async Task<List<Domain.Insurance>> GetInsurances()
+        {
+            var insurances = await _context.Insurances.Select
+                (i => new Domain.Insurance
+                {
+                    Id = i.Id,
+                    ProviderName = i.ProviderName,
+                    ProviderId = i.ProviderId
+
+                }).ToListAsync();
+            return insurances;
         }
     }
 }

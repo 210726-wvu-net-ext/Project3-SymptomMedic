@@ -32,6 +32,7 @@ namespace SymptoMedic.DataAccess
                     PracticeName = d.PracticeName,
                     Email = d.Email,
                     Password = d.Password,
+                    Role = d.Role,
                     PhoneNumber = d.PhoneNumber,
                     DoctorSpeciality = d.DoctorSpeciality,
                     PracticeAddress = d.PracticeAddress,
@@ -47,21 +48,59 @@ namespace SymptoMedic.DataAccess
 
             return allDocs;
         }
-        public Task<Domain.Doctor> AddADoctor(Domain.Doctor doctor)
+        public async Task<Domain.Doctor> AddADoctor(Domain.Doctor doctor)
         {
-            throw new NotImplementedException();
+            if (UniqueEmail(doctor.Email) is true)
+            {
+                throw new Exception($"Email {doctor.Email} has been already used");
+            }
+
+            var newEntity = new Entities.Doctor
+            {
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                License = doctor.License,
+                PracticeName = doctor.PracticeName,
+                Email = doctor.Email,
+                Password = doctor.Password,
+                Role = doctor.Role,
+                PhoneNumber = doctor.PhoneNumber,
+                DoctorSpeciality = doctor.DoctorSpeciality,
+                PracticeAddress = doctor.PracticeAddress,
+                PracticeCity = doctor.PracticeCity,
+                PracticeState = doctor.PracticeState,
+                PracticeZipcode = doctor.PracticeZipcode,
+                Certifications = doctor.Certifications,
+                Education = doctor.Education,
+                Gender = doctor.Gender,
+            };
+            await _context.Doctors.AddAsync(newEntity);
+            await _context.SaveChangesAsync();
+            doctor.Id = newEntity.Id;
+            return doctor;
         }
 
-        public Task<bool> DeleteDoctorById(int id)
+        public async Task<bool> DeleteDoctorById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Entities.Doctor userToDelete = await _context.Doctors
+                .FirstOrDefaultAsync(user => user.Id == id);
+                if (userToDelete != null)
+                {
+                    _context.Doctors.Remove(userToDelete);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception($"Error deleting Doctor by ID: {id}.");
+            }
+            
         }
-
-        public Task<Domain.Doctor> DoctorLoginAsync(Domain.Doctor doctor)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Domain.Doctor> GetDoctorById(int id)
         {
             var returnedDoctor = await _context.Doctors
@@ -77,7 +116,7 @@ namespace SymptoMedic.DataAccess
                     License = d.License,
                     PracticeName = d.PracticeName,
                     Email = d.Email,
-                    Password = d.Password,
+                    Role = d.Role,
                     PhoneNumber = d.PhoneNumber,
                     DoctorSpeciality = d.DoctorSpeciality,
                     PracticeAddress = d.PracticeAddress,
@@ -115,12 +154,57 @@ namespace SymptoMedic.DataAccess
 
         public bool UniqueEmail(string email)
         {
-            throw new NotImplementedException();
+            if (_context.Doctors.Any(d => d.Email == email))
+            {
+                return true;
+            }
+            return false;
         }
 
-        public Task<Domain.Doctor> UpdateDoctor(int id, Domain.Doctor doctor)
+        public async Task<Domain.Doctor> UpdateDoctor(int id, Domain.Doctor doctor)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Entities.Doctor foundDoctor = await _context.Doctors.FindAsync(id);
+                if (foundDoctor != null)
+                {
+                    foundDoctor.FirstName = doctor.FirstName;
+                    foundDoctor.LastName = doctor.LastName;
+                    foundDoctor.License = doctor.License;
+                    foundDoctor.PracticeName = doctor.PracticeName;
+                    foundDoctor.Email = doctor.Email;
+                    foundDoctor.PhoneNumber = doctor.PhoneNumber;
+                    foundDoctor.PracticeAddress = doctor.PracticeAddress;
+                    foundDoctor.PracticeCity = doctor.PracticeCity;
+                    foundDoctor.PracticeState = doctor.PracticeState;
+                    foundDoctor.PracticeZipcode = doctor.PracticeZipcode;
+                    foundDoctor.Certifications = doctor.Certifications;
+
+                    _context.Doctors.Update(foundDoctor);
+                    await _context.SaveChangesAsync();
+
+                    var updatedUser = await GetDoctorById(id);
+                    return updatedUser;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception($"Error updating Doctor by ID: {id}.");
+            }
+        }
+
+        public async Task<Domain.Doctor> DoctorLoginAsync(Domain.Doctor user)
+        {
+            Entities.Doctor foundUser = await _context.Doctors.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+
+            if (foundUser != null)
+            {
+                Domain.Doctor loginUser = await GetDoctorById(foundUser.Id);
+                return loginUser;
+            }
+            return null;
         }
     }
 }

@@ -9,14 +9,14 @@ namespace SymptoMedic.WebApi.Models
     public class CreatedDoctor
     {
         [Required(ErrorMessage = "First name is required")]
-        public string first_name { get; set; }
+        public string firstName { get; set; }
 
         [Required(ErrorMessage = "Last name is required")]
-        public string last_name { get; set; }
+        public string lastName { get; set; }
         [Required(ErrorMessage = "License is required")]
         public string license { get; set; }
         [Required(ErrorMessage = "Name of Practice is required")]
-        public string practice_name { get; set; }
+        public string practiceName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -27,18 +27,18 @@ namespace SymptoMedic.WebApi.Models
         public string password { get; set; }
 
         [Required]
-        public string phone_number { get; set; }
+        public string phoneNumber { get; set; }
 
         [Required]
-        public string doctor_speciality { get; set; }
+        public string doctorSpecialty { get; set; }
 
-        public string practice_address { get; set; }
+        public string practiceAddress { get; set; }
 
-        public string practice_city { get; set; }
+        public string practiceCity { get; set; }
 
-        public string practice_state { get; set; }
+        public string practiceState { get; set; }
 
-        public int practice_zipcode { get; set; }
+        public int practiceZipcode { get; set; }
 
         public string certifications { get; set; }
 

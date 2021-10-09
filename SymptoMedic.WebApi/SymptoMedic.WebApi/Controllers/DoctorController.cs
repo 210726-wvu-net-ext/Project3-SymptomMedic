@@ -59,18 +59,19 @@ namespace SymptoMedic.WebApi.Controllers
             {
                 var updatedDoctor = new Doctor
                 {
-                    FirstName = doctor.first_name,
-                    LastName = doctor.last_name,
+                    FirstName = doctor.firstName,
+                    LastName = doctor.lastName,
                     License = doctor.license,
-                    PracticeName = doctor.practice_name,
+                    PracticeName = doctor.practiceName,
                     Email = doctor.email,
                     Password = doctor.password,
-                    PhoneNumber = doctor.phone_number,
-                    DoctorSpeciality = doctor.doctor_speciality,
-                    PracticeAddress = doctor.practice_address,
-                    PracticeCity = doctor.practice_city,
-                    PracticeState = doctor.practice_state,
-                    PracticeZipcode = doctor.practice_zipcode,
+                    Role = "doctor",
+                    PhoneNumber = doctor.phoneNumber,
+                    DoctorSpeciality = doctor.doctorSpecialty,
+                    PracticeAddress = doctor.practiceAddress,
+                    PracticeCity = doctor.practiceCity,
+                    PracticeState = doctor.practiceState,
+                    PracticeZipcode = doctor.practiceZipcode,
                     Certifications = doctor.certifications,
                     Education = doctor.education,
                     Gender = doctor.gender
@@ -89,27 +90,24 @@ namespace SymptoMedic.WebApi.Controllers
 
         // PUT api/<BaseController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] CreatedDoctor doctor)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdatedDoctor doctor)
         {
             try
             {
                 var updatedDoctor = new Doctor
                 {
-                    FirstName = doctor.first_name,
-                    LastName = doctor.last_name,
+                    Id = id,
+                    FirstName = doctor.firstName,
+                    LastName = doctor.lastName,
                     License = doctor.license,
-                    PracticeName = doctor.practice_name,
+                    PracticeName = doctor.practiceName,
                     Email = doctor.email,
-                    Password = doctor.password,
-                    PhoneNumber = doctor.phone_number,
-                    DoctorSpeciality = doctor.doctor_speciality,
-                    PracticeAddress = doctor.practice_address,
-                    PracticeCity = doctor.practice_city,
-                    PracticeState = doctor.practice_state,
-                    PracticeZipcode = doctor.practice_zipcode,
+                    PhoneNumber = doctor.phoneNumber,
+                    PracticeAddress = doctor.practiceAddress,
+                    PracticeCity = doctor.practiceCity,
+                    PracticeState = doctor.practiceState,
+                    PracticeZipcode = doctor.practiceZipcode,
                     Certifications = doctor.certifications,
-                    Education = doctor.education,
-                    Gender = doctor.gender
                 };
                 Doctor returnedDoctor = await _drepo.UpdateDoctor(id, updatedDoctor);
                 return Ok(returnedDoctor);
@@ -124,13 +122,21 @@ namespace SymptoMedic.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            bool result = await _drepo.DeleteDoctorById(id);
-            if (result == false)
-                return NotFound();
-            return Ok();
+            try
+            {
+                bool result = await _drepo.DeleteDoctorById(id);
+                if (result == false)
+                    return NotFound();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                //ModelState.AddModelError("Username", e.Message);
+                //ModelState.AddModelError("Email", e.Message);
+                _logger.LogCritical($"Failed to delete doctor with ID: {id}", e.Message);
+                return BadRequest(e.Message);
+            }
         }
-
-
     }
 
       
