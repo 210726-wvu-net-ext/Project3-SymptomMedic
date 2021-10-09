@@ -1,11 +1,22 @@
+version: '3.4'
+
 services:
-  backend:
-    build: SymptomaticApp-UI
-    image: kwedwick/symptomedic-ui:1.0
+  SymptoMedit.WebApi:
+    image: symptomedic-api
+    build:
+      context: SymptoMedit.WebApi
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
     ports:
-    - '8000:80'
-  frontend:
-    build: SymptoMedic.WebApi
-    image: kwedwick/symptomedic-api:1.0
+      - 4200:4200
+  
+  SymptomaticApp-UI: 
+    image: symptomedic-ui
+    build:
+      context: SymptomaticApp-UI
+      dockerfile: ./dockerfile
+    enviroment:
+      NODE_ENV: production
     ports:
-    - '4200:80'
+      - 4200:4200
