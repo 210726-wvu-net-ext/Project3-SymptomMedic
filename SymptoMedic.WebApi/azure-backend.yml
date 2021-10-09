@@ -53,7 +53,7 @@ stages:
         --
         DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       displayName: dotnet test
-      workingDirectory: $(symptDirectory)
+      workingDirectory: $(solution)
 
     - task: SonarCloudAnalyze@1
       displayName: 'Run SonarCloud analysis'
