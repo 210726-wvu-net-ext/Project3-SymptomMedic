@@ -1,11 +1,20 @@
 trigger:
-- master
-- Develop
+  branches:
+    include:
+    - master
+    - Develop
+  paths:
+    include:
+    - SymptoMedic.WebApi
 
 pr:
   branches:
     include:
     - master
+    - Develop
+  paths:
+    include:
+    - SymptomaticApp-UI
 
 pool:
   vmImage: 'windows-latest'
