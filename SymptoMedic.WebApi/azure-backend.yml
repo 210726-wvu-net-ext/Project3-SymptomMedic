@@ -11,7 +11,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: './SymptoMedic.WebApi/SymptoMedic.WebApi.sln'
+  solution: './SymptoMedic.WebApi/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   symptDirectory: './SymptoMedic.WebApi'
@@ -53,7 +53,7 @@ stages:
         --
         DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       displayName: dotnet test
-      workingDirectory: $(solution)
+      workingDirectory: $(symptDirectory)
 
     - task: SonarCloudAnalyze@1
       displayName: 'Run SonarCloud analysis'
