@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}symptomedicwebapi
     build:
       context: .
-      dockerfile: SymptoMedic.WebApi/Dockerfile
+      dockerfile: ./Dockerfile

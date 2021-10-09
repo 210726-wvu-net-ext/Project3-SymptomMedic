@@ -2,7 +2,7 @@
 <input class="form-control form-control-lg" type="search" [(ngModel)] = searchInput placeholder="Search for a doctor..">
 <ul>
     <li *ngFor="let doctor of doctors | filter: searchInput">
-        <a routerLink="/account/{{doctor.id}}">
+        <a routerLink="/doctor/{{doctor.id}}">
             <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
         </a>
     </li>
