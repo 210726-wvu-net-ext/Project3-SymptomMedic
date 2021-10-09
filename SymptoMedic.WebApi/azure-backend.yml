@@ -60,9 +60,3 @@ stages:
 
     - task: SonarCloudPublish@1
       displayName: 'Publish results on build summary'
-
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
