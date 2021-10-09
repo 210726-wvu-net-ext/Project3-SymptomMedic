@@ -1,0 +1,11 @@
+services:
+  backend:
+    build: SymptomaticApp-UI
+    image: kwedwick/symptomedic-ui:1.0
+    ports:
+    - '8000:80'
+  frontend:
+    build: SymptoMedic.WebApi
+    image: kwedwick/symptomedic-api:1.0
+    ports:
+    - '4200:80'
