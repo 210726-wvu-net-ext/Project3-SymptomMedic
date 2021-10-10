@@ -40,9 +40,10 @@ stages:
       displayName: ng build
       workingDirectory: $(appDir)
 
-    - script: npx ng test --browsers ChromeHeadless --watch false --code-coverage || true
+    - script: npx ng test --browsers ChromeHeadless --watch false --code-coverage
       displayName: ng test
       workingDirectory: $(appDir)
+      continueOnError: true
 
     - task: SonarCloudPrepare@1
       inputs:
