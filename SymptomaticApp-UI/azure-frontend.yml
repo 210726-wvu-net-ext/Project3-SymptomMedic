@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - main
+    - master
     - Develop
   paths:
     include:
@@ -10,7 +10,7 @@ trigger:
 pr:
   branches:
     include:
-    - main
+    - master
     - Develop
   paths:
     include:
