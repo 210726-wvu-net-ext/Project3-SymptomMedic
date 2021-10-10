@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: symptomedic-deployment
+  labels:
+	app: symptomedic
+spec:
+  replicas: 3
+  selector:
+    matchlabels:
+      app: symptomedic
+template:
+  metadata:
+    labels:
+      app: symptomedic
+  spec:
+    containers:
+    - name: angular-ui
+	  image: symptomedic-ui:1.0
+    imagePullPolicy: Always
+	  ports:
+ 	  - containerPort: 80
+     resources:
+          requests:
+            memory: '512Mi'
+            cpu: '200m'
+          limits:
+            memory: '1Gi'
+            cpu: '1000m'
+    - name: symptomedicapi-server
+	  image: symptomedicapi:1.0
+    imagePullPolicy: Always
+	  ports:
+ 	  - containerPort: 3306
+     resources:
+          requests:
+            memory: '512Mi'
+            cpu: '200m'
+          limits:
+            memory: '1Gi'
+            cpu: '1000m'
