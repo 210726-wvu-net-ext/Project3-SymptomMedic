@@ -83,7 +83,7 @@ stages:
           containerRegistry: '$(cReg)'
           repository: 'kwedwick/symptomedic-ui'
           command: 'buildAndPush'
-          Dockerfile: '**/Dockerfile'
+          Dockerfile: '$(appDir)/Dockerfile'
           tags: 'latest'
       #Publish artifact
       - task: PublishPipelineArtifact@1
