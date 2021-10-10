@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
     - main
+    - Develop
   paths:
     include:
     - SymptomaticApp-UI
@@ -10,6 +11,7 @@ pr:
   branches:
     include:
     - main
+    - Develop
   paths:
     include:
     - SymptomaticApp-UI
