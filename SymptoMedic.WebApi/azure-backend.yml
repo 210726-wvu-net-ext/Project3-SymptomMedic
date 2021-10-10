@@ -24,6 +24,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   symptDirectory: './SymptoMedic.WebApi'
+  ImageName: 'kwedwick/symptomedic-api'
 
 stages:
 - stage: Build
@@ -69,3 +70,38 @@ stages:
 
     - task: SonarCloudPublish@1
       displayName: 'Publish results on build summary'
+
+- stage: Docker
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build and push Docker image
+    steps:
+    - task: Docker@1
+      displayName: 'Build the Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Connection'
+        command: 'Build an image'
+        dockerFile: '**/Dockerfile'
+        imageName: '$(ImageName)'
+        useDefaultContext: false
+        buildContext: '.'
+    
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Connection'
+        command: 'Push an image'
+        imageName: '$(ImageName)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: '2107-p3-acr-P3-SymptoMedic'
+        dockerComposeFile: 'docker-compose.yml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'rm --all'
+        nopIfNoDockerComposeFile: true
