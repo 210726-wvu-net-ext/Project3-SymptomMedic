@@ -105,7 +105,7 @@ stages:
 #           command: logout
 #           containerRegistry: $(cReg1)
 
-- stage: Build
+- stage: Docker
   displayName: Build image
   jobs:  
   - job: Build
