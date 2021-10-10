@@ -1,20 +1,11 @@
 trigger:
-  branches:
-    include:
-    - master
-    - Develop
-  paths:
-    include:
-    - SymptoMedic.WebApi
+- master
+- Develop
 
 pr:
   branches:
     include:
     - master
-    - Develop
-  paths:
-    include:
-    - SymptomaticApp-UI
 
 pool:
   vmImage: 'windows-latest'
@@ -24,7 +15,6 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   symptDirectory: './SymptoMedic.WebApi'
-  ImageName: 'kwedwick/symptomedic-api'
 
 stages:
 - stage: Build
@@ -72,36 +62,34 @@ stages:
       displayName: 'Publish results on build summary'
 
 - stage: Docker
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build and push Docker image
-    steps:
-    - task: Docker@1
-      displayName: 'Build the Docker image'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Connection'
-        command: 'Build an image'
-        dockerFile: '**/Dockerfile'
-        imageName: '$(ImageName)'
-        useDefaultContext: false
-        buildContext: '.'
-    
-    - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Connection'
-        command: 'Push an image'
-        imageName: '$(ImageName)'
-      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-
-    - task: DockerCompose@0
-      inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: '2107-p3-acr-P3-SymptoMedic'
-        dockerComposeFile: 'docker-compose.yml'
-        action: 'Run a Docker Compose command'
-        dockerComposeCommand: 'rm --all'
-        nopIfNoDockerComposeFile: true
+  jobs:
+    - job: Docker_Build
+      displayName: Docker Build & Push
+      steps:
+      #Login
+      - task: Docker@2
+        displayName: Login
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'login'
+      #Build
+      - task: Docker@2
+        displayName: Build & Push
+        inputs:
+          containerRegistry: '$(cReg)'
+          repository: 'kwedwick/symptomedic-api'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
+          tags: 'latest'
+      #Publish artifact
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(symptDirectory)/symptomedicwebapi.yml'
+          artifact: 'manifest'
+          publishLocation: 'pipeline'
+      #logout
+      - task: Docker@2
+        displayName: Logout
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'logout'
