@@ -15,6 +15,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   symptDirectory: './SymptoMedic.WebApi'
+  cReg: 2107-p3-acr-P3-SymptoMedic
 
 stages:
 - stage: Build
