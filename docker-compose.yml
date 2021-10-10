@@ -4,12 +4,12 @@ services:
   SymptoMedit.WebApi:
     image: symptomedic-api
     build:
-      context: SymptoMedit.WebApi
+      context: SymptoMedic.WebApi
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
     ports:
-      - 4200:4200
+      - 44391:44391
   
   SymptomaticApp-UI: 
     image: symptomedic-ui
@@ -19,4 +19,4 @@ services:
     enviroment:
       NODE_ENV: production
     ports:
-      - 4200:4200
+      - 4200:4200 
