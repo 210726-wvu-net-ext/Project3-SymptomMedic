@@ -93,7 +93,9 @@ stages:
         displayName: Build and Push
         inputs:
           command: buildAndPush
-          repository: contosoRepository
+          containerRegistry: '$(cReg)'
+          repository: 'kwedwick/symptomedic-ui'
+          Dockerfile: '**/Dockerfile'
           # tags: |
           #   tag1
           #   tag2
