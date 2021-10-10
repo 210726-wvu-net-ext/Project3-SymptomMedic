@@ -94,7 +94,6 @@ stages:
         inputs:
           command: buildAndPush
           containerRegistry: '$(cReg)'
-          repository: 'kwedwick/symptomedic-ui'
           Dockerfile: '**/Dockerfile'
           # tags: |
           #   tag1
