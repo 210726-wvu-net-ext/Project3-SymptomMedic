@@ -7,18 +7,16 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: symptomatic-frontend
-  labels:
-    app: symptomatic
-    role: ui
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: symptomedic-ui
+  name: azure-load-balancer
 spec:
-  type: NodePort
+  type: LoadBalancer
+  ports:
+  - port: 80
   selector:
     app: symptomatic
     role: ui
-  ports:
-  - port: 80
-    nodePort: 30006
 
 ---
 apiVersion: apps/v1
@@ -44,7 +42,7 @@ spec:
       - name: symptomatic-frontend
       containers:
       - name: ui
-        image: symptomatic/frontend:latest
+        image: bacoordinationp3.azurecr.io/kwedwick/symptomatic-ui:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 4200
