@@ -98,15 +98,6 @@ stages:
           targetPath: '$(symptDirectory)/symptomedicwebapi.yml'
           artifact: 'manifest'
           publishLocation: 'pipeline'
-      
-      - task: DownloadSecureFile@1
-        inputs:
-          secureFile: 'connection_string.txt'
-      - task: PublishPipelineArtifact@1
-        inputs:
-          targetPath: '$(Agent.TempDirectory)/connection_string.txt'
-          artifact: 'manifest2'
-          publishLocation: 'pipeline'
       #logout
       - task: Docker@2
         displayName: Logout
