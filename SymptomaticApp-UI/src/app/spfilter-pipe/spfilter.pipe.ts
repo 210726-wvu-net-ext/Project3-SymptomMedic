@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DoctorSearchComponent } from '../doctor-search/doctor-search.component';
 
 @Pipe({
-  name: 'filter'
+  name: 'spfilter'
 })
-export class FilterPipe implements PipeTransform {
+export class SpfilterPipe implements PipeTransform {
 
   transform(value: any, searchInput: string){
     if (value.length === 0)
@@ -15,7 +14,7 @@ export class FilterPipe implements PipeTransform {
     const doctors = [];
     for(const doctor of value)
     {
-      if(doctor['firstName'] === searchInput || doctor['lastName'] === searchInput || doctor['firstName'] + ' ' + doctor['lastName'] === searchInput)
+      if(doctor['doctorSpecialty'] === searchInput)
       {
         doctors.push(doctor);
       }

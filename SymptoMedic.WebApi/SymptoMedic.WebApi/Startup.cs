@@ -114,8 +114,6 @@ namespace SymptoMedic.WebApi
                         .AllowCredentials());
             });
 
-            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
-
             ///this could cause a deployment error like P2
             /*services.AddControllers()
                  .AddNewtonsoftJson(options =>
