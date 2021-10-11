@@ -15,6 +15,6 @@
       </li>
     </ul>
     <a routerLink="/doctor/{{doctor?.id}}" class="card-link">View Profile</a>
-    <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}{{authService.currentUser.id}}" class="card-link">Book Appointment</a>
+    <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}" class="card-link">Book Appointment</a>
   </div>
 </div>

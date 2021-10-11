@@ -57,15 +57,7 @@
           </div>
           <div class="col-12">
             <select class="form-select" formControlName="patientSymptoms" multiple>
-              <option value="Dry Mouth">Dry Mouth</option>
-              <option value="Tremor">Tremor</option>
-              <option value="Cough">Cough</option>
-              <option value="Dizziness/Vertigo">Dizziness/Vertigo</option>
-              <option value="Anxiety">Anxiety</option>
-              <option value="Muscle Cramps">Muscle Cramps</option>
-              <option value="Chest Pain">Chest Pain</option>
-              <option value="Rash">Rash</option>
-              <option value="Arrhythmia">Arrhythmia</option>
+              <option *ngFor="let symptom of doctor?.doctorSymptoms" [value]="symptom.symptom">{{symptom.symptom}}</option>
             </select>
             <label class="form-label" for='patientSymptoms'>Purpose of Appointment</label>
           </div>
@@ -74,8 +66,9 @@
             <button type="button" routerLink="/" class="btn btn-outline-secondary float-end me-2">Cancel</button>
           </div>
         </div>
-</form>
+      </form>
     </div>
   </div>
 </div>
+
 

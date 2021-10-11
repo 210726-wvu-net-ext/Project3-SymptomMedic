@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Appointment } from '../interfaces/appointments';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AppointmentService } from '../appointment.service';
 import { AuthService } from '../auth.service';
+import { Doctor } from '../interfaces/doctor';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-book-appointments',
@@ -12,6 +14,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./book-appointments.component.css']
 })
 export class BookAppointmentComponent implements OnInit {
+  [x: string]: any;
   mobnumPattern = "^((\\+91-?)|0)?[0-9]{10}$";
   errorMsg: string | undefined;
   form: FormGroup = new FormGroup({
@@ -35,10 +38,11 @@ export class BookAppointmentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private appointmentService: AppointmentService,
+    private doctorService: DoctorService,
     private router: Router,
     public authService: AuthService
   ) { }
-
+  returnurl: any;
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       dateCreated: ['', [Validators.required]],
@@ -53,9 +57,15 @@ export class BookAppointmentComponent implements OnInit {
       client: ['', Validators.required],
       doctor: ['', Validators.required],
     });
+    this.route.params.subscribe(routeParams => {
+      this.getDoctor();
+    });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   get f() { return this.form.controls; }
+
+  @Input() doctor?: Doctor;
 
   isDoctor(): boolean {
     return this.authService.currentUser.role == "doctor" ? true : false;
@@ -69,7 +79,14 @@ export class BookAppointmentComponent implements OnInit {
     console.log('here');
     console.log(this.form.invalid);
     console.log(this.form);
+    console.log(this.doctor);
     this.submitted = true;
+    this.form.patchValue({
+      clientId: this.authService.currentUser.id,
+      client: this.authService.currentUser,
+      doctorId: this.doctor?.id,
+      doctor: this.doctor
+    });
     //stop here if form is invalid
     if (this.form.invalid) {
       return;
@@ -81,7 +98,8 @@ export class BookAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['../login'], { relativeTo: this.route });
+           console.log('here');
+           this.router.navigateByUrl(this.returnUrl);
           alert("Booked successfully!");
         },
         error => {
@@ -89,6 +107,18 @@ export class BookAppointmentComponent implements OnInit {
           alert(error);
         }
       )
+  }
+
+  
+  getDoctor(): void {
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.doctorService.getDoctor(id)
+      .subscribe(
+        doctor => {
+          this.doctor = doctor;
+        },
+      );
   }
 
 }
