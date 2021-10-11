@@ -9,37 +9,37 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/azure-dns-label-name: symptomedic-api
-  name: azure-load-balancer
+  name: symptomedic-api
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: symptomatic
+    app: symptomedic
     role: api
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: symptomatic-webapi
+  name: symptomedic-webapi
   labels:
-    app: symptomatic
+    app: symptomedic
     role: api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: symptomatic
+      app: symptomedic
       role: api
   template:
     metadata:
       labels:
-        app: symptomatic
+        app: symptomedic
         role: api
     spec:
       imagePullSecrets:
-      - name: symptomatic-webapi
+      - name: symptomedic-webapi
       containers:
       - name: api
         image: bacoordinationp3.azurecr.io/kwedwick/symptomedic-api:latest
