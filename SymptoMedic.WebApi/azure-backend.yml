@@ -104,7 +104,7 @@ stages:
           secureFile: 'connection_string.txt'
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: '$(Agent.TempDirectory)/symptomedicwebapi.yml'
+          targetPath: '$(Agent.TempDirectory)/connection_string.txt'
           artifact: 'manifest'
           publishLocation: 'pipeline'
       #logout
