@@ -19,7 +19,6 @@
         </li>
         <li><a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
         <li><a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="/register">Register</a></li>
-        <li><a class="nav-link" *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{authService.currentUser.id}}">Book Appointment</a></li>
         <li><a class="nav-link" *ngIf="authService.loggedIn() && isClient()" routerLink="/doctor/{{authService.currentUser.id}}">Doctor Profile</a></li>
         <li><a class="nav-link" *ngIf="authService.loggedIn() && isClient()" routerLink="/profile/{{authService.currentUser.id}}">Profile</a></li>
         <li><a class="nav-link" *ngIf="authService.loggedIn() && isDoctor()" routerLink="/account/{{authService.currentUser.id}}">Account</a></li>

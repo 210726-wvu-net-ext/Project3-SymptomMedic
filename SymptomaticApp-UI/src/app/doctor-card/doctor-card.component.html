@@ -6,7 +6,8 @@
     <p class="card-text">{{doctor?.practiceName}}</p>
     <p class="card-text">{{doctor?.practiceAddress}}</p>
     <p class="card-text">{{doctor?.practiceCity}}, {{doctor?.practiceState}} {{doctor?.practiceZipcode}}</p>
-    <a class="nav-link" *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{authService.currentUser.id}}">Book Appointment</a>
+    <p class="card-text">{{doctor?.doctorSymptoms}}</p>
     <a routerLink="/doctor/{{doctor?.id}}" class="card-link">View Profile</a>
+    <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}{{authService.currentUser.id}}" class="card-link">Book Appointment</a>
   </div>
 </div>
