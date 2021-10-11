@@ -14,7 +14,7 @@ import { RegisterDoctorComponent } from './register-doctor/register-doctor.compo
 import { AuthGuard } from './gaurds/auth-guard.service';
 import { DoctorSearchComponent } from './doctor-search/doctor-search.component';
 import { SpecialtySearchComponent } from './specialty-search/specialty-search.component';
-import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
+import { CitySearchComponent } from './city-search/city-search.component';
 
 
 const routes: Routes = [
@@ -30,8 +30,8 @@ const routes: Routes = [
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'doctor-search', component: DoctorSearchComponent},
-  { path: 'specialty-search', component: SpecialtySearchComponent },
-  { path: 'appointment/:doctorid:clientid', component: BookAppointmentComponent },
+  { path: 'specialty-search', component: SpecialtySearchComponent},
+  { path: 'city-search', component: CitySearchComponent},
 ];
 
 @NgModule({

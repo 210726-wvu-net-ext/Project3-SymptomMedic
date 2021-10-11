@@ -9,7 +9,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/azure-dns-label-name: symptomedic-ui
-  name: azure-load-balancer
+  name: symptomedic-ui
 spec:
   type: LoadBalancer
   ports:
