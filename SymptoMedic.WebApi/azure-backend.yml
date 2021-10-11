@@ -105,7 +105,7 @@ stages:
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Agent.TempDirectory)/connection_string.txt'
-          artifact: 'manifest'
+          artifact: 'manifest2'
           publishLocation: 'pipeline'
       #logout
       - task: Docker@2
