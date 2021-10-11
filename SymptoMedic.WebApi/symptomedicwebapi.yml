@@ -45,4 +45,7 @@ spec:
         image: bacoordinationp3.azurecr.io/kwedwick/symptomedic-api:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 44391
+        - containerPort: 80
+      envFrom:
+      - secretRef:
+        name: db-connection
