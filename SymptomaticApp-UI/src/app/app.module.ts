@@ -31,7 +31,8 @@ import { EditClientDetailsComponent } from './edit-client-details/edit-client-de
 import { EditDoctorDetailsComponent } from './edit-doctor-details/edit-doctor-details.component';
 import { SpecialtySearchComponent } from './specialty-search/specialty-search.component';
 import { SpfilterPipe } from './spfilter-pipe/spfilter.pipe';
-
+import { CitySearchComponent } from './city-search/city-search.component';
+import { CfilterPipe } from './cfilter/cfilter.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -62,7 +63,9 @@ export function tokenGetter() {
     EditClientDetailsComponent,
     EditDoctorDetailsComponent,
     SpecialtySearchComponent,
-    SpfilterPipe
+    SpfilterPipe,
+    CitySearchComponent,
+    CfilterPipe
   ],
   imports: [
     BrowserModule,
