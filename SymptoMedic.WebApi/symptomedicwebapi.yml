@@ -1,4 +1,10 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: symptomedic
+
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: symptomatic-webapi
@@ -9,7 +15,7 @@ spec:
   type: NodePort
   selector:
     app: symptomatic
-    role: ui
+    role: api
   ports:
   - port: 80
     nodePort: 30005
