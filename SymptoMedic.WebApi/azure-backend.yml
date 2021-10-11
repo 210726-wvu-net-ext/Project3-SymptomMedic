@@ -17,7 +17,7 @@ pr:
     - SymptoMedic.WebApi
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   solution: './SymptoMedic.WebApi/*.sln'
@@ -31,7 +31,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'windows-latest'
+      vmImage: 'ubuntu-latest'
     steps:
     - task: NuGetToolInstaller@1
 
