@@ -48,4 +48,4 @@ spec:
         - containerPort: 80
         envFrom:
         - secretRef:
-          name: db-connection
+            name: db-connection
