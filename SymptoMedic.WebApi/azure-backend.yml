@@ -17,7 +17,7 @@ pr:
     - SymptoMedic.WebApi
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: ubuntu-latest
 
 variables:
   solution: './SymptoMedic.WebApi/*.sln'
