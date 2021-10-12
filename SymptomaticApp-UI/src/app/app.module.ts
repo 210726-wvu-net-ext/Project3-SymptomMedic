@@ -33,7 +33,8 @@ import { SpecialtySearchComponent } from './specialty-search/specialty-search.co
 import { SpfilterPipe } from './spfilter-pipe/spfilter.pipe';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { CfilterPipe } from './cfilter/cfilter.pipe';
-import { DatePipe } from '@angular/common';
+import { SyfilterPipe } from './syfilter/syfilter.pipe';
+
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -66,7 +67,8 @@ export function tokenGetter() {
     SpecialtySearchComponent,
     SpfilterPipe,
     CitySearchComponent,
-    CfilterPipe
+    CfilterPipe,
+    SyfilterPipe
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,7 @@ export function tokenGetter() {
     }),
     BrowserAnimationsModule,
   ],
-  providers: [DatePipe],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

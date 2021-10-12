@@ -16,6 +16,7 @@ import { AuthGuard } from './gaurds/auth-guard.service';
 import { DoctorSearchComponent } from './doctor-search/doctor-search.component';
 import { SpecialtySearchComponent } from './specialty-search/specialty-search.component';
 import { CitySearchComponent } from './city-search/city-search.component';
+import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'doctor-search', component: DoctorSearchComponent},
   { path: 'specialty-search', component: SpecialtySearchComponent},
   { path: 'city-search', component: CitySearchComponent},
+  { path: 'symptom-search', component: SymptomSearchComponent},
 ];
 
 @NgModule({

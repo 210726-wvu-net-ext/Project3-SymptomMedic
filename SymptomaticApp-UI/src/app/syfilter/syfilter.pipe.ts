@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'cfilter'
+  name: 'syfilter'
 })
-export class CfilterPipe implements PipeTransform {
+export class SyfilterPipe implements PipeTransform {
 
   transform(value: any, searchInput: string){
     if (value.length === 0)
@@ -14,11 +14,12 @@ export class CfilterPipe implements PipeTransform {
     const doctors = [];
     for(const doctor of value)
     {
-      if(doctor['practiceCity'] === searchInput || doctor['practiceState'] === searchInput)
+      if(doctor.doctorSymptoms['symptom'] === searchInput)
       {
         doctors.push(doctor);
       }
     }
     return doctors;
   }
+
 }
