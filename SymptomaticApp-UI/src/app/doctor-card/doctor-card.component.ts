@@ -14,9 +14,31 @@ export class DoctorCardComponent implements OnInit {
 
   @Input() doctor?: Doctor;
 
-  constructor(private docService: DoctorService, private authService: AuthService) { }
+  isDoctor(): boolean {
+    return this.authService.currentUser.role == "doctor" ? true : false;
+  }
+  isClient(): boolean {
+    return this.authService.currentUser.role == "client" ? true : false;
+  }
+
+  constructor(private doctorService: DoctorService, private route: ActivatedRoute, public authService: AuthService) { }
+
 
   ngOnInit(): void {
+    this.route.params.subscribe(routeParams => {
+      this.getDoctor();
+    });
+  }
+
+  getDoctor(): void {
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.doctorService.getDoctor(id)
+      .subscribe(
+        doctor => {
+          this.doctor = doctor;
+        },
+      );
   }
 
 }

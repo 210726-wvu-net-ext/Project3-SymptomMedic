@@ -1,0 +1,74 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 border p-4 shadow bg-light">
+      <div class="col-12">
+        <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Appointment form</h3>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" formControlName="clientFirstName" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.clientFirstName.errors }" />
+            <label class="form-label" for='clientFirstName'>First Name</label>
+            <div *ngIf="submitted && f.clientFirstName.errors" class="invalid-feedback">
+              <div *ngIf="f.clientFirstName.errors.required">First Name is Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" formControlName="clientLastName" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.clientLastName.errors }" />
+            <label class="form-label" for='clientLastName'>Last Name</label>
+            <div *ngIf="submitted && f.clientLastName.errors" class="invalid-feedback">
+              <div *ngIf="f.clientLastName.errors.required">Last Name is Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="tel" formControlName="clientContact" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.clientContact.errors }" />
+            <label class="form-label" for='clientContact'>Phone Number</label>
+            <div *ngIf="submitted && f.clientContact.errors" class="invalid-feedback">
+              <div *ngIf="f.clientContact.errors.required">Phone number is Required</div>
+              <div *ngIf="f.clientContact.errors.pattern">Please enter a valid Phone Number</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="date" formControlName="dateCreated" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.dateCreated.errors }" />
+            <label class="form-label" for='dateCreated'>Today's Date</label>
+            <div *ngIf="submitted && f.dateCreated.errors" class="invalid-feedback">
+              <div *ngIf="f.dateCreated.errors.required">Current Date is Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="time" formControlName="startTime" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.startTime.errors }" />
+            <label class="form-label" for='startTime'>Start Time of Appointment</label>
+            <div *ngIf="submitted && f.startTime.errors" class="invalid-feedback">
+              <div *ngIf="f.startTime.errors.required">Start Time is Required</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="time" formControlName="endTime" class="form-control form-control-lg"
+                   [ngClass]="{ 'is-invalid': submitted && f.endTime.errors }" />
+            <label class="form-label" for='endTime'>End Time of Appointment</label>
+            <div *ngIf="submitted && f.endTime.errors" class="invalid-feedback">
+              <div *ngIf="f.endTime.errors.required">End Time is Required</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <select class="form-select" formControlName="patientSymptoms" multiple>
+              <option *ngFor="let symptom of doctor?.doctorSymptoms" [value]="symptom.symptom">{{symptom.symptom}}</option>
+            </select>
+            <label class="form-label" for='patientSymptoms'>Purpose of Appointment</label>
+          </div>
+          <div class="col-12 mt-5">
+            <button type="submit" class="btn btn-primary float-end">Book Appointment</button>
+            <button type="button" routerLink="/" class="btn btn-outline-secondary float-end me-2">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

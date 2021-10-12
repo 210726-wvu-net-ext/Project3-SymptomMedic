@@ -8,6 +8,7 @@ import { DoctorAccountComponent } from './doctor-account/doctor-account.componen
 import { LoginClientComponent } from './login-client/login-client.component';
 import { LoginDoctorComponent } from './login-doctor/login-doctor.component';
 import { LoginComponent } from './login/login.component';
+import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
@@ -16,6 +17,7 @@ import { DoctorSearchComponent } from './doctor-search/doctor-search.component';
 import { SpecialtySearchComponent } from './specialty-search/specialty-search.component';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
+
 
 
 const routes: Routes = [
@@ -27,7 +29,8 @@ const routes: Routes = [
   { path: 'login/client', component: LoginClientComponent},
   { path: 'login/doctor', component: LoginDoctorComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register/client', component: RegisterClientComponent},
+  { path: 'register/client', component: RegisterClientComponent },
+  { path: 'appointment/:id', component: BookAppointmentComponent },
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'doctor-search', component: DoctorSearchComponent},
