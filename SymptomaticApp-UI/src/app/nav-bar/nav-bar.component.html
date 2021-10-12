@@ -49,20 +49,14 @@
                 Specialty
               </a>
             </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/symptom-search">
+                Symptoms
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search symptoms" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-        <ul>
-          <li *ngFor="let doctor of doctors | filter: searchInput">
-              <a routerLink="/doctor/{{doctor.id}}">
-                  <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
-              </a>
-          </li>
-        </ul>
-      </form>
     </div>
   </div>
 </nav>
