@@ -33,6 +33,7 @@ export class BookAppointmentComponent implements OnInit {
 
   loading = false;
   submitted = false;
+  symptoms = this.doctor?.doctorSymptoms;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,8 +53,8 @@ export class BookAppointmentComponent implements OnInit {
       clientLastName: ['', Validators.required],
       clientContact: ['', [Validators.required, Validators.pattern(this.mobnumPattern)]],
       patientSymptoms: ['', Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required],
+      startTime: [Date, Validators.required],
+      endTime: [Date, Validators.required],
       client: ['', Validators.required],
       doctor: ['', Validators.required],
     });
@@ -78,7 +79,6 @@ export class BookAppointmentComponent implements OnInit {
   onSubmit() {
     console.log('here');
     console.log(this.form.invalid);
-    console.log(this.form);
     console.log(this.doctor);
     this.submitted = true;
     this.form.patchValue({
@@ -87,6 +87,17 @@ export class BookAppointmentComponent implements OnInit {
       doctorId: this.doctor?.id,
       doctor: this.doctor
     });
+    //save the symptoms somewhere, then null doctorsymptoms and go through the list and concatonate to a string in it
+    this.symptoms = this.form.value.patientSymptoms;
+    this.form.patchValue({
+      patientSymptoms: "",
+    });
+    this.symptoms?.forEach( (value) => {
+      this.form.patchValue({
+        patientSymptoms: this.form.value.patientSymptoms + " " + value,
+      });
+    });
+    console.log(this.form);
     //stop here if form is invalid
     if (this.form.invalid) {
       return;
@@ -98,13 +109,14 @@ export class BookAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-           console.log('here');
-           this.router.navigateByUrl(this.returnUrl);
+          this.router.navigate(['/']);
           alert("Booked successfully!");
         },
         error => {
+          console.log(JSON.stringify(error));
+          console.log(error);
           this.loading = false;
-          alert(error);
+          alert(JSON.stringify(error));
         }
       )
   }
@@ -120,5 +132,6 @@ export class BookAppointmentComponent implements OnInit {
         },
       );
   }
+
 
 }

@@ -16,7 +16,7 @@ export class AppointmentService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private appointmentUrl = `${baseUrl}appointment`;
+  private appointmentUrl = `${baseUrl}appt`;
 
   constructor(
     private http: HttpClient,
