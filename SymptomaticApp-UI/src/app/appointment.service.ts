@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { baseUrl } from 'src/environments/environment';
 import { Appointment } from './interfaces/appointments';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
@@ -41,7 +42,6 @@ export class AppointmentService {
   /** GET: gets an Appointment on the server*/
 
   handleError1(error: HttpErrorResponse) {
-
     return throwError(error.error);
   }
   /**

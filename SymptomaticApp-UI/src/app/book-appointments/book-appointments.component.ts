@@ -7,6 +7,7 @@ import { AppointmentService } from '../appointment.service';
 import { AuthService } from '../auth.service';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../doctor.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-appointments',
@@ -41,6 +42,7 @@ export class BookAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private doctorService: DoctorService,
     private router: Router,
+    private datePipe: DatePipe, 
     public authService: AuthService
   ) { }
   returnurl: any;
@@ -53,8 +55,8 @@ export class BookAppointmentComponent implements OnInit {
       clientLastName: ['', Validators.required],
       clientContact: ['', [Validators.required, Validators.pattern(this.mobnumPattern)]],
       patientSymptoms: ['', Validators.required],
-      startTime: [Date, Validators.required],
-      endTime: [Date, Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
       client: ['', Validators.required],
       doctor: ['', Validators.required],
     });
@@ -97,6 +99,9 @@ export class BookAppointmentComponent implements OnInit {
         patientSymptoms: this.form.value.patientSymptoms + " " + value,
       });
     });
+    this.form.value.forEach(function (val: any) {
+      console.log(val);
+    });
     console.log(this.form);
     //stop here if form is invalid
     if (this.form.invalid) {
@@ -113,7 +118,6 @@ export class BookAppointmentComponent implements OnInit {
           alert("Booked successfully!");
         },
         error => {
-          console.log(JSON.stringify(error));
           console.log(error);
           this.loading = false;
           alert(JSON.stringify(error));
