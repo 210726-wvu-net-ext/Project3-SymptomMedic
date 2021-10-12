@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from '../doctor.service';
+import { Doctor } from '../interfaces/doctor';
 
 @Component({
   selector: 'app-symptom-search',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SymptomSearchComponent implements OnInit {
 
-  constructor() { }
+  doctors: Doctor[] = [];
+  searchInput: string = '';
+  constructor(private doctorService: DoctorService) {}
 
   ngOnInit(): void {
+    this.getDoctors();
+  }
+  getDoctors(): void{
+    this.doctorService.getDoctors()
+      .subscribe(doctors => this.doctors = doctors);
   }
 
 }
