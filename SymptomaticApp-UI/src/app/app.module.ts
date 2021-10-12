@@ -76,7 +76,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:44365",],
+        allowedDomains: ["localhost:44365", "symptomedic-api.eastus.cloudapp.azure.com","https://symptomedic-api.eastus.cloudapp.azure.com"],
         disallowedRoutes:[]
       }
     }),

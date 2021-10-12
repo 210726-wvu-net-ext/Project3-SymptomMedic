@@ -73,16 +73,6 @@ namespace SymptoMedic.WebApi
                 });
             });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowNgServe", policy =>
-                    policy.WithOrigins("http://localhost:4200")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
-
-
             services.AddAuthentication(
                 opt =>
                 {
@@ -101,6 +91,8 @@ namespace SymptoMedic.WebApi
 
                         ValidIssuer = "https://localhost:44391",
                         ValidAudience = "https://localhost:4200",
+                        /*ValidIssuer = "https://symptomedic-api.eastus.cloudapp.azure.com",
+                        ValidAudience = "https://symptomedic-ui.eastus.cloudapp.azure.com",*/
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretSupersupes#345"))
                     };
                 });
@@ -108,7 +100,7 @@ namespace SymptoMedic.WebApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowNgServe", policy =>
-                    policy.WithOrigins("http://localhost:4200")
+                    policy.WithOrigins("http://localhost:4200", "http://symptomedic-ui.eastus.cloudapp.azure.com", "https://symptomedic-ui.eastus.cloudapp.azure.com")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());

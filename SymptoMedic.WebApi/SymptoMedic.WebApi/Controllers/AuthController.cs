@@ -28,21 +28,6 @@ namespace SymptoMedic.WebApi.Controllers
             _drepo = drepo;
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<BaseController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-
-
         // POST api/<BaseController>
         [HttpPost, Route("[action]")]
         public async Task<ActionResult> LoginClient([FromBody] Login user)
@@ -68,6 +53,8 @@ namespace SymptoMedic.WebApi.Controllers
                 var tokenOptions = new JwtSecurityToken(
                     issuer: "https://localhost:44391",
                     audience: "https://localhost:4200",
+                    /*issuer = "https://symptomedic-api.eastus.cloudapp.azure.com",
+                        audience = "https://symptomedic-ui.eastus.cloudapp.azure.com",*/
                     claims: claims,
                     expires: DateTime.Now.AddDays(7),
                     signingCredentials: signingCredentials
@@ -104,6 +91,8 @@ namespace SymptoMedic.WebApi.Controllers
                 var tokenOptions = new JwtSecurityToken(
                     issuer: "https://localhost:44391",
                     audience: "https://localhost:4200",
+                    /*issuer = "https://symptomedic-api.eastus.cloudapp.azure.com",
+                        audience = "https://symptomedic-ui.eastus.cloudapp.azure.com",*/
                     claims: claims,
                     expires: DateTime.Now.AddDays(7),
                     signingCredentials: signingCredentials
@@ -114,18 +103,6 @@ namespace SymptoMedic.WebApi.Controllers
             }
             return Unauthorized(new { message = "Your credentials were incorrect! Please try again or Sign up.", success = false });
         }
-
-        /* // PUT api/<BaseController>/5
-         [HttpPut("{id}")]
-         public void Put(int id, [FromBody] string value)
-         {
-         }
-
-         // DELETE api/<BaseController>/5
-         [HttpDelete("{id}")]
-         public void Delete(int id)
-         {
-         }*/
     }
 
 }
