@@ -77,7 +77,7 @@ export class EditDoctorDetailsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([`../../account/${id}`], { relativeTo: this.route });
+          this.router.navigate([`account/${id}`], { relativeTo: this.route });
           alert("Updated successfully!");
         },
         error => {
