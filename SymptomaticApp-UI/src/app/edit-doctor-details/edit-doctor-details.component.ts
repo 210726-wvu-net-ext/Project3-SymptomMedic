@@ -32,6 +32,7 @@ export class EditDoctorDetailsComponent implements OnInit {
     practiceZipcode: new FormControl(''),
     certifications: new FormControl(''),
     email: new FormControl(''),
+    doctorSymptoms: new FormControl(''),
   });
 
   loading = false;
@@ -59,6 +60,7 @@ export class EditDoctorDetailsComponent implements OnInit {
       practiceZipcode: [this.doctor?.practiceZipcode, [Validators.required]],
       certifications: [this.doctor?.certifications, [Validators.required]],
       email: [this.doctor?.email, [Validators.required, Validators.email]],
+      doctorSymptoms: [this.doctor?.doctorSymptoms, [Validators.required]],
 
     });
   }

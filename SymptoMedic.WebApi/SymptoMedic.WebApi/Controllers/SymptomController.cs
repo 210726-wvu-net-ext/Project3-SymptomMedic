@@ -37,10 +37,42 @@ namespace SymptoMedic.WebApi.Controllers
         }
 
         // POST api/<BaseController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
 
+        // POST api/<BaseController>
+        [HttpPost]
+        public async Task<ActionResult> Create([FromBody] CreatedDoctor doctor)
+        {
+            try
+            {
+                var updatedDoctor = new Doctor
+                {
+                    FirstName = doctor.firstName,
+                    LastName = doctor.lastName,
+                    License = doctor.license,
+                    PracticeName = doctor.practiceName,
+                    Email = doctor.email,
+                    Password = doctor.password,
+                    Role = "doctor",
+                    PhoneNumber = doctor.phoneNumber,
+                    DoctorSpeciality = doctor.doctorSpecialty,
+                    PracticeAddress = doctor.practiceAddress,
+                    PracticeCity = doctor.practiceCity,
+                    PracticeState = doctor.practiceState,
+                    PracticeZipcode = doctor.practiceZipcode,
+                    Certifications = doctor.certifications,
+                    Education = doctor.education,
+                    Gender = doctor.gender
+                };
+                var returnedDoctor = await _drepo.AddADoctor(updatedDoctor);
+                return Ok(returnedDoctor);
+            }
+            catch (Exception e)
+            {
+                //ModelState.AddModelError("Username", e.Message);
+                //ModelState.AddModelError("Email", e.Message);
+                _logger.LogCritical("Failed to create new doctor", e.Message);
+                return BadRequest(e.Message);
+            }
         }
 
         // PUT api/<BaseController>/5
