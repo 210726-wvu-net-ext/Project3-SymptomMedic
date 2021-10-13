@@ -7,7 +7,6 @@ import { AppointmentService } from '../appointment.service';
 import { AuthService } from '../auth.service';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../doctor.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-appointments',
@@ -42,7 +41,6 @@ export class BookAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private doctorService: DoctorService,
     private router: Router,
-    private datePipe: DatePipe, 
     public authService: AuthService
   ) { }
   returnurl: any;
