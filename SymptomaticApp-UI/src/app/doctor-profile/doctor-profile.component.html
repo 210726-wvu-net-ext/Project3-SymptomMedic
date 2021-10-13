@@ -7,15 +7,27 @@
 <div *ngIf="doctor">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <div>
           <app-doctor-card [doctor]="doctor" class="col"></app-doctor-card>
         </div>
         <br>
-
-        <div class="col-md-8">
-          <div>Scheduled Appointments</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div>Scheduled Appointments</div>
+        <div class="card">
+          <div class="card-body">
+            <ul>
+              <li class="card-text" *ngFor="let appt of doctor?.appointments">
+                <p class="text-secondary mb-1">Date: {{appt.dateCreated | date: 'mediumDate' }} </p>
+                <p class="text-secondary mb-1">Time: {{appt.startTime | date: 'shortTime'}} - {{appt.endTime | date: 'shortTime'}} </p>
+              </li>
+            </ul>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
