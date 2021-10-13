@@ -25,7 +25,7 @@ You'll need .NET5, Node.JS, and Entity Framework on a local SQL database. Please
 - Asp.Net Core 5
 - Entity Framework
 - Angular
-- Azure DB, Web servies, Dev Ops
+- Azure DB, Web services, Dev Ops
 - Docker
 - Kubernetes
 - Json Web Token
