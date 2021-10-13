@@ -47,7 +47,7 @@ export class RegisterClientComponent implements OnInit {
       lastName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       gender: ['', Validators.required],
-      contactMobile: ['', Validators.required],
+      contactMobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],

@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-doctor-card',
-  templateUrl: './doctor-card.component.html',
-  styleUrls: ['./doctor-card.component.css']
+  selector: 'app-doctor-information',
+  templateUrl: './doctor-information.component.html',
+  styleUrls: ['./doctor-information.component.css']
 })
-export class DoctorCardComponent implements OnInit {
+export class DoctorInformationComponent implements OnInit {
 
   @Input() doctor?: Doctor;
 
