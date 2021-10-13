@@ -47,7 +47,9 @@
                 <li class="nav-item">
                   <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Eye Care</a>
                 </li>
-
+                <li class="nav-item">
+                  <a class="nav-link" *ngIf="authService.loggedIn()" routerLink="/symptom-search">Search By Specialty</a>
+                </li>
               </ul>
             </div>
             <div class="col-lg-9 mt-4 mt-lg-0">
