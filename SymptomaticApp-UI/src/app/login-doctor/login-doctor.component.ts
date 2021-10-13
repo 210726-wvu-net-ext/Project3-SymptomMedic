@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-doctor',
@@ -20,6 +21,7 @@ export class LoginDoctorComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private fb: FormBuilder,
+    private _snackbar : MatSnackBar,
     private router: Router,
     private location: Location,
     private route: ActivatedRoute,) { }
@@ -33,7 +35,12 @@ export class LoginDoctorComponent implements OnInit {
     if (this.formGroup.valid) {
       const loginObserver = {
         next: (x: any) => {
-          alert('Welcome back ' + x.email);
+          this._snackbar.open('Welcome Back'  , x.email, {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['blue-snackbar1','blue-snackbar2']
+          })
+          
           this.router.navigateByUrl(this.returnUrl);
         },
         error: (err: any) => {

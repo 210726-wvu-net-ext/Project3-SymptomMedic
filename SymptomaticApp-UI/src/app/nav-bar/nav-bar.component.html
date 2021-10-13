@@ -6,7 +6,69 @@
       </div>
   </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header id="header" class="fixed-top">
+
+   <div class="container d-flex align-items-center">
+    <a href="index.html"> <img  src="assets/img/SM_Logo_4.png" alt="help" class="img-fluid_x" ></a>
+    <h1 class="logo me-auto"></h1>
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a class="nav-link scrollto active" routerLink="/">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Search by...
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/doctor-search">
+                Doctor Name
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/city-search">
+                City
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/specialty-search">
+                Specialty
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/symptom-search">
+                Symptoms
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="nav-link scrollto" *ngIf="!authService.loggedIn()" routerLink="/login">Login</a></li>
+        <li><a class="nav-link scrollto" *ngIf="!authService.loggedIn()" routerLink="/register">Register</a></li>
+       
+        <li><a class="nav-link scrollto" *ngIf="authService.loggedIn() && isClient()" routerLink="/doctor/{{authService.currentUser.id}}">Doctor Profile</a></li>
+        <li><a class="nav-link scrollto" *ngIf="authService.loggedIn() && isClient()" routerLink="/profile/{{authService.currentUser.id}}">Profile</a></li>
+        <li><a class="nav-link scrollto" *ngIf="authService.loggedIn() && isDoctor()" routerLink="/account/{{authService.currentUser.id}}">Account</a></li>
+        <li *ngIf="authService.loggedIn()">
+          <a  (click)="logout()">Log Out</a>
+        </li>
+
+        
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+    <!-- <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a> -->
+
+  </div>
+</header><!-- End Header -->
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SymptoMedic</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,9 +88,7 @@
           <a (click)="logout()">Log Out</a>
         </li>
 
-        <!-- <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li> -->
+    
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Search by...
@@ -60,4 +120,5 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
+
