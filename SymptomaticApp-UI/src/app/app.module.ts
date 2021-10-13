@@ -13,7 +13,7 @@ import { LoginClientComponent } from './login-client/login-client.component';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { SymptomSearchComponent } from './symptom-search/symptom-search.component';
-import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
+import { BookAppointmentComponent } from './book-appointments/book-appointments.component';
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { UpdateDoctorInformationComponent } from './update-doctor-information/update-doctor-information.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +33,8 @@ import { SpecialtySearchComponent } from './specialty-search/specialty-search.co
 import { SpfilterPipe } from './spfilter-pipe/spfilter.pipe';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { CfilterPipe } from './cfilter/cfilter.pipe';
+import { SyfilterPipe } from './syfilter/syfilter.pipe';
+
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -65,7 +67,8 @@ export function tokenGetter() {
     SpecialtySearchComponent,
     SpfilterPipe,
     CitySearchComponent,
-    CfilterPipe
+    CfilterPipe,
+    SyfilterPipe
   ],
   imports: [
     BrowserModule,
