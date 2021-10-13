@@ -1,24 +1,55 @@
+<pre>
+
+  
+</pre>
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
+        <img src="assets/img/SM_Logo_4.png" class="img-fluid"
           alt="Sample image">
       </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+      <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+        <mat-card class="box">
+          <mat-card-header>
+            <mat-card-title>Client Sign in</mat-card-title>
+          </mat-card-header>
+      
+          <form [formGroup]="formGroup" (ngSubmit)="loginProcess()">
+            <mat-card-content>
+              <mat-form-field class="example-full-width">
+                <input formControlName="email"  matInput placeholder="Email">
+              </mat-form-field>
+      
+              <mat-form-field class="example-full-width">
+                <input formControlName="password" type="password" matInput placeholder="Password">
+              </mat-form-field>
+            </mat-card-content>
+            <button type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>
+            <h3 class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
+              class="link-danger">Register</a></h3>
+          </form>
+        </mat-card>
+      
+      </div>
+    </div>
+
+      <!-- <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form [formGroup]="formGroup" (ngSubmit)="loginProcess()">
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3">Client Sign in</p>
           </div> <br>
 
-          <!-- Email input -->
+         
           <div class="form-outline mb-4">
             <input type="text" id="login-email" formControlName="email" class="form-control"
               placeholder="Enter your email" />
             <label class="form-label" for="email">Email</label>
           </div>
 
-          <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" id="login-password" class="form-control form-control-lg"
               placeholder="Enter password" formControlName="password">
@@ -32,7 +63,7 @@
                 class="link-danger">Register</a></h3>
           </div>
         </form>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

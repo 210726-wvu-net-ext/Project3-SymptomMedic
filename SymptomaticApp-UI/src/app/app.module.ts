@@ -34,6 +34,19 @@ import { SpfilterPipe } from './spfilter-pipe/spfilter.pipe';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { CfilterPipe } from './cfilter/cfilter.pipe';
 import { SyfilterPipe } from './syfilter/syfilter.pipe';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DoctorInformationComponent } from './doctor-information/doctor-information.component';
 
 
@@ -86,6 +99,18 @@ export function tokenGetter() {
       }
     }),
     BrowserAnimationsModule,
+    MatToolbarModule,
+  MatInputModule,
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSelectModule,
+
+  MatProgressSpinnerModule,
+  MatSnackBarModule
+
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
