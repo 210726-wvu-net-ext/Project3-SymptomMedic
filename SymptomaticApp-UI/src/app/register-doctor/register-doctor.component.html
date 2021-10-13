@@ -277,43 +277,6 @@
                       </div>
                     </div>
 
-                    <div class="mb-4 pb-2">
-                      <div class="form-outline form-white">
-                        <select type="text" formControlName="doctorSymptoms"
-                                [ngClass]="{ 'is-invalid': submitted && f.doctorSymptoms.errors }"
-                                class="form-control form-control-lg" value="Symptoms to treat" multiple>
-                          <option value='' disabled>Select the Symptoms you treat</option>
-                          <option value='Cachexia'>Cachexia</option>
-                          <option value='Loss of Appetite'>Loss of Appetite</option>
-                          <option value='Weight Loss'>Weight Loss</option>
-                          <option value='Weight Gain'>Weight Gain</option>
-                          <option value='Dry Mouth'>Dry Mouth</option>
-                          <option value='Fatigue'>Fatigue</option>
-                          <option value='Malaise'>Malaise</option>
-                          <option value='Asthenia'>Asthenia</option>
-                          <option value='Muscle Weakness'>Muscle Weakness</option>
-                          <option value='Pyrexia'>Pyrexia</option>
-                          <option value='Jaundice'>Jaundice</option>
-                          <option value='Abdominal Pain'>Abdominal Pain</option>
-                          <option value='Chest Pain'>Chest Pain</option>
-                          <option value='Dyspareunia'>Dyspareunia</option>
-                          <option value='Vaginismus'>Vaginismus</option>
-                          <option value='Bruising'>Bruising</option>
-                          <option value='Epistaxis'>Epistaxis</option>
-                          <option value='Tremor'>Tremor</option>
-                          <option value='Convulsion'>Convulsion</option>
-                          <option value='Tremor'>Tremor</option>
-                          <option value='Tremor'>Tremor</option>
-                          <option value='Tremor'>Tremor</option>
-                          <option value='Tremor'>Tremor</option>
-                          <option value='Tremor'>Tremor</option>
-                        </select>
-                        <label class="form-label" for="doctorSymptoms">Symptoms</label>
-                        <div *ngIf="submitted && f.doctorSymptoms.errors" class="invalid-feedback">
-                          <div *ngIf="f.doctorSymptoms.errors.required">Symptoms that you treat is required</div>
-                        </div>
-                      </div>
-                    </div>
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
