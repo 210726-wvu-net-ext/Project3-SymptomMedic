@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DoctorService } from '../doctor.service';
 import { Doctor } from '../interfaces/doctor';
 import { AuthService } from '../auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./symptom-search.component.css']
 })
 export class SymptomSearchComponent implements OnInit {
-
+  @Input() doctor?: Doctor;
   doctors: Doctor[] = [];
   searchInput: string = '';
   constructor(private doctorService: DoctorService, public authService: AuthService) {}
