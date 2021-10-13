@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'login/doctor', component: LoginDoctorComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register/client', component: RegisterClientComponent },
-  { path: 'appointment/:id', component: BookAppointmentComponent },
+  { path: 'appointment/:id', component: BookAppointmentComponent, canActivate: [AuthGuard] },
   { path: 'register/doctor', component: RegisterDoctorComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'doctor-search', component: DoctorSearchComponent},

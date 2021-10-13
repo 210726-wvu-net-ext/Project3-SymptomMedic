@@ -3,7 +3,8 @@
       <div class="container">
         <h1>Welcome to SymptoMedic</h1>
         <h2>We help connect a doctor that's right for you</h2>
-        <a class="btn-get-started" routerLink="/register">Register</a>
+        <a  *ngIf="!authService.loggedIn()"class="btn-get-started" routerLink="/register">Register</a>
+        <a  *ngIf="authService.loggedIn()"class="btn-get-started" routerLink="/city-search">Search by City</a>
       </div>
     </section><!-- End Hero -->
 
