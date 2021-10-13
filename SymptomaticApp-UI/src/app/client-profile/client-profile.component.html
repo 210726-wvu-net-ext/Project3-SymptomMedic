@@ -33,7 +33,6 @@
                   <li class="card-text" *ngFor="let appt of client?.appointments">
                     <p class="text-secondary mb-1">Date: {{appt.dateCreated | date: 'mediumDate' }} </p>
                     <p class="text-secondary mb-1">Time: {{appt.startTime | date: 'shortTime'}} - {{appt.endTime | date: 'shortTime'}} </p>
-                    <p class="text-secondary mb-1">End Time of Appointment: </p>
                     <p class="text-secondary mb-1">Symptoms:{{appt.patientSymptoms}}</p>
                     <hr>
                   </li>
