@@ -35,7 +35,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-6 mb-4">
+                    <div class="col-md-6 mb-4" for="gender">
 
                       <h6 class="mb-2 pb-1">Gender: </h6>
 
@@ -87,7 +87,6 @@
                           <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -112,14 +111,13 @@
                       <div class="col-md-5 mb-4 pb-2">
 
                         <div class="form-outline form-white">
-                          <input type="text" formControlName="zipcode" class="form-control form-control-lg"
+                          <input type="number" formControlName="zipcode" class="form-control form-control-lg"
                             [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }" />
                           <label class="form-label" for="zipcode">Zip code</label>
                           <div *ngIf="submitted && f.zipcode.errors" class="invalid-feedback">
                             <div *ngIf="f.zipcode.errors.required">Zip code is required</div>
                           </div>
                         </div>
-
                       </div>
 
                       <div class="col-md-7 mb-4 pb-2">
@@ -136,16 +134,68 @@
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
-                        <input type="text" formControlName="state" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
+                        <select type="text" formControlName="state"
+                          [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                          class="form-control form-control-lg">
+                          <option value='' disabled>Select a State</option>
+                          <option value="Alabama">Alabama</option>
+                          <option value="Alaska">Alaska</option>
+                          <option value="Arizona">Arizona</option>
+                          <option value="Arkansas">Arkansas</option>
+                          <option value="California">California</option>
+                          <option value="Colorado">Colorado</option>
+                          <option value="Connecticut">Connecticut</option>
+                          <option value="Delaware">Delaware</option>
+                          <option value="District Of Columbia">District Of Columbia</option>
+                          <option value="Florida">Florida</option>
+                          <option value="Georgia">Georgia</option>
+                          <option value="Hawaii">Hawaii</option>
+                          <option value="Idaho">Idaho</option>
+                          <option value="Illinois">Illinois</option>
+                          <option value="Indiana">Indiana</option>
+                          <option value="Iowa">Iowa</option>
+                          <option value="Kansas">Kansas</option>
+                          <option value="Kentucky">Kentucky</option>
+                          <option value="Louisiana">Louisiana</option>
+                          <option value="Maine">Maine</option>
+                          <option value="Maryland">Maryland</option>
+                          <option value="Massachusetts">Massachusetts</option>
+                          <option value="Michigan">Michigan</option>
+                          <option value="Minnesota">Minnesota</option>
+                          <option value="Mississippi">Mississippi</option>
+                          <option value="Missouri">Missouri</option>
+                          <option value="Montana">Montana</option>
+                          <option value="Nebraska">Nebraska</option>
+                          <option value="Nevada">Nevada</option>
+                          <option value="New Hampshire">New Hampshire</option>
+                          <option value="New Jersey">New Jersey</option>
+                          <option value="New Mexico">New Mexico</option>
+                          <option value="New York">New York</option>
+                          <option value="North Carolina">North Carolina</option>
+                          <option value="North Dakota">North Dakota</option>
+                          <option value="Ohio">Ohio</option>
+                          <option value="Oklahoma">Oklahoma</option>
+                          <option value="Oregon">Oregon</option>
+                          <option value="Pennsylvania">Pennsylvania</option>
+                          <option value="Rhode Island">Rhode Island</option>
+                          <option value="South Carolina">South Carolina</option>
+                          <option value="South Dakota">South Dakota</option>
+                          <option value="Tennessee">Tennessee</option>
+                          <option value="Texas">Texas</option>
+                          <option value="Utah">Utah</option>
+                          <option value="Vermont">Vermont</option>
+                          <option value="Virginia">Virginia</option>
+                          <option value="Washington">Washington</option>
+                          <option value="West Virginia">West Virginia</option>
+                          <option value="Wisconsin">Wisconsin</option>
+                          <option value="Wyoming">Wyoming</option>
+                        </select>
                         <label class="form-label" for="state">State</label>
                         <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
                           <div *ngIf="f.state.errors.required">State is required</div>
                         </div>
                       </div>
-
                     </div>
-
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
@@ -163,20 +213,21 @@
                       <div class="form-outline form-white">
                         <input type="tel" formControlName="contactMobile" class="form-control form-control-lg"
                           [ngClass]="{ 'is-invalid': submitted && f.contactMobile.errors }" />
-                        <label class="form-label" for="contactMobile">Phone Number</label>
+                        <label class="form-label" for="contactMobile">Phone Number - 10 digit number</label>
                         <div *ngIf="submitted && f.contactMobile.errors" class="invalid-feedback">
                           <div *ngIf="f.contactMobile.errors.required">Phone number is required</div>
+                          <div *ngIf="f.contactMobile.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
                         </div>
                       </div>
                     </div>
 
 
-                    <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                    <!-- <div class="form-check d-flex justify-content-start mb-4 pb-3">
                       <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
                       <label class="form-check-label text-white" for="form2Example3">
                         I do accept the  <a href="https://www.termsandconditionsgenerator.com/live.php?token=P1xgBUjubsGi446DkmDDwlH3aeQLDmM8" target=__blank class="text-white"><u>Terms and Conditions</u></a> of your site.
                       </label>
-                    </div>
+                    </div> -->
 
                     <button type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
 
