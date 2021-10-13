@@ -34,6 +34,7 @@ import { SpfilterPipe } from './spfilter-pipe/spfilter.pipe';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { CfilterPipe } from './cfilter/cfilter.pipe';
 import { SyfilterPipe } from './syfilter/syfilter.pipe';
+import { DoctorInformationComponent } from './doctor-information/doctor-information.component';
 
 
 export function tokenGetter() {
@@ -68,7 +69,8 @@ export function tokenGetter() {
     SpfilterPipe,
     CitySearchComponent,
     CfilterPipe,
-    SyfilterPipe
+    SyfilterPipe,
+    DoctorInformationComponent
   ],
   imports: [
     BrowserModule,
