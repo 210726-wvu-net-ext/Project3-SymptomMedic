@@ -10,8 +10,24 @@
 <input class="form-control form-control-lg" type="search" [(ngModel)] = searchInput placeholder="Search for a doctor..">
 <ul>
     <li *ngFor="let doctor of doctors | cfilter: searchInput">
-        <a routerLink="/doctor/{{doctor.id}}">
-            <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
-        </a>
+        <div class="card" >
+            <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="card-title">Doctor: {{doctor?.firstName}} {{doctor?.lastName}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{doctor?.doctorSpeciality}}</h6>
+              <p class="card-subtitle mb-2 text-muted">{{doctor?.practiceName}}</p>
+              <p class="card-subtitle mb-2 text-muted">{{doctor?.practiceAddress}}, {{doctor?.practiceCity}}, {{doctor?.practiceState}} {{doctor?.practiceZipcode}}</p>
+              <a routerLink="/doctor/{{doctor?.id}}" class="card-link">View Profile</a>
+              </div>
+              <div class="col-md-6">
+                <h6>Symptoms They Treat:</h6>
+                <p class="card-subtitle mb-2 text-muted" *ngFor="let symptom of doctor?.doctorSymptoms">{{symptom.symptom}}
+                </p>
+                <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}" class="card-link">Book Appointment</a>
+              </div>
+            </div>
+            </div>
+          </div>
     </li>
 </ul>

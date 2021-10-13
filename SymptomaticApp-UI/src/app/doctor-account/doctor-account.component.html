@@ -1,6 +1,9 @@
 <pre>
 
-  
+
+
+
+
 </pre>
 <br>
 <div class="container" *ngIf="doctor">
@@ -20,10 +23,7 @@
             <hr class="my-4">
           </div>
         </div>
-      </div>
-      <div class="col-lg-8">
-        <app-edit-doctor-details [doctor]="doctor"></app-edit-doctor-details>
-
+        <br>
         <div class="row">
           <div class="col-sm-12">
             <div class="card">
@@ -32,16 +32,19 @@
                 <ul>
                   <li class="card-text" *ngFor="let appt of doctor?.appointments">
                     <h4>{{appt.clientFirstName}} {{appt.clientLastName}}</h4>
-                    <p class="text-secondary mb-1">Client's Phone Number: {{appt.clientContact}}</p>
-                    <p class="text-secondary mb-1">Start Time of Appointment: {{appt.startTime}}</p>
-                    <p class="text-secondary mb-1">End Time of Appointment: {{appt.endTime}}</p>
-                    <p class="text-secondary mb-1">Symptoms Present: {{appt.patientSymptoms}}</p>
+                    <p class="text-secondary mb-1">Phone: {{appt.clientContact}}</p>
+                    <p class="text-secondary mb-1">Date: {{appt.dateCreated | date: 'mediumDate' }} </p>
+                    <p class="text-secondary mb-1">Time: {{appt.startTime | date: 'shortTime'}} - {{appt.endTime | date: 'shortTime'}} </p>
+                    <p class="text-secondary mb-1">Symptoms:{{appt.patientSymptoms}}</p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-lg-8">
+        <app-edit-doctor-details [doctor]="doctor"></app-edit-doctor-details>
       </div>
     </div>
   </div>

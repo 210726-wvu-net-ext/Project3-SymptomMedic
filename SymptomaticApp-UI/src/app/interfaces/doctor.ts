@@ -11,7 +11,7 @@ export interface Doctor
   email: string,
   password: string,
   phoneNumber: string,
-  doctorSpecialty: string,
+  doctorSpeciality: string,
   practiceAddress: string,
   practiceCity: string,
   practiceState: string,

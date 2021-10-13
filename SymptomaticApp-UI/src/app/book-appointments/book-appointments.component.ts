@@ -74,7 +74,7 @@ export class BookAppointmentComponent implements OnInit {
   isClient(): boolean {
     return this.authService.currentUser.role == "client" ? true : false;
   }
-  
+
 
   onSubmit() {
     this.submitted = true;
@@ -117,7 +117,7 @@ export class BookAppointmentComponent implements OnInit {
       )
   }
 
-  
+
   getDoctor(): void {
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
