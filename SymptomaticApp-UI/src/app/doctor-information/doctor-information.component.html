@@ -1,24 +1,9 @@
-<pre>
-
-  
-</pre>
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-
     <h5 class="card-title">{{doctor?.firstName}} {{doctor?.lastName}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{doctor?.doctorSpecialty}}</h6>
     <p class="card-text">{{doctor?.practiceName}}</p>
     <p class="card-text">{{doctor?.practiceAddress}}</p>
     <p class="card-text">{{doctor?.practiceCity}}, {{doctor?.practiceState}} {{doctor?.practiceZipcode}}</p>
-    <div class="col-md-8">
-      <div>Symptoms They Treat:</div>
-    </div>
-    <ul>
-      <li class="card-text" *ngFor="let symptom of doctor?.doctorSymptoms">
-        <div>{{symptom.symptom}}</div>
-      </li>
-    </ul>
-    <a routerLink="/doctor/{{doctor?.id}}" class="card-link">View Profile</a>
-    <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}" class="card-link">Book Appointment</a>
   </div>
 </div>

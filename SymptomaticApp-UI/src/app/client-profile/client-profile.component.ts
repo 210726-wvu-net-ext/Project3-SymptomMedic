@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Insurance } from '../interfaces/insurance';
+import { Doctor } from '../interfaces/doctor';
+import { DoctorService } from '../doctor.service';
+import { Appointment } from '../interfaces/appointments';
 
 @Component({
   selector: 'app-client-profile',
@@ -16,12 +19,15 @@ export class ClientProfileComponent implements OnInit {
 
   @Input() client?: Client;
   @Input() insurance?: Insurance[];
+  doctor!: Doctor;
+  @Input() appointment?: Appointment[];
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private patientService: PatientService,
     private router: Router,
+    private doctorService: DoctorService,
     public authService: AuthService
   ) { }
 
@@ -29,7 +35,15 @@ export class ClientProfileComponent implements OnInit {
     this.getClient();
   }
 
-
+  getDoctor(id: number): void {
+    this.doctorService.getDoctor(id)
+      .subscribe(
+        doctor => {
+          this.doctor = doctor;
+          console.log(doctor);
+        },
+    );
+  }
   getClient(): void {
 
     const id = this.authService.currentUser.id;

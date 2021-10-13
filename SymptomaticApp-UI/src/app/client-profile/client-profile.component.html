@@ -1,3 +1,7 @@
+<pre>
+
+  
+</pre>
 <br>
 <div class="container" *ngIf="client">
   <div class="main-body">
@@ -25,7 +29,14 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="d-flex align-items-center mb-3">Appointments</h5>
-                <p>Insert Appts here</p>
+                <ul>
+                  <li class="card-text" *ngFor="let appt of doctor?.appointments">
+                    <p class="text-secondary mb-1">Client's Phone Number: {{appt.clientContact}}</p>
+                    <p class="text-secondary mb-1">Start Time of Appointment: {{appt.startTime}}</p>
+                    <p class="text-secondary mb-1">End Time of Appointment: {{appt.endTime}}</p>
+                    <p class="text-secondary mb-1">List of Symptoms:{{appt.patientSymptoms}}</p>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

@@ -34,7 +34,7 @@
           <div class="col-md-6">
             <input type="date" formControlName="dateCreated" class="form-control form-control-lg"
                    [ngClass]="{ 'is-invalid': submitted && f.dateCreated.errors }" />
-            <label class="form-label" for='dateCreated'>Today's Date</label>
+            <label class="form-label" for='dateCreated'>Appointment Date</label>
             <div *ngIf="submitted && f.dateCreated.errors" class="invalid-feedback">
               <div *ngIf="f.dateCreated.errors.required">Current Date is Required</div>
             </div>

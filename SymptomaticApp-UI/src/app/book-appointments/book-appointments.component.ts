@@ -7,7 +7,6 @@ import { AppointmentService } from '../appointment.service';
 import { AuthService } from '../auth.service';
 import { Doctor } from '../interfaces/doctor';
 import { DoctorService } from '../doctor.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-book-appointments',
@@ -42,7 +41,6 @@ export class BookAppointmentComponent implements OnInit {
     private appointmentService: AppointmentService,
     private doctorService: DoctorService,
     private router: Router,
-    private datePipe: DatePipe, 
     public authService: AuthService
   ) { }
   returnurl: any;
@@ -79,9 +77,6 @@ export class BookAppointmentComponent implements OnInit {
   
 
   onSubmit() {
-    console.log('here');
-    console.log(this.form.invalid);
-    console.log(this.doctor);
     this.submitted = true;
     this.form.patchValue({
       clientId: this.authService.currentUser.id,
@@ -93,16 +88,14 @@ export class BookAppointmentComponent implements OnInit {
     this.symptoms = this.form.value.patientSymptoms;
     this.form.patchValue({
       patientSymptoms: "",
+      startTime: this.form.value.dateCreated + "T" + this.form.value.startTime + ":00",
+      endTime: this.form.value.dateCreated + "T" + this.form.value.endTime + ":00",
     });
     this.symptoms?.forEach( (value) => {
       this.form.patchValue({
         patientSymptoms: this.form.value.patientSymptoms + " " + value,
       });
     });
-    this.form.value.forEach(function (val: any) {
-      console.log(val);
-    });
-    console.log(this.form);
     //stop here if form is invalid
     if (this.form.invalid) {
       return;
@@ -114,11 +107,10 @@ export class BookAppointmentComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          alert("Appointment Booked!");
           this.router.navigate(['/']);
-          alert("Booked successfully!");
         },
         error => {
-          console.log(error);
           this.loading = false;
           alert(JSON.stringify(error));
         }
