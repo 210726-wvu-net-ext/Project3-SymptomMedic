@@ -2,23 +2,21 @@
 
 
 </pre>
-<div class="card" style="width: 18rem;">
+<div class="card">
   <div class="card-body">
-
-    <h5 class="card-title">{{doctor?.firstName}} {{doctor?.lastName}}</h5>
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="card-title">Dr. {{doctor?.firstName}} {{doctor?.lastName}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{doctor?.doctorSpeciality}}</h6>
-    <p class="card-text">{{doctor?.practiceName}}</p>
-    <p class="card-text">{{doctor?.practiceAddress}}</p>
-    <p class="card-text">{{doctor?.practiceCity}}, {{doctor?.practiceState}} {{doctor?.practiceZipcode}}</p>
-    <div class="col-md-8">
-      <div>Symptoms They Treat:</div>
+    <p class="card-subtitle mb-2 text-muted">{{doctor?.practiceName}}</p>
+    <p class="card-subtitle mb-2 text-muted">{{doctor?.practiceAddress}}, {{doctor?.practiceCity}}, {{doctor?.practiceState}} {{doctor?.practiceZipcode}}</p>
     </div>
-    <ul>
-      <li class="card-text" *ngFor="let symptom of doctor?.doctorSymptoms">
-        <div>{{symptom.symptom}}</div>
-      </li>
-    </ul>
-    <a routerLink="/doctor/{{doctor?.id}}" class="card-link">View Profile</a>
-    <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}" class="card-link">Book Appointment</a>
+    <div class="col-md-6">
+      <h6>Symptoms They Treat:</h6>
+      <p class="card-subtitle mb-2 text-muted" *ngFor="let symptom of doctor?.doctorSymptoms">{{symptom.symptom}}
+      </p>
+      <a *ngIf="authService.loggedIn() && isClient()" routerLink="/appointment/{{doctor?.id}}" class="card-link">Book Appointment</a>
+    </div>
+  </div>
   </div>
 </div>
