@@ -51,10 +51,10 @@ namespace SymptoMedic.WebApi.Controllers
                 };
 
                 var tokenOptions = new JwtSecurityToken(
-                    /*issuer: "https://localhost:44391",
-                    audience: "https://localhost:4200",*/
-                    issuer: "http://symptomedic-api.eastus.cloudapp.azure.com",
-                    audience: "http://symptomedic-ui.eastus.cloudapp.azure.com",
+                    issuer: "https://localhost:44391",
+                    audience: "https://localhost:4200",
+                    /*issuer: "http://symptomedic-api.eastus.cloudapp.azure.com",
+                    audience: "http://symptomedic-ui.eastus.cloudapp.azure.com",*/
                     claims: claims,
                     expires: DateTime.Now.AddDays(7),
                     signingCredentials: signingCredentials
@@ -89,10 +89,10 @@ namespace SymptoMedic.WebApi.Controllers
                 };
 
                 var tokenOptions = new JwtSecurityToken(
-                    /*issuer: "https://localhost:44391",
-                    audience: "https://localhost:4200",*/
-                    issuer: "http://symptomedic-api.eastus.cloudapp.azure.com",
-                    audience: "http://symptomedic-ui.eastus.cloudapp.azure.com",
+                    issuer: "https://localhost:44391",
+                    audience: "https://localhost:4200",
+                    /*issuer: "http://symptomedic-api.eastus.cloudapp.azure.com",
+                    audience: "http://symptomedic-ui.eastus.cloudapp.azure.com",*/
                     claims: claims,
                     expires: DateTime.Now.AddDays(7),
                     signingCredentials: signingCredentials
