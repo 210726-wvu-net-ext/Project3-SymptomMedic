@@ -48,6 +48,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DoctorInformationComponent } from './doctor-information/doctor-information.component';
+import { DatePipe } from '@angular/common';
 
 
 export function tokenGetter() {
@@ -110,9 +111,9 @@ export function tokenGetter() {
   MatProgressSpinnerModule,
   MatSnackBarModule
 
-   
+
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@
 <ul>
     <li *ngFor="let doctor of doctors | syfilter: searchInput">
         <a routerLink="/account/{{doctor.id}}">
-            <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpecialty}}</div>
+            <div>{{doctor.firstName}} {{doctor.lastName}}: {{doctor.doctorSpeciality}}</div>
         </a>
     </li>
 </ul>
