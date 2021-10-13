@@ -147,7 +147,7 @@
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
                         <input type="text" formControlName="practiceName" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.practiceName.errors }" />
+                               [ngClass]="{ 'is-invalid': submitted && f.practiceName.errors }" />
                         <label class="form-label" for="practiceName">Practice Name</label>
                         <div *ngIf="submitted && f.practiceName.errors" class="invalid-feedback">
                           <div *ngIf="f.practiceName.errors.required">Practice name is required</div>
@@ -158,7 +158,7 @@
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
                         <input type="text" formControlName="license" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.license.errors }" />
+                               [ngClass]="{ 'is-invalid': submitted && f.license.errors }" />
                         <label class="form-label" for="license">License #</label>
                         <div *ngIf="submitted && f.license.errors" class="invalid-feedback">
                           <div *ngIf="f.license.errors.required">License name is required</div>
@@ -169,7 +169,7 @@
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
                         <input type="text" formControlName="practiceAddress" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.practiceAddress.errors }" />
+                               [ngClass]="{ 'is-invalid': submitted && f.practiceAddress.errors }" />
                         <label class="form-label" for="practiceAddress">Practice Address</label>
                         <div *ngIf="submitted && f.practiceAddress.errors" class="invalid-feedback">
                           <div *ngIf="f.practiceAddress.errors.required">Practice address is required</div>
@@ -181,7 +181,7 @@
                       <div class="col-md-5 mb-4 pb-2">
                         <div class="form-outline form-white">
                           <input type="number" formControlName="practiceZipcode" class="form-control form-control-lg"
-                            [ngClass]="{ 'is-invalid': submitted && f.practiceZipcode.errors }" />
+                                 [ngClass]="{ 'is-invalid': submitted && f.practiceZipcode.errors }" />
                           <label class="form-label" for="practiceZipcode">Zip Code</label>
                           <div *ngIf="submitted && f.practiceZipcode.errors" class="invalid-feedback">
                             <div *ngIf="f.practiceZipcode.errors.required">Zip code is required</div>
@@ -192,7 +192,7 @@
                       <div class="col-md-7 mb-4 pb-2">
                         <div class="form-outline form-white">
                           <input type="text" formControlName="practiceCity" class="form-control form-control-lg"
-                            [ngClass]="{ 'is-invalid': submitted && f.practiceCity.errors }" />
+                                 [ngClass]="{ 'is-invalid': submitted && f.practiceCity.errors }" />
                           <label class="form-label" for="practiceCity">City</label>
                           <div *ngIf="submitted && f.practiceCity.errors" class="invalid-feedback">
                             <div *ngIf="f.practiceCity.errors.required">City is required</div>
@@ -202,21 +202,21 @@
                     </div>
 
                     <!-- <div class="mb-4 pb-2">
-                      <div class="form-outline form-white">
-                        <input type="text" formControlName="practiceState" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.practiceState.errors }" />
-                        <label class="form-label" for="practiceState">State</label>
-                        <div *ngIf="submitted && f.practiceState.errors" class="invalid-feedback">
-                          <div *ngIf="f.practiceState.errors.required">State is required</div>
-                        </div>
-                      </div>
-                    </div> -->
+    <div class="form-outline form-white">
+      <input type="text" formControlName="practiceState" class="form-control form-control-lg"
+        [ngClass]="{ 'is-invalid': submitted && f.practiceState.errors }" />
+      <label class="form-label" for="practiceState">State</label>
+      <div *ngIf="submitted && f.practiceState.errors" class="invalid-feedback">
+        <div *ngIf="f.practiceState.errors.required">State is required</div>
+      </div>
+    </div>
+  </div> -->
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
                         <select type="text" formControlName="practiceState"
-                          [ngClass]="{ 'is-invalid': submitted && f.practiceState.errors }"
-                          class="form-control form-control-lg" value="United States">
+                                [ngClass]="{ 'is-invalid': submitted && f.practiceState.errors }"
+                                class="form-control form-control-lg" value="United States">
                           <option value='' disabled>Select a State</option>
                           <option value="Alabama">Alabama</option>
                           <option value="Alaska">Alaska</option>
@@ -277,11 +277,48 @@
                       </div>
                     </div>
 
+                    <div class="mb-4 pb-2">
+                      <div class="form-outline form-white">
+                        <select type="text" formControlName="doctorSymptoms"
+                                [ngClass]="{ 'is-invalid': submitted && f.doctorSymptoms.errors }"
+                                class="form-control form-control-lg" value="Symptoms to treat" multiple>
+                          <option value='' disabled>Select the Symptoms you treat</option>
+                          <option value='Cachexia'>Cachexia</option>
+                          <option value='Loss of Appetite'>Loss of Appetite</option>
+                          <option value='Weight Loss'>Weight Loss</option>
+                          <option value='Weight Gain'>Weight Gain</option>
+                          <option value='Dry Mouth'>Dry Mouth</option>
+                          <option value='Fatigue'>Fatigue</option>
+                          <option value='Malaise'>Malaise</option>
+                          <option value='Asthenia'>Asthenia</option>
+                          <option value='Muscle Weakness'>Muscle Weakness</option>
+                          <option value='Pyrexia'>Pyrexia</option>
+                          <option value='Jaundice'>Jaundice</option>
+                          <option value='Abdominal Pain'>Abdominal Pain</option>
+                          <option value='Chest Pain'>Chest Pain</option>
+                          <option value='Dyspareunia'>Dyspareunia</option>
+                          <option value='Vaginismus'>Vaginismus</option>
+                          <option value='Bruising'>Bruising</option>
+                          <option value='Epistaxis'>Epistaxis</option>
+                          <option value='Tremor'>Tremor</option>
+                          <option value='Convulsion'>Convulsion</option>
+                          <option value='Tremor'>Tremor</option>
+                          <option value='Tremor'>Tremor</option>
+                          <option value='Tremor'>Tremor</option>
+                          <option value='Tremor'>Tremor</option>
+                          <option value='Tremor'>Tremor</option>
+                        </select>
+                        <label class="form-label" for="doctorSymptoms">Symptoms</label>
+                        <div *ngIf="submitted && f.doctorSymptoms.errors" class="invalid-feedback">
+                          <div *ngIf="f.doctorSymptoms.errors.required">Symptoms that you treat is required</div>
+                        </div>
+                      </div>
+                    </div>
 
                     <div class="mb-4 pb-2">
                       <div class="form-outline form-white">
                         <input type="tel" formControlName="phoneNumber" class="form-control form-control-lg"
-                          [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                               [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
                         <label class="form-label" for="phoneNumber">Practice phone number - 10 digit number</label>
                         <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
                           <div *ngIf="f.phoneNumber.errors.required">Practice Phone Number is required</div>
@@ -292,11 +329,11 @@
 
 
                     <!-- <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                      <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
-                      <label class="form-check-label text-white" for="form2Example3">
-                        I do accept the <a href="https://www.termsandconditionsgenerator.com/live.php?token=P1xgBUjubsGi446DkmDDwlH3aeQLDmM8" target=__blank class="text-white"><u>Terms and Conditions</u></a> of your site.
-                      </label>
-                    </div> -->
+    <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
+    <label class="form-check-label text-white" for="form2Example3">
+      I do accept the <a href="https://www.termsandconditionsgenerator.com/live.php?token=P1xgBUjubsGi446DkmDDwlH3aeQLDmM8" target=__blank class="text-white"><u>Terms and Conditions</u></a> of your site.
+    </label>
+  </div> -->
 
                     <button type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
 

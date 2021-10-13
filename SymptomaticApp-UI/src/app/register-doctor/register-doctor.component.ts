@@ -29,6 +29,7 @@ export class RegisterDoctorComponent implements OnInit {
     certifications: new FormControl(''),
     education: new FormControl(''),
     gender: new FormControl(''),
+    doctorSymptoms: new FormControl(''),
   });
 
   loading = false;
@@ -58,6 +59,7 @@ export class RegisterDoctorComponent implements OnInit {
       certifications: ['', Validators.required],
       education: ['', Validators.required],
       gender: ['', Validators.required],
+      doctorSymptoms: ['', [Validators.required]],
     });
   }
 
