@@ -89,10 +89,10 @@ namespace SymptoMedic.WebApi
                         ValidateLifetime = true, // the token hasn't expired
                         ValidateIssuerSigningKey = true, // the signing key is valid and trusted by the server
 
-                       /* ValidIssuer = "https://localhost:44391",
-                        ValidAudience = "https://localhost:4200",*/
-                        ValidIssuer = "http://symptomedic-api.eastus.cloudapp.azure.com",
-                        ValidAudience = "http://symptomedic-ui.eastus.cloudapp.azure.com",
+                        ValidIssuer = "https://localhost:44391",
+                        ValidAudience = "https://localhost:4200",
+                        /*ValidIssuer = "http://symptomedic-api.eastus.cloudapp.azure.com",
+                        ValidAudience = "http://symptomedic-ui.eastus.cloudapp.azure.com",*/
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretSupersupes#345"))
                     };
                 });

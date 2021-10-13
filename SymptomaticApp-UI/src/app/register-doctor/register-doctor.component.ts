@@ -49,7 +49,7 @@ export class RegisterDoctorComponent implements OnInit {
       practiceName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       doctorSpecialty: ['', Validators.required],
       practiceAddress: ['', Validators.required],
       practiceCity: ['', Validators.required],
