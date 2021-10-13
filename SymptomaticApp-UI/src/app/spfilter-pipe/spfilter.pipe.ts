@@ -14,9 +14,9 @@ export class SpfilterPipe implements PipeTransform {
     const doctors = [];
     for(const doctor of value)
     {
-      const doctorsymptoms = doctor['doctorSpeciality'];
-      if (doctorsymptoms === searchInput)
+      if (doctor['doctorSpeciality'] === searchInput)
       {
+        //doctor['doctorSpecialty'] = doctorSpecialty;
         doctors.push(doctor);
       }
     }
