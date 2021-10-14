@@ -90,7 +90,7 @@ namespace SymptoMedic.WebApi.Controllers
         }
 
         // PUT api/<BaseController>/5
-        [Authorize]
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] UpdatedDoctor doctor)
         {
@@ -121,7 +121,7 @@ namespace SymptoMedic.WebApi.Controllers
         }
 
         // DELETE api/<BaseController>/5
-        [Authorize]
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
