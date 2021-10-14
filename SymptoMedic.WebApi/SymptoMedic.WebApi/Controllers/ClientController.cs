@@ -28,6 +28,7 @@ namespace SymptoMedic.WebApi.Controllers
         /// Get's all clients
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<Doctor>> Get()
         {
@@ -41,6 +42,7 @@ namespace SymptoMedic.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> Get(int id)
         {
@@ -95,6 +97,7 @@ namespace SymptoMedic.WebApi.Controllers
         /// <param name="id"></param>
         /// <param name="client"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<Client>> Put(int id, [FromBody] UpdatedClient client)
         {
@@ -137,6 +140,7 @@ namespace SymptoMedic.WebApi.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("{userId}/insurance")]
         public async Task<ActionResult<Insurance>> Put(int userId, [FromBody] Insurance insurance)
         {
@@ -156,7 +160,7 @@ namespace SymptoMedic.WebApi.Controllers
                 return NotFound(e.Message);
             }
         }
-
+        [Authorize]
         [HttpPost("{userId}/insurance/{insuranceId}")]
         public async Task<ActionResult<Insurance>> Post(int userId, int insuranceId, Insurance insurance)
         {
