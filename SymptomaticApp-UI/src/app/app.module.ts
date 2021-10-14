@@ -110,8 +110,6 @@ export function tokenGetter() {
 
   MatProgressSpinnerModule,
   MatSnackBarModule
-
-
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

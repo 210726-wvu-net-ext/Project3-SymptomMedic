@@ -16,7 +16,6 @@ export class SpfilterPipe implements PipeTransform {
     {
       if (doctor['doctorSpeciality'] === searchInput)
       {
-        //doctor['doctorSpecialty'] = doctorSpecialty;
         doctors.push(doctor);
       }
     }
